@@ -1,0 +1,26 @@
+h1 ユーザー詳細
+
+.nav.justify-content-end
+  = link_to '一覧'
+  = link_to 'タスク作成'
+table.table.table-hover
+  tbody
+    tr
+      th = User.human_attribute_name(:icon_image)
+      td = @user.icon_image
+    tr
+      th = User.human_attribute_name(:user_name)
+      td = @user.user_name
+    tr
+      th = User.human_attribute_name(:email)
+      td = @user.email
+    tr
+      th = User.human_attribute_name(:created_at)
+      td = @user.created_at
+    tr
+      th = User.human_attribute_name(:updated_at)
+      td = @user.updated_at
+
+=> link_to 'Edit', edit_user_path(@user)
+'|
+=< link_to 'Back', users_path
