@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  Rails.application.routes.draw do
-    resources :users
-  end 
+  get '/login' => 'user_sessions#new'
+  post '/login' => 'user_sessions#create'
+  delete '/logout' => 'user_sessions#destroy'
+  resources :users
 end

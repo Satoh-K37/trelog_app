@@ -5,6 +5,7 @@
       ul
         - @user.errors.full_messages.each do |message|
           li = message
+          
 = form_with model: @user, local:true do |f|
   .form-group
     = f.label :user_name

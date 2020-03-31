@@ -68,7 +68,8 @@ gem 'slim-rails'
 gem 'html2slim'
 # Bootstrapを使えるようにする
 gem 'bootstrap'
-
+# Jqueryを使えるようにする
+gem 'jquery-rails'
 #################################
 
 #####　バッグエンド周りのGem　#####

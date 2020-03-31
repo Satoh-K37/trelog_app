@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    # 共通化済み　set_user
   end
 
   # GET /users/new
@@ -19,6 +20,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    # 共通化済み　set_user
   end
 
   # POST /users
@@ -54,20 +56,34 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    # 対象のユーザーをidで検索して、@userに格納
+    # 共通化済み　set_user
+    #　user_paramsの値に変更があった場合にifの処理に入る。それ以外はelseに入る。
+    if @user.update(user_params)
+      # 更新に成功したら、ユーザー詳細ページに遷移する
+      redirect_to user_path(@user), notice: '更新しました'
+    else
+      # 更新に失敗した場合は再度、編集のページを表示させる
+      render :edit
     end
   end
+
+  # def update
+  #   respond_to do |format|
+  #     if @user.update(user_params)
+  #       format.html { redirect_to @user, notice: 'User was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @user }
+  #     else
+  #       format.html { render :edit }
+  #       format.json { render json: @user.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    # 共通化済み　set_user
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }

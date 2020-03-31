@@ -11,6 +11,12 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require jquery
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+// ログインした時などに1秒後にメッセージを消す
+$(function(){
+  setTimeout("$('.alert').fadeOut('slow')", 1000);
+});

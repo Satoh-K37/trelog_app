@@ -8,4 +8,15 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    = yield
+    .app-title.navbar-expand-md.navbar-light.be--light
+      .navbar-barnd TRELOG
+
+      ul.navbar-nav.ml-auto
+        - if current_user
+          li.nav-item= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
+        - else
+          li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'
+      .container
+        - if flash.notice.present?
+            .alert.alert-succes= flash.notice
+        = yield
