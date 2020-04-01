@@ -18,5 +18,5 @@
 
 // ログインした時などに1秒後にメッセージを消す
 $(function(){
-  setTimeout("$('.alert').fadeOut('slow')", 1000);
+  setTimeout("$('.notice, .alert').fadeOut('slow')", 1000);
 });

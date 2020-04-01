@@ -1,13 +1,9 @@
 h1 ユーザー詳細
 
 .nav.justify-content-end
-  = link_to '一覧'
-  = link_to 'タスク作成'
+      i.nav-item= link_to 'アカウント一覧', users_path, class: 'nav-link'
 table.table.table-hover
   tbody
-    tr
-      th = User.human_attribute_name(:icon_image)
-      td = @user.icon_image
     tr
       th = User.human_attribute_name(:user_name)
       td = @user.user_name
@@ -20,6 +16,9 @@ table.table.table-hover
     tr
       th = User.human_attribute_name(:updated_at)
       td = @user.updated_at
+    tr
+      th = User.human_attribute_name(:icon_image)
+      td = @user.icon_image
 
 => link_to 'Edit', edit_user_path(@user)
 '|

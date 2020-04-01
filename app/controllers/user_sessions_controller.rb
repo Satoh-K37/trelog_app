@@ -17,7 +17,8 @@ class UserSessionsController < ApplicationController
       # redirect_to user
     else
       # ログインに失敗した場合はログイン画面を再表示させる
-      render :new, notice: 'ログインに失敗しました'
+      flash.now[:alert] = 'PWかメールアドレスが違います'
+      render :new
     end
   end
 

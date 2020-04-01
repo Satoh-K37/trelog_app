@@ -5,7 +5,7 @@
       ul
         - @user.errors.full_messages.each do |message|
           li = message
-          
+
 = form_with model: @user, local:true do |f|
   .form-group
     = f.label :user_name
@@ -20,6 +20,7 @@
     = f.label :password_confirmation
     = f.password_field :password_confirmation, class: 'form-control'
   .form-group
-    = f.label :iamge
-    = f.file_field :image, class: 'form-control'
+    = f.label :icon_iamge
+    = f.file_field :icon_image, class: 'form-control'
   = f.submit '登録する', class: 'btn btn-primary'
+  

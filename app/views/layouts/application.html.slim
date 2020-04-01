@@ -13,10 +13,19 @@ html
 
       ul.navbar-nav.ml-auto
         - if current_user
-          li.nav-item= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
+            li.nav-item= link_to 'タスク作成', signup_path, class: 'nav-link'
+            li.nav-item= link_to 'タスク一覧', signup_path, class: 'nav-link'
+            li.nav-item= link_to 'Log out', logout_path, method: :delete, class: 'nav-link'
         - else
-          li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'
+            li.nav-item= link_to 'Sign Up', signup_path, class: 'nav-link'
+            li.nav-item= link_to 'Log in', login_path, class: 'nav-link'
       .container
-        - if flash.notice.present?
-            .alert.alert-succes= flash.notice
+        /Flashメッセージのdivタグを定義
+        .notifications
+          /　Flashオブジェクトを呼び出し、Keyにnotice、Valueにメッセージが入る
+          - flash.each do |key, value|
+            /　content_tagを使用してflashメッセージを表示させるためのdivタグを作成され、メッセージが表示される
+            = content_tag(:div, value, class: key)
+        / - if flash.notice.present?
+        /     .alert.alert-succes= flash.notice
         = yield
