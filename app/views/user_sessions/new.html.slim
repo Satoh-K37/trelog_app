@@ -7,4 +7,7 @@ h1 　ログイン
   .form-group
     = f.label :password, 'パスワード'
     = f.password_field :password, class: 'form-control'
+  .form_group
+    = f.check_box :remember
+    = f.label 'ログインしたままにする'
   = f.submit 'ログイン', class: 'btn btn-primary'

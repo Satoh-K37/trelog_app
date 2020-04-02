@@ -5,16 +5,9 @@ class UserSessionsController < ApplicationController
   end
 
   def create
-    # ログイン画面で入力されたメールアドレスを引数にユーザを検索
-    user = User.find_by(email: session_params[:email])
-    # パスワードによる認証をauthenticateメソッドを使って行う
-    if user&.authenticate(session_params[:password])
-      # 認証に成功した場合、セッションにuser_idを格納
-      session[:user_id] = user.id
+    if @user = login(session_params[:email], session_params[:password], session_params[:remember])
       # ユーザ詳細画面に遷移
-      redirect_to user_path(user.id), notice: 'ログインしました'
-      # log_in user
-      # redirect_to user
+      redirect_to user_path(@user), notice: 'ログインしました'
     else
       # ログインに失敗した場合はログイン画面を再表示させる
       flash.now[:alert] = 'PWかメールアドレスが違います'
@@ -32,7 +25,7 @@ class UserSessionsController < ApplicationController
   private
 
   def session_params
-    params.require(:session).permit(:email, :password)
+    params.require(:session).permit(:email, :password, :remember)
   end
 
 

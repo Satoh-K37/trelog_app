@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
+    
     if @user.save
       # @userが保存されていれば、ユーザ詳細画面に遷移し、メッセージを表示させる
       redirect_to user_path(@user), notice: 'ユーザー登録が完了しました！'
@@ -100,6 +100,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:user_name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:user_name, :email, :password, :password_confirmation, :remember)
     end
 end

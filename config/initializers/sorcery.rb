@@ -4,10 +4,14 @@
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging,
 # :magic_login, :external
-Rails.application.config.sorcery.submodules = []
+# セッションタイムアウトを設定するために必要
+Rails.application.config.sorcery.submodules = [:remember_me, :session_timeout]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
+  # 3時間何もしないとタイムアウトする
+  config.session_timeout =  3.hour
+  config.session_timeout_from_last_action = true 
   # -- core --
   # What controller action to call for non-authenticated users. You can also
   # override the 'not_authenticated' method of course.
@@ -217,6 +221,9 @@ Rails.application.config.sorcery.configure do |config|
 
   # --- user config ---
   config.user_config do |user|
+    # ログインしたままにチェックを入れると2週間ログインしたままにする
+    user.remember_me_for = 1209600
+  
     # -- core --
     # Specify username attributes, for example: [:username, :email].
     # Default: `[:email]`

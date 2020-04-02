@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   delete '/logout' => 'user_sessions#destroy'
 
   get '/signup' => 'users#new'
-  resources :users, onry: [:create, :edit, :index, :show, :update]
+  resources :users
 end
