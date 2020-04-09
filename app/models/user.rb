@@ -7,7 +7,8 @@ class User < ApplicationRecord
   validates :password, confirmation: true, if: -> { new_record? || changes[:password_digest] }
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:password_digest] }
 
-  validates :email, uniqueness: true
-  
+  validates :email, presence: true, uniqueness: true
+  # トークンがユニークでないと他別のユーザのPWを変更してしまう
+  validates :reset_password_token, presence: true, uniqueness: true
   
 end

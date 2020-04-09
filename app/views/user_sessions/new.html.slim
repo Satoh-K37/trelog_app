@@ -10,4 +10,6 @@ h1 　ログイン
   .form_group
     = f.check_box :remember
     = f.label 'ログインしたままにする'
+  p
   = f.submit 'ログイン', class: 'btn btn-primary'
+=link_to 'パスワードを忘れた', new_password_reset_path

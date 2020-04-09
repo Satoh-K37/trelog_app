@@ -12,13 +12,13 @@ html
       .navbar-barnd TRELOG
 
       ul.navbar-nav.ml-auto
-        - if current_user
+        - if logged_in?
             li.nav-item= link_to 'タスク作成', signup_path, class: 'nav-link'
             li.nav-item= link_to 'タスク一覧', signup_path, class: 'nav-link'
-            li.nav-item= link_to 'Log out', logout_path, method: :delete, class: 'nav-link'
+            li.nav-item= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
         - else
-            li.nav-item= link_to 'Sign Up', signup_path, class: 'nav-link'
-            li.nav-item= link_to 'Log in', login_path, class: 'nav-link'
+            li.nav-item= link_to 'アカウント作成', signup_path, class: 'nav-link'
+            li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'
       .container
         /Flashメッセージのdivタグを定義
         .notifications

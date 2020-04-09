@@ -11,8 +11,8 @@ class ApplicationController < ActionController::Base
 
   # ユーザーがログインしていないとき、ログインを要求する
   def login_required
+    # login_required
     redirect_to login_url unless current_user
   end
-
 
 end

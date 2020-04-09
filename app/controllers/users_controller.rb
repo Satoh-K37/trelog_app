@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :login_required
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
+
   # GET /users
   # GET /users.json
   def index
@@ -28,8 +29,10 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    
+
     if @user.save
+      # ここでメールが送信される
+      # UserMailer.send_message_to_user(@user.user).deliver_now
       # @userが保存されていれば、ユーザ詳細画面に遷移し、メッセージを表示させる
       redirect_to user_path(@user), notice: 'ユーザー登録が完了しました！'
     else
@@ -37,22 +40,6 @@ class UsersController < ApplicationController
       render :new, notice: 'ユーザー登録の失敗しました'
     end
   end
-
-
-
-  # def create
-  #   @user = User.new(user_params)
-
-  #   respond_to do |format|
-  #     if @user.save
-  #       format.html { redirect_to @user, notice: 'User was successfully created.' }
-  #       format.json { render :show, status: :created, location: @user }
-  #     else
-  #       format.html { render :new }
-  #       format.json { render json: @user.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
@@ -69,28 +56,17 @@ class UsersController < ApplicationController
     end
   end
 
-  # def update
-  #   respond_to do |format|
-  #     if @user.update(user_params)
-  #       format.html { redirect_to @user, notice: 'User was successfully updated.' }
-  #       format.json { render :show, status: :ok, location: @user }
-  #     else
-  #       format.html { render :edit }
-  #       format.json { render json: @user.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
 
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
     # 共通化済み　set_user
     @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
+    redirect_to users_url notice: "ユーザー「#{@user.user_name}」を削除しました。"
     end
   end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -100,6 +76,5 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:user_name, :email, :password, :password_confirmation, :remember)
+      params.require(:user).permit(:user_name, :email, :password, :password_confirmation)
     end
-end

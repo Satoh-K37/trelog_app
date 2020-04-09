@@ -5,7 +5,7 @@
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging,
 # :magic_login, :external
 # セッションタイムアウトを設定するために必要
-Rails.application.config.sorcery.submodules = [:remember_me, :session_timeout]
+Rails.application.config.sorcery.submodules = [:remember_me, :session_timeout, :reset_password]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
@@ -223,7 +223,6 @@ Rails.application.config.sorcery.configure do |config|
   config.user_config do |user|
     # ログインしたままにチェックを入れると2週間ログインしたままにする
     user.remember_me_for = 1209600
-  
     # -- core --
     # Specify username attributes, for example: [:username, :email].
     # Default: `[:email]`
@@ -345,8 +344,8 @@ Rails.application.config.sorcery.configure do |config|
 
     # Activation success email method on your mailer class.
     # Default: `:activation_success_email`
-    #
-    # user.activation_success_email_method_name =
+    #　成功のメールが必要ないのでNilにしてる。Sorceryの公式に乗ってた。（https://github.com/NoamB/sorcery/wiki/User-Activation）
+    # user.activation_success_email_method_name = nil
 
     # Do you want to prevent users who did not activate by email from logging in?
     # Default: `true`
@@ -358,6 +357,8 @@ Rails.application.config.sorcery.configure do |config|
     # Default: `:reset_password_token`
     #
     # user.reset_password_token_attribute_name =
+    
+    user.reset_password_mailer = UserMailer
 
     # Password token expiry attribute name.
     # Default: `:reset_password_token_expires_at`
