@@ -3,23 +3,4 @@ h1 タスク作成
 .nav.just-content-end
   = link_to '一覧', tasks_path, class: 'nav-link'
 
-= form_with model: @task, local: true do |f|
-  .form-group
-    = f.label :title
-    = f.text_field :title, class: 'form-control', id: 'task_title'
-  .form-group
-    = f.label :weight
-    = f.text_field :weight, class: 'form-control', id: 'weight'
-  .form-group
-    = f.label :rep
-    = f.text_field :rep, class: 'form-control', id: 'rep'
-  .form-group
-    = f.label :set_count
-    = f.text_field :set_count, class: 'form-control', id: 'set_count'
-  .form-group
-    = f.label :deadline
-    = f.text_field :deadline, class: 'form-control', id: 'task_deadline'
-  .form-group
-    = f.label :memo
-    = f.text_area :memo, row: 5, class: 'form-control', id: 'task_memo'
-  = f.submit nil, class: 'btn btn-primary'
+= render partial: 'form', locals: { task: @task}
