@@ -4,6 +4,8 @@ class TasksController < ApplicationController
   end
 
   def show
+    # IDで目的のタスクを検索
+    @task = Task.find(params[:id])
   end
 
   def new
