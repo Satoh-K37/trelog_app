@@ -30,6 +30,16 @@ class TasksController < ApplicationController
     redirect_to tasks_url, notice: "タスク「#{task.title}」を更新しました"
   end
 
+  def destroy
+    # 目的のタスクをIDで検索する
+    task = Task.find(params[:id])
+    # 削除する
+    task.destroy
+    # 一覧ページに戻る
+    redirect_to tasks_url, notice: "タスク「#{task.title}」を削除しました"
+  end
+
+
 
   private
   
