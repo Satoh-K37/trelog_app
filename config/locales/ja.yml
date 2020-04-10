@@ -18,6 +18,17 @@
           icon_image: アイコン
           created_at: 作成日時
           updated_at: 更新日時
+        task: タスク
+      attributes:
+        task:
+          id: ID
+          title: タイトル
+          weight: 重量
+          rep: レップ
+          set_count: セット
+          memo: メモ
+          deadline: 期限
+          status: ステータス
   
     date:
       abbr_day_names:
