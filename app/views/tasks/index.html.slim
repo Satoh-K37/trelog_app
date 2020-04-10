@@ -1,2 +1,22 @@
 h1 タスク一覧
 = link_to 'タスク作成', new_task_path, class: 'btn btn-primary'
+
+.mb-3
+  table.table.table-hover
+    thead.thead-default
+      tr
+        th= Task.human_attribute_name(:title)
+        th= Task.human_attribute_name(:weight)
+        th= Task.human_attribute_name(:rep)
+        th= Task.human_attribute_name(:set_count)
+        th= Task.human_attribute_name(:status)
+        th= Task.human_attribute_name(:created_at)
+    tbody
+      - @tasks.each do |task|
+        tr
+          td= task.title
+          td= task.weight
+          td= task.rep
+          td= task.set_count
+          td= task.status
+          td= task.created_at
