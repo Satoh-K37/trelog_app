@@ -19,8 +19,8 @@ class UserSessionsController < ApplicationController
   def destroy
     # セッションに保存された情報を削除
     reset_session
-    # ログイン画面に遷移する…多分。
-    redirect_to login_path, notice: 'ログアウトしました'
+    # Welcomeページに遷移
+    redirect_to root_url, notice: 'ログアウトしました'
   end
 
   private
