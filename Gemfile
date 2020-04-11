@@ -25,7 +25,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
@@ -48,6 +48,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  # メールチェックするために追加
+  gem 'letter_opener_web', '~> 1.0'
 end
 
 group :test do
@@ -60,3 +62,20 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+#####　フロントエンド周りのGem　#####
+# Slimジェネレータを提供する
+gem 'slim-rails'
+# ERB形式のファイルをSlimに変換するコマンドを提供する
+gem 'html2slim'
+# Bootstrapを使えるようにする
+gem 'bootstrap'
+# Jqueryを使えるようにする
+gem 'jquery-rails'
+#################################
+
+#####　バッグエンド周りのGem　#####
+# ユーザ認証機能を実装するために使う（ユーザー登録、ログインなど）
+gem 'sorcery'
+###############################
+

@@ -1,0 +1,15 @@
+h1 　ログイン 
+
+= form_with scope: :session, local: true do |f|
+  .form-group
+    = f.label :email, 'メールアドレス'
+    = f.text_field :email, class: 'form-control'
+  .form-group
+    = f.label :password, 'パスワード'
+    = f.password_field :password, class: 'form-control'
+  .form_group
+    = f.check_box :remember
+    = f.label 'ログインしたままにする'
+  p
+  = f.submit 'ログイン', class: 'btn btn-primary'
+=link_to 'パスワードを忘れた', new_password_reset_path

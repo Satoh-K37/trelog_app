@@ -1,0 +1,31 @@
+doctype html
+html
+  head
+    title
+      | TrelogApp
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    .app-title.navbar-expand-md.navbar-light.be--light
+      .navbar-barnd TRELOG
+
+      ul.navbar-nav.ml-auto
+        - if logged_in?
+            li.nav-item= link_to 'タスク作成', new_task_path, class: 'nav-link'
+            li.nav-item= link_to 'タスク一覧', tasks_path, class: 'nav-link'
+            li.nav-item= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
+        - else
+            li.nav-item= link_to 'アカウント作成', signup_path, class: 'nav-link'
+            li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'
+      .container
+        /Flashメッセージのdivタグを定義
+        .notifications
+          /　Flashオブジェクトを呼び出し、Keyにnotice、Valueにメッセージが入る
+          - flash.each do |key, value|
+            /　content_tagを使用してflashメッセージを表示させるためのdivタグを作成され、メッセージが表示される
+            = content_tag(:div, value, class: key)
+        / - if flash.notice.present?
+        /     .alert.alert-succes= flash.notice
+        = yield

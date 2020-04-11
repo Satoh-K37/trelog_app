@@ -1,0 +1,7 @@
+h1 パスワード再設定申請
+
+= form_with url: password_resets_path, local:true do |f|
+  .form-group
+    = f.label :email
+    = f.email_field :email, class: 'form-control'
+  = f.submit '申請する', class: 'btn btn-primary'

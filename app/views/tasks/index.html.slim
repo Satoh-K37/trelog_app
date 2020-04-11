@@ -1,0 +1,28 @@
+h1 タスク一覧
+= link_to 'タスク作成', new_task_path, class: 'btn btn-primary'
+
+.mb-3
+  table.table.table-hover
+    thead.thead-default
+      tr
+        th= Task.human_attribute_name(:title)
+        th= Task.human_attribute_name(:weight)
+        th= Task.human_attribute_name(:rep)
+        th= Task.human_attribute_name(:set_count)
+        th= Task.human_attribute_name(:status)
+        th= Task.human_attribute_name(:memo)
+        th= Task.human_attribute_name(:created_at)
+        th
+    tbody
+      - @tasks.each do |task|
+        tr
+          td= link_to task.title, task_path(task)
+          td= task.weight
+          td= task.rep
+          td= task.set_count
+          td= task.status
+          td= task.memo
+          td= task.created_at
+          td
+            = link_to '編集', edit_task_path(task), class: 'btn btn-primary mr-3'
+            = link_to '削除', task, method: :delete, data: { confirm: "タスク「#{task.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'

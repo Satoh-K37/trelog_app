@@ -1,0 +1,33 @@
+@import "bootstrap";
+
+// フラッシュメッセージのレイアウト
+.notifications {
+  color: $white;
+  text-align: center;  
+
+  .notice {
+    color: #31708F;
+    margin: 0px, 0px , 20px;
+    padding: 15px;
+    background-color: #D9EDF7;
+  }
+  // #DFF0D8  Bootstrap　サクセスメッセージ #3C763D
+
+  .alert {
+    color: #A94442;
+    margin: 0px, 0px , 20px;
+    padding: 15px;
+    background-color: #F2DEDE	;
+  }
+}
+//  ここまで
+
+// ナビバー
+ul.ml-auto{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  list-style: none;
+}
+
+// 

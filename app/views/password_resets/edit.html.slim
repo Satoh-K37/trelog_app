@@ -1,0 +1,13 @@
+h1 パスワードリセット
+
+= form_with url: password_resets_path(@token), local:true do |f|
+  .form-group
+    = f.label :email
+    = f.email_field :email, class: 'form-control'
+  .form-group
+    = f.label :password
+    = f.password_field :password, class: 'form-control'
+  .form-group
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation, class: 'form-control'
+  = f.submit 'パスワードリセット', class: 'btn btn-primary'

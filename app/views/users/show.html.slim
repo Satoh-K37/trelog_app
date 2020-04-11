@@ -1,0 +1,29 @@
+h1 マイページ
+
+.nav.justify-content-end
+      i.nav-item= link_to 'アカウント一覧', users_path, class: 'nav-link'
+table.table.table-hover
+  tbody
+    tr
+      th = User.human_attribute_name(:id)
+      td = @user.id
+    tr
+    tr
+      th = User.human_attribute_name(:user_name)
+      td = @user.user_name
+    tr
+      th = User.human_attribute_name(:email)
+      td = @user.email
+    tr
+      th = User.human_attribute_name(:created_at)
+      td = @user.created_at
+    tr
+      th = User.human_attribute_name(:updated_at)
+      td = @user.updated_at
+    tr
+      th = User.human_attribute_name(:icon_image)
+      td = @user.icon_image
+      
+=> link_to 'Edit', edit_user_path(@user)
+'|
+=< link_to 'Back', users_path
