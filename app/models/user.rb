@@ -10,5 +10,5 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   # トークンがユニークでないと他別のユーザのPWを変更してしまう
   validates :reset_password_token, presence: true, uniqueness: true
-  
+  has_many :tasks
 end
