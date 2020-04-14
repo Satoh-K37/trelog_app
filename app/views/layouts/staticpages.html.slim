@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title
+      | TrelogApp
+    = csrf_meta_tags
+    = csp_meta_tag
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    = stylesheet_link_tag    'static_pages', media: 'all'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body.home
+    header.home
+      .container
+        /Flashメッセージのdivタグを定義
+        .notifications
+          /　Flashオブジェクトを呼び出し、Keyにnotice、Valueにメッセージが入る
+          - flash.each do |key, value|
+            /　content_tagを使用してflashメッセージを表示させるためのdivタグを作成され、メッセージが表示される
+            = content_tag(:div, value, class: key)
+        = yield
