@@ -1,9 +1,38 @@
-h1 TRELOGへようこそ！
-p TRELOGは筋トレを効率的に行うための記録アプリです。
-p =link_to 'トレーニングを始める',  signup_path
-p =link_to 'ログイン',  login_path
 
+  div.top-wrapper
+    div.row
+      div.top-container
+        h1 TRELOGへようこそ
+        p TRELOGは筋トレを効率的に行うための記録アプリです。 
+        
+        button.button#signup-btn
+          =link_to 'トレーニングを始める',  signup_path
+        button.button#login-btn
+          a =link_to 'ログイン',  login_path
+        ul
+          li= link_to 'TRELOGについて',  about_path
+          / 簡単ログインを実装後にルーティングを設定する
+          li= link_to '簡単ログインでTRELOGを使ってみる',  login_path
+          / リストの文字を左寄席にする。先頭にアイコンを表示させる（list-style）
+        
+          
+        
 
-p =link_to 'TRELOGについて',  about_path
-/ 簡単ログインを実装後にルーティングを設定する
-p =link_to '簡単ログインでTRELOGを使ってみる',  login_path
+  div.main-wrapper
+        div.message-container
+          ul
+            li=link_to 'TRELOGでできることを箇条書きでかく３つくらい？文の先頭にアイコンをつける'
+            li=link_to 'セット数の数え忘れをなくす'
+            li=link_to 'グラフで自分の成長を客観的？ビュジュアル？とにかくパッと理解する'
+            li=link_to 'タスクを画像でSNSでシェアできる。'
+            
+            br
+            br
+            br
+            br
+            br
+            br
+            br
+            br
+            li=link_to 'フィットネスっぽい画像を入れる'
+        

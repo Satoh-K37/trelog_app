@@ -5,28 +5,31 @@ html
       | TrelogApp
     = csrf_meta_tags
     = csp_meta_tag
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  body
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+  body.style
     .app-title.navbar-expand-md.navbar-light.be--light
-      .navbar-barnd TRELOG
+      .navbar-barnd
+        div.logo= link_to 'TRELOG', home_path
 
-      ul.navbar-nav.ml-auto
-        - if logged_in?
-            li.nav-item= link_to 'タスク作成', new_task_path, class: 'nav-link'
-            li.nav-item= link_to 'タスク一覧', tasks_path, class: 'nav-link'
-            / li.nav-item= link_to 'マイページ', user_path(@user), class: 'nav-link'
-            li.nav-item= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
-        - else
-            li.nav-item= link_to 'アカウント作成', signup_path, class: 'nav-link'
-            li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'
-      .container
-        /Flashメッセージのdivタグを定義
-        .notifications
-          /　Flashオブジェクトを呼び出し、Keyにnotice、Valueにメッセージが入る
-          - flash.each do |key, value|
-            /　content_tagを使用してflashメッセージを表示させるためのdivタグを作成され、メッセージが表示される
-            = content_tag(:div, value, class: key)
-        / - if flash.notice.present?
-        /     .alert.alert-succes= flash.notice
-        = yield
+        ul.navbar-nav.ml-auto
+          - if logged_in?
+              li.nav-item= link_to 'タスク作成', new_task_path, class: 'nav-link'
+              li.nav-item= link_to 'タスク一覧', tasks_path, class: 'nav-link'
+              / li.nav-item= link_to 'マイページ', user_path(@user), class: 'nav-link'
+              li.nav-item= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
+          - else
+              li.nav-item= link_to 'アカウント作成', signup_path, class: 'nav-link'
+              li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'
+        .container
+          /Flashメッセージのdivタグを定義
+          .notifications
+            /　Flashオブジェクトを呼び出し、Keyにnotice、Valueにメッセージが入る
+            - flash.each do |key, value|
+              /　content_tagを使用してflashメッセージを表示させるためのdivタグを作成され、メッセージが表示される
+              = content_tag(:div, value, class: key)
+          / - if flash.notice.present?
+          /     .alert.alert-succes= flash.notice
+          = yield

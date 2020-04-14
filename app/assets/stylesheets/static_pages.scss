@@ -1,3 +1,83 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+* {
+  box-sizing: border-box;
+}
+
+body.home {
+  background-color: #55b9f3;
+}
+
+  .top-wrapper {
+    padding: 0px 0 50px 0;;
+    color:white;
+    width: 100%;  
+    background-color:#55b9f3;
+      .top-container {
+        text-align: center;
+        width:1170px;
+        padding :0px 15px;
+        margin:0px auto; 
+      }
+        h1{
+          opacity :0.7;
+          font-size:45px;
+          letter-spacing:5px;
+        }
+        p{
+          opacity:0.7;
+        }
+        ul {
+          list-style-type: none
+        }
+        li{
+          margin-left: 1.4em;
+          text-indent: -1.4em;
+        }
+      .button{
+        width:200px;
+        height: 50px;
+        margin: 50px;
+        color: white;
+        display:inline-block;
+        border-radius: 62px;
+        // box-shadow:  
+        // -5px -5px 10px #7baaad, 
+        // 5px 5px 10px #e4ffff;
+        // -14px -14px 35px #0082aa, 
+        // 14px 14px 35px #00f2ff;
+        }
+        #signup-btn {
+          padding: 10px;
+          background-color:#aff3f7;
+        }
+        #login-btn {
+          padding: 10px;
+          background-color: #3399FF;
+        }
+      }
+
+  
+  .main-wrapper {
+        border-radius: 62px;
+        padding: 200px;
+        text-align: center;
+        color:white;
+        width: 100%;  
+        background-color:#FFFF;
+        
+        .message-container{
+          background-color:#FFFF; 
+          width: 100%;
+        }
+  }
+
+
+
+
+
+  // ここまで // 
+
