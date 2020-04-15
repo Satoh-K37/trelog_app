@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
+  has_many :tasks
   # has_secure_password
   validates :user_name, presence: true, length: { in: 1..30 }
   validates :password, length: { minimum: 8 }, if: -> { new_record? || changes[:password_digest] }
@@ -9,6 +10,5 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true
   # トークンがユニークでないと他別のユーザのPWを変更してしまう
-  validates :reset_password_token, presence: true, uniqueness: true
-  has_many :tasks
+  validates :reset_password_token, uniqueness: true
 end

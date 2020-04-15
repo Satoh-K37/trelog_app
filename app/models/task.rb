@@ -1,4 +1,5 @@
 class Task < ApplicationRecord
+    belongs_to :user
     #タスク名が入力されていないと検証エラーになる。30文字以内じゃないとエラーになる
     validates :title, presence: true, length: { in: 1..30 }
     #セット数が入力されていないとエラーになる。数値以外は受け付けない
@@ -9,7 +10,7 @@ class Task < ApplicationRecord
     validates :memo, length: { maximum: 300 }
 
     scope :recent, -> { order(created_at: :desc) }
-    belongs_to :user
+    
     private
 
     # オリジナルの検証。タイトルにカンマを含ませないようにする。なんかエラーがでる

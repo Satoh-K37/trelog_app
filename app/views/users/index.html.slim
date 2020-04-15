@@ -1,25 +1,27 @@
 h1 ユーザ一覧
 
-= link_to 'New User', new_user_path, class: 'btn btn-primary mr-3'
 
-.mb-3
-table.table.table-hover
-  thead.thead-default
-    tr
-      th= User.human_attribute_name(:user_name)
-      th= User.human_attribute_name(:email)
-      th= User.human_attribute_name(:created_at)
-      th= User.human_attribute_name(:updated_at)
-      th
-  tbody
-    - @users.each do |user|
-      tr
-        td= link_to user.user_name,(user_path(user))
-        td= user.email
-        td= user.created_at
-        tb= user.updated_at
-        td
-          = link_to '編集', edit_user_path(user), class: 'btn btn-primary mr-3'
-          = link_to '削除', user, method: :delete, data: { confirm: 'ユーザーを削除しますか？' }, class: 'btn btn-danger'
+div.input-wrapper
+  div.input-container
+    = link_to 'ユーザ新規作成', new_user_path, class: 'btn btn-primary mr-3'
+    .mb-3
+      table.table.table-hover
+        thead.thead-default
+          tr
+            th= User.human_attribute_name(:user_name)
+            th= User.human_attribute_name(:email)
+            th= User.human_attribute_name(:created_at)
+            th= User.human_attribute_name(:updated_at)
+            th
+        tbody
+          - @users.each do |user|
+            tr
+            td= link_to user.user_name,(user_path(user))
+            td= user.email
+            td= user.created_at
+            tb= user.updated_at
+            td
+              = link_to '編集', edit_user_path(user), class: 'btn btn-primary mr-3'
+              = link_to '削除', user, method: :delete, data: { confirm: 'ユーザーを削除しますか？' }, class: 'btn btn-danger'
 
 

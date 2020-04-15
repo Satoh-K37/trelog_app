@@ -58,3 +58,31 @@ ul.ml-auto{
 body.style{
   background-color: #55b9f3;
 }
+
+.input-wrapper{
+  border-radius: 62px;
+  padding: 100px;
+  text-align: center;
+  color:black;
+  width: 100%;  
+  background-color:#FFFF;
+  .input-container{
+    background-color:#FFFF; 
+    width: 100%;
+  }
+  .task-control{
+    text-align: left;
+  }
+  #weight{
+    width: 100px;
+  }
+  #rep{
+    width: 100px;
+  }
+  #set_count{
+    width: 100px;
+  }
+}
+
+
+//  ユーザ認証周りのCSS　ログイン、ユーザー登録 //

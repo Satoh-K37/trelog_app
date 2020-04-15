@@ -1,11 +1,11 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.all
+    @tasks = current_user.tasks
   end
 
   def show
     # IDで目的のタスクを検索
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
   end
 
   def new
@@ -14,7 +14,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.new(task_params)
 
     if @task.save
       redirect_to @task, notice: "タスク「#{@task.title}」を登録しました"
@@ -25,7 +25,7 @@ class TasksController < ApplicationController
 
 
   def edit
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
   end
 
   def update
@@ -36,7 +36,7 @@ class TasksController < ApplicationController
 
   def destroy
     # 目的のタスクをIDで検索する
-    task = Task.find(params[:id])
+    task = current_user.tasks.find(params[:id])
     # 削除する
     task.destroy
     # 一覧ページに戻る
