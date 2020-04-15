@@ -1,13 +1,27 @@
 class UsersController < ApplicationController
-  skip_before_action :login_required
+  skip_before_action :login_required 
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
 
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    # @users = User.all
+    # @q  =  .ransack(params [:q])
+    # @users  =  @q .result.(distinct: true).recent
+    @q = User.ransack(params[:q])
+    @users = @q.result(distinct: true)
   end
+
+  # 検索
+  # def search
+  #   if params[:user_name].present?
+  #     @users = User.where('user_name LIKE ?', "%#{params[:user_name]}%")
+  #   else
+  #     @users = User.none
+  #   end
+  # end
+
 
   # GET /users/1
   # GET /users/1.json
@@ -33,8 +47,10 @@ class UsersController < ApplicationController
     if @user.save
       # ここでメールが送信される
       # UserMailer.send_message_to_user(@user.user).deliver_now
+      # ログインさせる
+      log_in @user
       # @userが保存されていれば、ユーザ詳細画面に遷移し、メッセージを表示させる
-      redirect_to user_path(@user), notice: 'ユーザー登録が完了しました！'
+      redirect_to tasks_path, notice: 'ユーザー登録が完了しました！'
     else
       # 保存に失敗したら（パスワードの不一致など）新規登録画面を表示させる
       render :new, notice: 'ユーザー登録の失敗しました'
@@ -65,16 +81,3 @@ class UsersController < ApplicationController
     redirect_to users_url notice: "ユーザー「#{@user.user_name}」を削除しました。"
     end
   end
-
-
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
-    def user_params
-      params.require(:user).permit(:user_name, :email, :password, :password_confirmation)
-    end

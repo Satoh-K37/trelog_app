@@ -9,6 +9,8 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:password_digest] }
 
   validates :email, presence: true, uniqueness: true
-  # トークンがユニークでないと他別のユーザのPWを変更してしまう
-  validates :reset_password_token, uniqueness: true
+  # トークンがユニークでないと他別のユーザのPWを変更してしまう。
+  # これがあると新規ユーザーの作成に失敗するので一旦コメントアウト。パスワードリセットを途中で放棄してるからその時にトークンを発行してしまっているせいかも試しれん。なる早で解決したい。
+  # validates :reset_password_token, uniqueness: true
+  
 end
