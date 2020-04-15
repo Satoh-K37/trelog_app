@@ -1,16 +1,17 @@
 h1 アカウント一覧
 
+=search_form_for @q, class: 'mb-5' do |f|
+  .forn-group.row
+    = f.label :email_cont, 'メールアドレス', class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.search_field :email_cont, class: 'form-control'
+  .forn-group
+    = f.submit class: 'btn btn-outline-primary'
+
 = link_to 'New User', new_user_path, class: 'btn btn-primary mr-3'
-/ = search_form_for @q, class: 'mb-5' do |f|
-/     .form-group.row
-/       = f.label :name_cont, '名前', class: 'form-control'
-/       .col-sm-10
-/         = f.submit class: 'btn btn-outline-primary'
 
 div.input-wrapper
   div.input-container
-
-
     .mb-3
       table.table.table-hover
         thead.thead-default
@@ -32,5 +33,3 @@ div.input-wrapper
               td
                 = link_to '編集', edit_user_path(user), class: 'btn btn-primary mr-3'
                 = link_to '削除', user, method: :delete, data: { confirm: 'ユーザーを削除しますか？' }, class: 'btn btn-danger'
-
-
