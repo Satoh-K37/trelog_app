@@ -81,3 +81,5 @@ class UsersController < ApplicationController
     redirect_to users_url notice: "ユーザー「#{@user.user_name}」を削除しました。"
     end
   end
+
+
