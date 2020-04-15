@@ -1,7 +1,6 @@
 h1 マイページ
 
 .nav.justify-content-end
-      i.nav-item= link_to 'アカウント一覧', users_path, class: 'nav-link'
 div.input-wrapper
   div.input-container
     table.table.table-hover
@@ -18,6 +17,10 @@ div.input-wrapper
         tr
           th = User.human_attribute_name(:created_at)
           td = @user.created_at
+        - if current_user.admin?
+          tr
+            th = User.human_attribute_name(:admin)
+            td = @user.admin? ? 'あり' : 'なし'
         tr
           th = User.human_attribute_name(:updated_at)
           td = @user.updated_at

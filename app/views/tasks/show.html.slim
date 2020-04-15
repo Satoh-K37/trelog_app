@@ -29,7 +29,7 @@ div.input-wrapper
           td= @task.status
         tr
           th= Task.human_attribute_name(:memo)
-          td= simple_format(h(@task.memo), {}, sanitize: false, wrapper_tag: "div")
+          td= auto_link(simple_format(h(@task.memo), {}, sanitize: false, wrapper_tag: "div"))
         tr
           th= Task.human_attribute_name(:created_at)
           td= @task.created_at
