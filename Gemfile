@@ -77,5 +77,9 @@ gem 'jquery-rails'
 #####　バッグエンド周りのGem　#####
 # ユーザ認証機能を実装するために使う（ユーザー登録、ログインなど）
 gem 'sorcery'
+# URLをリンクとして表示させる
+gem 'rails_autolink'
+# 検索機能
+gem 'ransack'
 ###############################
 
