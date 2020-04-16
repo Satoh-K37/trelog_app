@@ -32,7 +32,7 @@ class TasksController < ApplicationController
 
   def update
     # 共通化　set_taskメソッドに処理あり
-    task.update!(task_params)
+    @task.update!(task_params)
     redirect_to tasks_url, notice: "タスク「#{@task.title}」を更新しました"
   end
 
