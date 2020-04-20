@@ -8,7 +8,7 @@ class UserSessionsController < ApplicationController
   def create
     if @user = login(session_params[:email], session_params[:password], session_params[:remember])
       # ユーザ詳細画面に遷移
-      redirect_to user_path(@user), notice: 'ログインしました'
+      redirect_to tasks_path, notice: 'ログインしました'
     else
       # ログインに失敗した場合はログイン画面を再表示させる
       flash.now[:alert] = 'PWかメールアドレスが違います'
@@ -24,7 +24,6 @@ class UserSessionsController < ApplicationController
   end
 
   private
-
   def session_params
     params.require(:session).permit(:email, :password, :remember)
   end
