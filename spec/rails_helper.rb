@@ -42,8 +42,12 @@ RSpec.configure do |config|
 
   # FactoryBotの省略
   config.include FactoryBot::Syntax::Methods
-  # module読み込み
+  # login処理を記述したファイルを読み込む
   config.include LoginModule
+  # Task関連の処理をまとめたを読み込む
+  # config.include TasksModule
+  # User関連の処理をまとめたファイルを読み込む
+  # config.include UsersModule
   # # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
