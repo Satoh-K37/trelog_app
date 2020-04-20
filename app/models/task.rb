@@ -4,7 +4,6 @@ class Task < ApplicationRecord
     validates :title, presence: true,length: { maximum: 30 }
     # length: { in: 1..30 }
     # 重量は自重で行うこともあるので、未入力は許可するけど文字は受け付けないようにする
-    # 
     # validates :weight, numericality: :only_integer
     #レップ数が入力されていないとエラーになる。数値以外は受け付けない
     validates :rep, presence: true, numericality: :only_integer

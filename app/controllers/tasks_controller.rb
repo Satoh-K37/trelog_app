@@ -32,8 +32,12 @@ class TasksController < ApplicationController
 
   def update
     # 共通化　set_taskメソッドに処理あり
-    @task.update!(task_params)
+    if @task.update(task_params)
     redirect_to tasks_url, notice: "タスク「#{@task.title}」を更新しました"
+    else
+      render :edit
+    # タスクの変更に失敗すると編集画面に戻るようにしたい…
+    end
   end
 
   def destroy
