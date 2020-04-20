@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :task do
     # タイトル
-    title { 'テストをかく' }
+    title { '最初のトレーニング' }
     # 重さ、重量
     weight { 10 }
     # レップ
