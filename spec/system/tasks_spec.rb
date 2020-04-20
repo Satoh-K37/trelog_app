@@ -8,28 +8,30 @@ describe 'タスク管理機能', type: :system do
   let(:user_a){ create( :user )}
   let(:user_b){ create( :user )}
   # ユーザAのタスクを作成
-  # let!(:taks_a){ create( :task, user: user_a)}
-  let!(:taks_a){ FactoryBot.create(:task, title: '最初のトレーニング', weight: '10' , rep: '10', set_count: '2', user: user_a) }
-  
+  let!(:taks_a){ create( :task, user: user_a)}
+  # let!(:taks_a){ FactoryBot.create(:task, title: '最初のトレーニング', weight: '10' , rep: '10', set_count: '2', user: user_a) }
+
+  shared_examples_for 'ユーザーAが作成したタスクが表示される' do
+    # page(画面)に期待するよ、…することを　最初のトレーニングがあるということを　的な感じらしい。
+      it{ expect(page).to have_content '最初のトレーニング' }
+  end
+
     
   describe '一覧表示機能' do
     context 'ユーザーAがログインしているとき' do
       # user.rbで定義した
       before { login( user_a) }
-      
-      it 'ユーザーAが作成したタスクが表示される' do
-        # page(画面)に期待するよ、…することを　最初のトレーニングがあるということを　的な感じらしい。
-        expect(page).to have_content '最初のトレーニング'
-        # expect(page).to have_selector '.index-taskname', text: '最初のトレーニング'
-      end
+      it_behaves_like 'ユーザーAが作成したタスクが表示される'
+      # it 'ユーザーAが作成したタスクが表示される' do
+      #   expect(page).to have_content '最初のトレーニング'
+      # end
     end
 
     context 'ユーザーBがログインしているとき' do
       before { login( user_b ) }
-
+      
       it 'ユーザーAが作成したタスクが表示されない' do
         expect(page).to have_no_content '最初のトレーニング'
-        # expect(page).to have_selector '.index-taskname', text: '最初のトレーニング'
       end
     end
   end
@@ -42,11 +44,16 @@ describe 'タスク管理機能', type: :system do
         visit task_path(taks_a)
       end
 
-      it 'ユーザーAが作成したタスクが表示される' do
-        expect(page).to have_content '最初のトレーニング'
-      end
+      it_behaves_like 'ユーザーAが作成したタスクが表示される'
+      # it 'ユーザーAが作成したタスクが表示される' do
+      #   expect(page).to have_content '最初のトレーニング'
+      # end
+
     end
   end
+
+#一番外のend 
+end
 
 ##  タスク一覧テストここまで  ##
 
@@ -96,4 +103,3 @@ describe 'タスク管理機能', type: :system do
 
 ##　　タスク詳細テストここまで　　##
 
-end
