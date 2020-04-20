@@ -1,12 +1,13 @@
 require 'rails_helper'
 
-# 
+# ログインしてないユーザーがタスク機能を使えないか確認するテスト書いてなかったわね…あとで追加します。
+
 describe 'タスク管理機能', type: :system do
   # ログインユーザをletで定義
   let(:user_a){ create( :user )}
   let(:user_b){ create( :user )}
   # ユーザAのタスクを作成
-  let!(:taks_a){ create( :task, user: user_a)}
+  let!(:task_a){ create( :task, user: user_a)}
   # let!(:taks_a){ FactoryBot.create(:task, title: '最初のトレーニング', weight: '10' , rep: '10', set_count: '2', user: user_a) }
 
   shared_examples_for 'ユーザーAが作成したタスクが表示される' do
@@ -15,7 +16,7 @@ describe 'タスク管理機能', type: :system do
   end
 
   # タスク一覧に作成したタスクが表示されているか？
-  describe '一覧表示機能' do
+  describe 'タスク一覧表示機能' do
     context 'ユーザーAがログインしているとき' do
       before { login( user_a) }
       it_behaves_like 'ユーザーAが作成したタスクが表示される'
@@ -32,12 +33,12 @@ describe 'タスク管理機能', type: :system do
   end
 
   #　ユーザーAが作成したタスクの詳細のテスト
-  describe '詳細表示機能' do
+  describe 'タスク詳細表示機能' do
     context 'ユーザーAがログインしているとき' do
       before { login( user_a ) }
     
       before do
-        visit task_path(taks_a)
+        visit task_path(task_a)
       end
 
       it_behaves_like 'ユーザーAが作成したタスクが表示される'
@@ -45,7 +46,7 @@ describe 'タスク管理機能', type: :system do
   end
 
   #
-  describe '新規作成機能' do
+  describe 'タスク新規作成機能' do
     before { login( user_a ) }
     before do
       visit new_task_path
@@ -53,6 +54,7 @@ describe 'タスク管理機能', type: :system do
       fill_in 'weight', with: task_weight
       fill_in 'rep', with: task_rep
       fill_in 'set_count', with: task_set_count
+      fill_in 'task_memo', with: task_memo
       click_button '登録'
       tasks_path
     end
@@ -62,21 +64,37 @@ describe 'タスク管理機能', type: :system do
       let(:task_weight){ '10' }
       let(:task_rep){ '10' }
       let(:task_set_count){ '2' }
+      let(:task_memo){''}
 
       it '正常に登録される' do
         expect(page).to have_content '新しいテストをかく' 
       end
     end
 
-    context 'タイトルを空欄で登録した時' do
+    context 'タイトルを空白で登録した時' do
       let(:task_title){ '' }
       let(:task_weight){ '10' }
       let(:task_rep){ '10' }
       let(:task_set_count){ '2' }
+      let(:task_memo){''}
 
       it 'エラー「タイトルを入力してください」' do
         within '#error_explanation' do
           expect(page).to have_content 'タイトルを入力してください'
+        end
+      end
+    end
+    
+    context 'タイトルを30文字以上で入力した場合' do
+      let(:task_title){ 'あああああああああああああああああああああああああああああああ' }
+      let(:task_weight){ '10' }
+      let(:task_rep){ '10' }
+      let(:task_set_count){ '2' }
+      let(:task_memo){''}
+
+      it 'タイトルは30文字以内で入力してください' do
+        within '#error_explanation' do
+          expect(page).to have_content 'タイトルは30文字以内で入力してください'
         end
       end
     end
@@ -103,6 +121,7 @@ describe 'タスク管理機能', type: :system do
       let(:task_weight){ '10' }
       let(:task_rep){ 'テスト' }
       let(:task_set_count){ '2' }
+      let(:task_memo){''}
       
       it 'エラー「レップは数値で入力してください」' do
         within '#error_explanation' do
@@ -117,6 +136,7 @@ describe 'タスク管理機能', type: :system do
       let(:task_weight){ '10' }
       let(:task_rep){ '' }
       let(:task_set_count){ '2' }
+      let(:task_memo){''}
 
       it 'エラー「レップを入力してください」' do
         within '#error_explanation' do
@@ -125,103 +145,190 @@ describe 'タスク管理機能', type: :system do
       end
     end
 
-      # セット以外は正しく入力されているが、セットに文字が入っている時
-      context 'セットに数値以外が入っているとき' do
-        let(:task_title){ 'テスト' }
-        let(:task_weight){ '10' }
-        let(:task_rep){ '10' }
-        let(:task_set_count){ 'test' }
+    # セット以外は正しく入力されているが、セットに文字が入っている時
+    context 'セットに数値以外が入っているとき' do
+      let(:task_title){ 'テスト' }
+      let(:task_weight){ '10' }
+      let(:task_rep){ '10' }
+      let(:task_set_count){ 'test' }
+      let(:task_memo){''}
 
-        it 'エラー「セットは数値で入力してください」' do
-          within '#error_explanation' do
-            expect(page).to have_content 'セットは数値で入力してください'
-          end
+      it 'エラー「セットは数値で入力してください」' do
+        within '#error_explanation' do
+          expect(page).to have_content 'セットは数値で入力してください'
         end
       end
+    end
 
-      # セット以外は正しく入力されているが、セットが空白の時
-      context 'セットに空白が入っているとき' do
-        let(:task_title){ 'テスト' }
-        let(:task_weight){ '10' }
-        let(:task_rep){ '10' }
-        let(:task_set_count){ 'test' }
+    # セット以外は正しく入力されているが、セットが空白の時
+    context 'セットに空白が入っているとき' do
+      let(:task_title){ 'テスト' }
+      let(:task_weight){ '10' }
+      let(:task_rep){ '10' }
+      let(:task_set_count){ 'test' }
+      let(:task_memo){''}
 
-        it 'エラー「セットは数値で入力してください」' do
-          within '#error_explanation' do
-            expect(page).to have_content 'セットは数値で入力してください'
-          end
+      it 'エラー「セットは数値で入力してください」' do
+        within '#error_explanation' do
+          expect(page).to have_content 'セットは数値で入力してください'
         end
       end
-  
-  # 新規作成機能のラストのエンド
+    end
+    
+    # # メモが300文字以上の時
+    context 'メモに300文字以上入力して登録した時' do
+      let(:task_title){ 'テスト' }
+      let(:task_weight){ '10' }
+      let(:task_rep){ '10' }
+      let(:task_set_count){ '2' }
+      # 301文字を入力させている。まじでどうにかならんかコレ…繰り返しとかのやつ調べる。
+      let(:task_memo){'あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ'}
+      
+      it 'メモは300文字以内で入力してください' do
+        within '#error_explanation' do
+          expect(page).to have_content 'メモは300文字以内で入力してください'
+        end
+      end
+    end
+
   end
+
+
+
+  describe 'タスク編集機能' do
+    before { login( user_a ) }
+    before do
+      visit task_path(task_a)
+      click_link '編集'
+      fill_in 'task_title', with: task_title
+      fill_in 'weight', with: task_weight
+      fill_in 'rep', with: task_rep
+      fill_in 'set_count', with: task_set_count
+      fill_in 'task_memo', with: task_memo
+      click_button '登録'
+      tasks_path
+    end
+
+    context 'タスク編集編集に成功する時' do
+      let(:task_title){ 'ベンチプレス' }
+      let(:task_weight){ '10' }
+      let(:task_rep){ '10' }
+      let(:task_set_count){ '2' }
+      let(:task_memo){ '' }
+
+      # let
+      it '編集に成功' do
+        expect(page).to have_content 'ベンチプレス'
+      end
+    end
+
+    # タイトルを空白で変更しようとした時
+    context 'タイトルを空白で編集完了した場合' do
+      let(:task_title){ '' }
+      let(:task_weight){ '10' }
+      let(:task_rep){ '10' }
+      let(:task_set_count){ '2' }
+      let(:task_memo){ '' }
+
+      it 'エラー「タイトルを入力してください」' do
+        within '#error_explanation' do
+          expect(page).to have_content 'タイトルを入力してください'
+        end
+      end
+    end
+
+    context 'タイトルが30字以上の場合' do
+      let(:task_title){ 'あああああああああああああああああああああああああああああああ' }
+      let(:task_weight){ '10' }
+      let(:task_rep){ '10' }
+      let(:task_set_count){ '2' }
+      let(:task_memo){ '' }
+
+      it 'エラー「タイトルは30文字以内で入力してください」' do
+        within '#error_explanation' do
+          expect(page).to have_content 'タイトルは30文字以内で入力してください'
+        end
+      end
+    end
+
+    # レップに数値以外が入力されて編集が登録された
+    context 'レップに数値以外が入力されて編集が登録された場合' do
+      let(:task_title){ 'test' }
+      let(:task_weight){ '10' }
+      let(:task_rep){ 'test' }
+      let(:task_set_count){ '2' }
+      let(:task_memo){ '' }
+
+      it 'レップは数値で入力してください' do
+        within '#error_explanation' do
+          expect(page).to have_content 'レップは数値で入力してください'
+        end
+      end
+    end
+
+    # レップに空白が入力されて編集が登録された
+    context 'レップに空白が入力されて編集が登録された場合' do
+      let(:task_title){ 'ベンチプレス' }
+      let(:task_weight){ '10' }
+      let(:task_rep){ '' }
+      let(:task_set_count){ '2' }
+      let(:task_memo){ '' }
+
+      it 'レップを入力してください' do
+        within '#error_explanation' do
+          expect(page).to have_content 'レップを入力してください'
+        end
+      end
+    end
+
+    # セットに数値以外が入力されて編集が登録された
+    context 'セットに数値以外が入力されて編集が登録された場合' do
+      let(:task_title){ 'ベンチプレス' }
+      let(:task_weight){ '10' }
+      let(:task_rep){ '10' }
+      let(:task_set_count){ 'test' }
+      let(:task_memo){ '' }
+
+      it 'セットは数値で入力してください' do
+        within '#error_explanation' do
+          expect(page).to have_content 'セットは数値で入力してください'
+        end
+      end
+    end
+
+    # セットに数値以外が入力されて編集が登録された
+    context 'セットに空白が入力されて編集が登録された場合' do
+      let(:task_title){ 'ベンチプレス' }
+      let(:task_weight){ '10' }
+      let(:task_rep){ '10' }
+      let(:task_set_count){ '' }
+      let(:task_memo){ '' }
+
+      it 'セットを入力してください' do
+        within '#error_explanation' do
+          expect(page).to have_content 'セットを入力してください'
+        end
+      end
+    end
+
+    # メモに300文字以上の入力がされた状態で編集登録がされた場合
+    # まじでどうにかしたい…
+    context 'メモに300文字以上の入力がされた状態で編集登録がされた場合' do
+      let(:task_title){ 'ベンチプレス' }
+      let(:task_weight){ '10' }
+      let(:task_rep){ '10' }
+      let(:task_set_count){ '10' }
+      let(:task_memo){ 'あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ' }
+
+      it 'メモは300文字以内で入力してください' do
+        within '#error_explanation' do
+          expect(page).to have_content 'メモは300文字以内で入力してください'
+        end
+      end
+    end
+  end
+
+
 
 #一番外のend 
 end
-
-
-
-  
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-##  タスク一覧テストここまで  ##
-
-## タスク作成のテスト ##
-# １、タスク作成画面アクセス
-# ２、タスク入力フォームの入力。登録ボタンのクリック
-# ３、タスク一覧画面に遷移
-# ４、作成したタスクが表示されているかを確認
-  # describe 'タスク作成機能', type: :system do
-  #   before do
-  #     # １、タスク作成画面アクセス
-  #     visit new_task_path
-  #     # ２、タスク入力フォームの入力。登録ボタンのクリック
-  #     # タイトルの入力
-  #     fill_in 'タイトル', with: 'トレーニングのタスク'
-  #     # 重量の入力
-  #     fill_in '重量', with: 15
-  #     # レップの入力
-  #     fill_in 'レップ', with: 10
-  #     # セットの入力
-  #     fill_in 'セット', with: 2
-  #     # タスクを登録するボタンをクリック
-  #     click_button '登録'
-  #     # ３、タスク一覧画面に遷移
-  #     visit tasks_path
-  #   end
-  #   # ４、作成したタスクが表示されているかを確認
-  #   it '作成したタスクが表示されているか' do
-  #     expect(page).to have_content 'トレーニングのタスク'
-  #   end
-  # end
-
-##　　タスク作成テストここまで　　##
-
-## タスク編集のテスト  ##
-# １、タスク編集画面アクセス
-# ２、変更内容をフォームに入力し、登録ボタンのクリック
-# ３、タスク一覧画面に遷移
-# ４、変更内容のデータが正しく表示されているかを確認
-# 
-
-##　　タスク編集テストここまで　　##
-
-## タスク詳細のテスト  ##
-# １、詳細画面にアクセス
-# ２、
-
-##　　タスク詳細テストここまで　　##
-
