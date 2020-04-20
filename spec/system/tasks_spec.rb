@@ -1,7 +1,5 @@
 require 'rails_helper'
 
-# ログインしてないユーザーがタスク機能を使えないか確認するテスト書いてなかったわね…あとで追加します。
-
 describe 'タスク管理機能', type: :system do
   # ログインユーザをletで定義
   let(:user_a){ create( :user )}
@@ -328,7 +326,16 @@ describe 'タスク管理機能', type: :system do
     end
   end
 
+  # ログインしていない場合にタスク機能にアクセスできないかテスト
+  describe 'ログインしていないときにタスク機能が利用できないか' do
 
+    context 'タスク一覧にアクセスした場合' do
+      it 'ログイン画面に遷移する' do
+        visit tasks_path
+        expect(page).to have_content 'ログイン'
+      end
+    end
+  end
 
 #一番外のend 
 end
