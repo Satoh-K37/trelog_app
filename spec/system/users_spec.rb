@@ -4,7 +4,7 @@ RSpec.describe 'アカウント管理機能', type: :system do
   # あとで不具合出るかもしれんけど、とりあえず。問題無かったらOK！
   let!(:user_a) { create(:user) }
   let!(:user_b) { create(:user) }
-  let(:admin) { create(:admin_user) }
+  
 
   describe 'ログイン前' do
 
@@ -128,6 +128,7 @@ RSpec.describe 'アカウント管理機能', type: :system do
 
 
   describe 'ログイン後' do
+
     describe 'ユーザー詳細' do
       before { login( user_a ) }
 
@@ -140,10 +141,6 @@ RSpec.describe 'アカウント管理機能', type: :system do
       end
     end
 
-# ## アカウント編集テスト  ##
-# #ユーザーの編集が正常にできるかをテスト（ユーザ名を変える）
-# # ユーザ名を空欄もしくは30文字以上で入力した時にエラーが出るかをテスト
-# # パスワードとパスワード確認が一致しないときにエラーが出るか（今は出ないですが…
     describe 'ユーザー編集' do
       before { login( user_a ) }
 
@@ -235,28 +232,33 @@ RSpec.describe 'アカウント管理機能', type: :system do
         let(:user_email){ 'useremail@example.com' }
         let(:password){ 'password' }
         let(:password_confirmation){ 'passSword' }
-        
+
         it 'エラー「Password confirmationとPasswordの入力が一致しません」' do
           within '#error_explanation' do
             expect(page).to have_content 'Password confirmationとPasswordの入力が一致しません'
           end
         end
       end
-      #    describe 'ユーザー編集' do
     end
-    # describe 'ログイン後' do
-  end
 
+  #   describe '' do
+  #     # 管理者ユーザーでログイン
+  #     before { login( user_a ) }
+  #     context 'アカウント一覧にアクセスできるか' do
+        
+  #       it 'アカウント一覧が表示されない' do
+  #         expect(page).to have_content user_a.email
+  #       end
+  #     end
+  #   end
+  #   # describe 'ログイン後' do
+  # end
 
-
-
-
-
-
-
-
-
-# ##　　アカウント編集テストここま
+      
+      # context 'ユーザーAのページにアクセスできるか' do
+      #   it 'ユーザーAのマイページが表示される' do
+      #   end
+      # end
   
 #   ##  アカウント一覧テスト  ###
 # # 作成したユーザのメールアドレスが表示されているかを確認
@@ -272,30 +274,5 @@ RSpec.describe 'アカウント管理機能', type: :system do
 # # 　一般ユーザがユーザ一覧見られないことをテストするのは無理では…？５まででいい気がする…
 
 # ##　　アカウント一覧テストここまで　　##
-#   describe '管理ユーザーでログイン' do
-#     # 管理者ユーザーでログイン
-#     before { login( admin ) }
-
-#     context 'ユーザー一覧にアクセスできるか' do
-#       it '作成したユーザーが表示される' do
-#       end
-#     end
-    
-#     context 'ユーザーAのページにアクセスできるか' do
-#       it 'ユーザーAのマイページが表示される' do
-#       end
-#     end
-
-
 # 一番外
 end
-
-
-
-
-
-
-
-
-
-
