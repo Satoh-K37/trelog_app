@@ -7,7 +7,6 @@ RSpec.describe 'アカウント管理機能', type: :system do
   
 
   describe 'ログイン前' do
-
     describe 'ユーザー新規登録' do
 
       before do
@@ -239,7 +238,10 @@ RSpec.describe 'アカウント管理機能', type: :system do
           end
         end
       end
+
     end
+  end
+  
 
   #   describe '' do
   #     # 管理者ユーザーでログイン
