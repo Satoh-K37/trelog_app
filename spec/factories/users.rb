@@ -14,14 +14,4 @@ FactoryBot.define do
     # activation_state: active
   end
 
-  factory :admin_user do
-    user_name { '管理者' }
-    # sequence(:user_name) { |n|'テストユーザー#{n}' }
-    email { |n| "admin@example.com" }
-    admin { true }
-    password { 'password' }
-    password_confirmation { 'password' }
-  end
-
-
 end
