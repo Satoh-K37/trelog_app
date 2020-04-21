@@ -27,6 +27,8 @@ div.input-wrapper
         tr
           th = User.human_attribute_name(:icon_image)
           td = @user.icon_image
-=> link_to 'Edit', edit_user_path(@user)
-'|
+        tr
+          th
+    = link_to '編集', edit_user_path(@user), class: 'btn btn-primary mr-3'
+
 =< link_to 'Back', users_path

@@ -53,7 +53,8 @@ class UsersController < ApplicationController
       redirect_to tasks_path, notice: 'ユーザー登録が完了しました！'
     else
       # 保存に失敗したら（パスワードの不一致など）新規登録画面を表示させる
-      render :new, notice: 'ユーザー登録の失敗しました'
+      render :new
+      # notice: 'ユーザー登録の失敗しました'
     end
   end
 

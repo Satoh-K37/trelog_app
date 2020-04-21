@@ -4,7 +4,7 @@ FactoryBot.define do
     #nに連番の数字が入る
     user_name { 'テストユーザ' }
     # sequence(:user_name) { |n|'テストユーザー#{n}' }
-    sequence(:email) { |n| "tester#{n}@example.com" }
+    sequence(:email) { |n| "test#{n}@example.com" }
     password { 'password' }
     password_confirmation { 'password' }
     # user_name: 'test'
@@ -12,6 +12,15 @@ FactoryBot.define do
     # salt: <%= salt = "asdasdastr4325234324sdfds" %>
     # crypted_password: <%= Sorcery::CryptoProviders::BCrypt.encrypt("secret", salt) %>
     # activation_state: active
+  end
+
+  factory :admin_user do
+    user_name { '管理者' }
+    # sequence(:user_name) { |n|'テストユーザー#{n}' }
+    email { |n| "admin@example.com" }
+    admin { true }
+    password { 'password' }
+    password_confirmation { 'password' }
   end
 
 
