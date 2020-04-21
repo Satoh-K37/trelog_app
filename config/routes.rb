@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   post '/login' => 'user_sessions#create'
   delete '/logout' => 'user_sessions#destroy'
   get '/signup' => 'users#new'
-  resources :users
+  resources :users, only: %i[create edit update destroy index]
   resources :password_resets, only: %i[new create edit update]
   ####################
 

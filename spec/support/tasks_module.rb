@@ -5,6 +5,8 @@ module TasksModule
     fill_in 'weight', with: task_weight
     fill_in 'rep', with: task_rep
     fill_in 'set_count', with: task_set_count
+    fill_in 'task_memo', with: task_memo
     click_button '登録'
+    tasks_path
   end
 end

@@ -46,6 +46,8 @@ describe 'タスク管理機能', type: :system do
   #
   describe 'タスク新規作成機能' do
     before { login( user_a ) }
+    
+    # もう少し簡素にかけそう。
     before do
       visit new_task_path
       fill_in 'task_title', with: task_title

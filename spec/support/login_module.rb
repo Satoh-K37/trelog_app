@@ -9,5 +9,6 @@ module LoginModule
     # 「ログイン」ボタンをクリック
     click_button 'ログイン'
   end
+
 end
 
