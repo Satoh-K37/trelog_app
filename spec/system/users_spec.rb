@@ -8,12 +8,6 @@ RSpec.describe 'アカウント管理機能', type: :system do
 
   describe 'ログイン前' do
 
-## アカウント作成テスト  ##
-# １、アカウント作成画面アクセス
-# ２、アカウント入力フォームの入力。登録ボタンのクリック
-# ３、アカウント詳細画面に遷移
-# ４、作成したアカウントが表示されているかを確認（Emailが一致すればOK）
-
     describe 'ユーザー新規登録' do
 
       before do
@@ -116,18 +110,6 @@ RSpec.describe 'アカウント管理機能', type: :system do
         end
       end
 
-      context 'パスワード確認が未入力' do
-        let(:user_name){ 'test' }
-        let(:user_email){ 'useremail@example.com' }
-        let(:password){ 'password' }
-        let(:password_confirmation){ '' }
-
-        it 'エラー「Password confirmationを入力してください」' do
-          within '#error_explanation' do
-            expect(page).to have_content 'Password confirmationを入力してください'
-          end
-        end
-      end
 
       context 'パスワードとパスワード確認が一致しない' do
         let(:user_name){ 'test' }
@@ -141,28 +123,29 @@ RSpec.describe 'アカウント管理機能', type: :system do
           end
         end
       end
-
-
-      # describe 'ユーザー新規登録' のエンド
     end
-    # describe 'ログイン前' のエンド
   end
 
 
-#   describe 'ログイン後' do
-#     # 一般ユーザーでログイン
-#     before { login( user_a ) }
-# ## アカウント詳細テスト  ##
-# #ユーザーAのマイページにアクセスできるか
-# #ユーザーBでログインしている時にユーザーAのページにアクセスできないかをテスト
+  describe 'ログイン後' do
+    # 一般ユーザーでログイン
+## アカウント詳細テスト  ##
+#ユーザーAのマイページにアクセスできるか
+#ユーザーBでログインしている時にユーザーAのページにアクセスできないかをテスト
+    describe 'ユーザー詳細' do
+      before { login( user_a ) }
 
-#     describe 'ユーザー詳細' do
-#       context 'ユーザーAがログインしているとき'
-#       it 'ユーザーAのマイページが表示される' do
-#       end
-#     end
+      context 'ユーザーAがログインしているとき' do
+        it 'ユーザーAのマイページが表示される' do
+        visit user_path(user_a)
+        # ログインしたユーザーのメールアドレスが表示されていること期待
+        expect(page).to have_content user_a.email
+        end
+      end
+    end
+  end
 
-# ##　　アカウント詳細テストここまで　　##
+##　　アカウント詳細テストここまで　　##
 
 
 # ## アカウント編集テスト  ##

@@ -10,12 +10,12 @@ Rails.application.routes.draw do
   get '/about' => 'static_pages#about'
   ####################
   
-  # ユーザ認証周り
+  # ユーザ周り
   get '/login' => 'user_sessions#new'
   post '/login' => 'user_sessions#create'
   delete '/logout' => 'user_sessions#destroy'
   get '/signup' => 'users#new'
-  resources :users, only: %i[create edit update destroy index]
+  resources :users, only: %i[create edit update show index destroy]
   resources :password_resets, only: %i[new create edit update]
   ####################
 
