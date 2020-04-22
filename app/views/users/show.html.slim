@@ -29,6 +29,10 @@ div.input-wrapper
           td = @user.icon_image
         tr
           th
-    = link_to '編集', edit_user_path(@user), class: 'btn btn-primary mr-3'
+    p
+    =< link_to '戻る', tasks_path, class: 'btn btn-primary mr-3'
+    '
+    => link_to '編集', edit_user_path(@user), class: 'btn btn-primary mr-3'
+    
 
-=< link_to 'Back', users_path
+/ =< link_to 'Back', users_path

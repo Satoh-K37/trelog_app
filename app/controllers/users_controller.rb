@@ -1,26 +1,6 @@
 class UsersController < ApplicationController
-  skip_before_action :login_required 
+  skip_before_action :login_required
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
-
-  # GET /users
-  # GET /users.json
-  def index
-    # @users = User.all
-    # @q  =  .ransack(params [:q])
-    # @users  =  @q .result.(distinct: true).recent
-    @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true)
-  end
-
-  # 検索
-  # def search
-  #   if params[:user_name].present?
-  #     @users = User.where('user_name LIKE ?', "%#{params[:user_name]}%")
-  #   else
-  #     @users = User.none
-  #   end
-  # end
 
 
   # GET /users/1
@@ -73,15 +53,16 @@ class UsersController < ApplicationController
     end
   end
 
-
-  # DELETE /users/1
-  # DELETE /users/1.json
   def destroy
     # 共通化済み　set_user
+    # これメッセージを退会しましたにすりゃ退会処理完成では？？
+    # 退会ボタン作ればOKなのでは？
     @user.destroy
-    redirect_to users_url notice: "ユーザー「#{@user.user_name}」を削除しました。"
+    redirect_to admin_users_url notice: "ユーザー「#{@user.user_name}」を削除しました。"
     end
   end
+
+
 
   private
   
