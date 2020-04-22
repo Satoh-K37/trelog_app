@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'admin_users/new'
-    get 'admin_users/edit'
-    get 'admin_users/show'
-    get 'admin_users/index'
-  end
   # ログインせずに見れるページ
   get '/home' => 'static_pages#home'
   get '/about' => 'static_pages#about'
@@ -22,6 +16,19 @@ Rails.application.routes.draw do
   # タスク機能関係
   resources :tasks
   ####################
+
+  # 管理者
+  namespace :admin do
+    resources :users, only: %i[new create edit update show index destroy]
+  end
+  ############################
+
+  # namespace :admin do
+  #   get 'admin_users/new'
+  #   get 'admin_users/edit'
+  #   get 'admin_users/show'
+  #   get 'admin_users/index'
+  # end
   
   # LetterOpenerWebアクセスする
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?

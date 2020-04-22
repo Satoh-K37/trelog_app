@@ -1,6 +1,6 @@
 h1 アカウント一覧
 
-=search_form_for @q, class: 'mb-5' do |f|
+=search_form_for @q, url: admin_users_path, class: 'mb-5' do |f|
   .forn-group.row
     = f.label :email_cont, 'メールアドレス', class: 'col-sm-2 col-form-label'
     .col-sm-10
@@ -8,7 +8,8 @@ h1 アカウント一覧
   .forn-group
     = f.submit class: 'btn btn-outline-primary'
 
-= link_to 'アカウント作成', signup_path, class: 'btn btn-primary mr-3'
+=> link_to 'アカウント作成', new_admin_user_path, class: 'btn btn-primary mr-3'
+p
 
 div.input-wrapper
   div.input-container
@@ -18,18 +19,16 @@ div.input-wrapper
           tr
             th= User.human_attribute_name(:user_name)
             th= User.human_attribute_name(:email)
-            - if current_user.admin?
-              th= User.human_attribute_name(:admin)
+            th= User.human_attribute_name(:admin)
             th= User.human_attribute_name(:created_at)
             th
         tbody
           - @users.each do |user|
             tr
-              td= link_to user.user_name,(user_path(user))
+              td= link_to user.user_name, [:admin, user]
               td= user.email
-              - if current_user.admin?
-                td= user.admin? ? 'あり' : 'なし'
+              td= user.admin? ? 'あり' : 'なし'
               td= user.created_at
               td
-                = link_to '編集', edit_user_path(user), class: 'btn btn-primary mr-3'
-                = link_to '削除', user, method: :delete, data: { confirm: 'ユーザーを削除しますか？' }, class: 'btn btn-danger'
+                = link_to '編集', edit_admin_user_path(user), class: 'btn btn-primary mr-3'
+                = link_to '削除', [:admin, user], method: :delete, data: { confirm: 'ユーザーを削除しますか？' }, class: 'btn btn-danger'

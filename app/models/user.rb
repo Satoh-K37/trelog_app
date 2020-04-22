@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
   # ログインの時にメールアドレスを求めるので、ユニークにしている。
   validates :email, presence: true, uniqueness: true
-  
+  scope :recent, -> { order(created_at: :desc) }
   # トークンがユニークでないと他別のユーザのPWを変更してしまう。
   # これがあると新規ユーザーの作成に失敗するので一旦コメントアウト。
   # sパスワードリセットを途中で放棄してるからその時にトークンを発行してしまっているせいかも試しれん。なる早で解決したい。
