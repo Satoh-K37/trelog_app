@@ -1,12 +1,17 @@
 h1 タスク一覧
 
+=search_form_for @q, class: 'mb-5' do |f|
+  .forn-group.row
+    = f.label :title_cont, 'タスク名', class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.search_field :title_cont, class: 'form-control'
+  .forn-group
+    = f.submit class: 'btn btn-outline-primary'
 
 div.input-wrapper
   div.input-container
     = link_to 'タスク作成', new_task_path, class: 'btn btn-primary'
-    br
-    br
-    br
+    p
     .mb-3
       table.table.table-hover
         thead.thead-default

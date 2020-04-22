@@ -9,19 +9,19 @@ div.input-wrapper
   div.input-container
     = form_with model: @user, local:true do |f|
       .form-group
-        = f.label :user_name
+        = f.label :user_name, 'アカウント名'
         = f.text_field :user_name, class: 'form-control'
       .form-group
-        = f.label :email
+        = f.label :email, 'メールアドレス'
         = f.email_field :email, class: 'form-control'
       .form-group
-        = f.label :password
+        = f.label :password, 'パスワード'
         = f.password_field :password, class: 'form-control'
       .form-group
-        = f.label :password_confirmation
+        = f.label :password_confirmation, 'パスワード確認'
         = f.password_field :password_confirmation, class: 'form-control'
       .form-group
-        = f.label :icon_iamge
+        = f.label :icon_iamge, 'アイコン画像'
         = f.file_field :icon_image, class: 'form-control'
       - if current_user
         => link_to '戻る', user_path(current_user), class: 'btn btn-primary mr-3'

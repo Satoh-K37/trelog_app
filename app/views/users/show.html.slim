@@ -30,9 +30,10 @@ div.input-wrapper
         tr
           th
     p
-    =< link_to '戻る', tasks_path, class: 'btn btn-primary mr-3'
+    =< link_to '戻る', tasks_path, class: 'btn btn-outline-primary  mr-3'
     '
     => link_to '編集', edit_user_path(@user), class: 'btn btn-primary mr-3'
-    
+    '
+    = link_to '退会', @user, method: :delete, data: { confirm: '退会しますか？' }, class: 'btn btn-danger'
 
 / =< link_to 'Back', users_path

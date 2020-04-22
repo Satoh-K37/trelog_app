@@ -2,7 +2,10 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tasks = current_user.tasks
+    # @tasks = 
+    @q = current_user.tasks.ransack(params[:q])
+    # 検索フォームに入力された値を含むユーザー一覧を表示させる
+    @tasks = @q.result(distinct: true)
   end
 
   def show
