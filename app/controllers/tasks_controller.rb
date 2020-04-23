@@ -6,6 +6,15 @@ class TasksController < ApplicationController
     @q = current_user.tasks.ransack(params[:q])
     # 検索フォームに入力された値を含むユーザー一覧を表示させる
     @tasks = @q.result(distinct: true)
+
+    @show = params[:show]
+    if @show == '1' then
+      @tasks = Task.where(status: 1)
+    elsif @show == "2"
+      @tasks = Task.where(status: 2)
+    else
+      @tasks = Task.all
+    end
   end
 
   def show
@@ -29,6 +38,8 @@ class TasksController < ApplicationController
   end
 
 
+
+
   def edit
     # 共通化　set_taskメソッドに処理あり
   end
@@ -36,11 +47,17 @@ class TasksController < ApplicationController
   def update
     # 共通化　set_taskメソッドに処理あり
     if @task.update(task_params)
-    redirect_to tasks_url, notice: "タスク「#{@task.title}」を更新しました"
+      redirect_to tasks_url, notice: "タスク「#{@task.title}」を更新しました"
     else
       render :edit
     # タスクの変更に失敗すると編集画面に戻るようにしたい…
     end
+  end
+
+  def done
+    @task.update(status: 'Done')
+    @tasks = Task.all.includes(:user)
+    render :index
   end
 
   def destroy

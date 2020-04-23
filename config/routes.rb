@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   ####################
 
   # タスク機能関係
+  post '/tasks/:id/done' => 'tasks#done', as: 'done'
   resources :tasks
+  
   ####################
 
   # 管理者
