@@ -20,6 +20,9 @@ div.input-wrapper
       = f.label :set_count, class: 'task-control'
       = f.text_field :set_count, class: 'form-control', id: 'set_count'
     .form-group
+      = f.label :status
+      = f.select :status, ['未完了','完了'], {}, class: 'form-control', id: 'task_status'
+    .form-group
       = f.label :deadline
       = f.text_field :deadline, class: 'form-control', id: 'task_deadline'
     .form-group

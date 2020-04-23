@@ -26,7 +26,8 @@ div.input-wrapper
           td= @task.deadline
         tr
           th= Task.human_attribute_name(:status)
-          td= @task.status
+          td= @task.status 
+          / ? '未完了' : '着手中' : '完了'
         tr
           th= Task.human_attribute_name(:memo)
           td= auto_link(simple_format(h(@task.memo), {}, sanitize: false, wrapper_tag: "div"))
