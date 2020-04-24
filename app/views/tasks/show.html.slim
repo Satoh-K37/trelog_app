@@ -1,7 +1,7 @@
 h1 タスク詳細
 
 .nav.justify-content-end
-  =link_to '一覧', tasks_path, class: 'nav-link'
+  =link_to 'タスク一覧', todo_tasks_path, class: 'nav-link'
 div.input-wrapper
   div.input-container
     table.table.table-hover
@@ -37,5 +37,7 @@ div.input-wrapper
         tr
           th= Task.human_attribute_name(:updated_at)
           td= @task.updated_at
-  = link_to '編集', edit_task_path, class: 'btn btn-primary mr-3'
-  = link_to '削除', @task, method: :delete, data: { confirm: "タスク「#{@task.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
+    = link_to '戻る', todo_tasks_path, class: 'btn btn-outline-primary mr-3'
+    = link_to '編集', edit_task_path, class: 'btn btn-primary mr-3'
+    = link_to '削除', @task, method: :delete, data: { confirm: "タスク「#{@task.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
+    / - if current_user.id == @user.id

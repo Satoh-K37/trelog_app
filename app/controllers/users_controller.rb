@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   skip_before_action :login_required
+  # skip_before_action :correct_user[:new]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
-
+  # before_action :correct_user, onry: [:edit, :update, :show]
   # GET /users/1
   # GET /users/1.json
   def show
@@ -59,10 +59,7 @@ class UsersController < ApplicationController
     # 退会ボタン作ればOKなのでは？
     @user.destroy
     redirect_to admin_users_url notice: "ユーザー「#{@user.user_name}」を削除しました。"
-    end
   end
-
-
 
   private
   
@@ -78,3 +75,13 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:user_name, :email, :password, :password_confirmation)
   end
+
+    #   # URLを直打ちで別のユーザーを表示されるのを防ぐ
+    # def correct_user
+      
+    #   @user = current_user.User.find_by(params[:id])
+    #   redirect_to tasks_path if current_user != @user
+    # end
+
+
+end

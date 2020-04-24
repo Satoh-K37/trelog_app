@@ -8,6 +8,8 @@ FactoryBot.define do
     rep { 10 }
     # セット数
     set_count { 2 }
+    #ステータス
+    # status　{ 0 }
     # 期日
     deadline { '2021/4/29' }
     # メモ
