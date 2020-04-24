@@ -11,9 +11,8 @@ class UserSessionsController < ApplicationController
       if current_user.admin?
         redirect_to admin_users_path, notice: 'おかえりなさい、管理者'
       else
-        redirect_to tasks_path, notice: 'ログインしました'
+        redirect_to todo_tasks_path, notice: 'ログインしました'
       end
-
     else
       # ログインに失敗した場合はログイン画面を再表示させる
       flash.now[:alert] = 'PWかメールアドレスが違います'

@@ -9,25 +9,25 @@ div.input-wrapper
   = form_with model: task, local:true do |f|
     .form-group
       = f.label :title, class: 'task-control'
-      = f.text_field :title, class: 'form-control', id: 'task_title'
+      = f.text_field :title, placeholder: '例）ベンチプレス', class: 'form-control', id: 'task_title'
     .form-group
       = f.label :weight, class: 'task-control'
-      = f.text_field :weight, class: 'form-control', id: 'weight'
+      = f.text_field :weight, placeholder: '例）20',  class: 'form-control', id: 'weight'
     .form-group
       = f.label :rep, class: 'task-control'
-      = f.text_field :rep, class: 'form-control', id: 'rep'
+      = f.text_field :rep, placeholder: '例）10', class: 'form-control', id: 'rep'
     .form-group    
       = f.label :set_count, class: 'task-control'
-      = f.text_field :set_count, class: 'form-control', id: 'set_count'
+      = f.text_field :set_count, placeholder: '例）2', class: 'form-control', id: 'set_count'
     .form-group
       = f.label :status
       = f.select :status, ['未完了','完了'], {}, class: 'form-control', id: 'task_status'
     .form-group
       = f.label :deadline
-      = f.text_field :deadline, class: 'form-control', id: 'task_deadline'
+      = f.text_field :deadline, type: 'date', class: 'form-control', id: 'task_deadline'
     .form-group
       = f.label :memo
-      = f.text_area :memo, row: 5, class: 'form-control', id: 'task_memo'
-    => link_to '戻る',tasks_path, class: 'btn btn-outline-primary mr-3'
+      = f.text_area :memo, row: 5, placeholder: 'トレーニングはどうでしたか？',class: 'form-control', id: 'task_memo'
+    => link_to '戻る',todo_tasks_path,  class: 'btn btn-outline-primary mr-3'
     '
     =< f.submit '登録', class: 'btn btn-primary'

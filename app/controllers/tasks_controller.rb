@@ -1,21 +1,38 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update,:destroy]
+  
 
   def index
-    # @tasks = 
     @q = current_user.tasks.ransack(params[:q])
     # 検索フォームに入力された値を含むユーザー一覧を表示させる
     @tasks = @q.result(distinct: true)
 
-    @show = params[:show]
-    if @show == '1' then
-      @tasks = Task.where(status: 1)
-    elsif @show == "2"
-      @tasks = Task.where(status: 2)
-    else
-      @tasks = Task.all
-    end
+    # @show = params[:show] 
+    
+    # if @show == '1' then
+    #   @tasks = Task.where(status: 1)
+    # elsif @show == "2"
+    #   @tasks = Task.where(status: 2)
+    # else
+    #   @tasks = Task.all
+    # end
+
   end
+
+  def todo
+    # 未完了
+    @q = current_user.tasks.where(status: 0).ransack(params[:q])
+    # 検索フォームに入力された値を含むユーザー一覧を表示させる
+    @tasks = @q.result(distinct: true)
+  end
+
+  def done
+    # 完了
+    @q = current_user.tasks.where(status: 1).ransack(params[:q])
+    # 検索フォームに入力された値を含むユーザー一覧を表示させる
+    @tasks = @q.result(distinct: true)
+  end
+
 
   def show
     # IDで目的のタスクを検索
@@ -31,13 +48,12 @@ class TasksController < ApplicationController
     @task = current_user.tasks.new(task_params)
 
     if @task.save
-      redirect_to @task, notice: "タスク「#{@task.title}」を登録しました"
+      redirect_to todo_tasks_path, notice: "タスク「#{@task.title}」を登録しました"
+      # redirect_to @task, notice: "タスク「#{@task.title}」を登録しました"
     else
       render :new
     end
   end
-
-
 
 
   def edit
@@ -54,11 +70,14 @@ class TasksController < ApplicationController
     end
   end
 
-  def done
-    @task.update(status: 'Done')
-    @tasks = Task.all.includes(:user)
-    render :index
-  end
+  # def done
+  #   @task.update(status: 1)
+  #   @tasks = Task.all
+  #   # .includes(:user)
+  #   # render :index
+  # end
+
+
 
   def destroy
     # 目的のタスクをIDで検索する
@@ -77,9 +96,12 @@ class TasksController < ApplicationController
     @task = current_user.tasks.find(params[:id])
   end
 
+
   
   def task_params
     params.require(:task).permit(:title, :weight, :rep, :set_count, :memo, :deadline, :status)  
   end
+
+
 
 end

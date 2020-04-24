@@ -7,6 +7,6 @@ module TasksModule
     fill_in 'set_count', with: task_set_count
     fill_in 'task_memo', with: task_memo
     click_button '登録'
-    tasks_path
+    todo_tasks_path
   end
 end

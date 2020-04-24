@@ -14,8 +14,14 @@ Rails.application.routes.draw do
   ####################
 
   # タスク機能関係
+  resources :tasks do
+    collection do
+      get :todo, :done
+    end
+  end
+
   post '/tasks/:id/done' => 'tasks#done', as: 'done'
-  resources :tasks
+  get '/tasks/search' => 'tasks#search' ,as: 'search'
   
   ####################
 

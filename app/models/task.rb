@@ -14,8 +14,9 @@ class Task < ApplicationRecord
     validates :memo, length: { maximum: 300 }
 
     scope :recent, -> { order(created_at: :desc) }
-    enum status: {未完了:1, 完了:2}
-    
+    # これだとN+1問題が起こるらしい…
+    enum status: {未完了:0, 完了:1}
+    #   {unfinished: '未完了', done: '完了'}
     
     private
 
