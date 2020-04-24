@@ -15,7 +15,7 @@
           email: メールアドレス
           password: パスワード
           password_confirmation: パスワード（確認）
-          icon_image: アイコン
+          icon_image: アイコン画像
           created_at: 作成日時
           updated_at: 更新日時
         task: タスク
