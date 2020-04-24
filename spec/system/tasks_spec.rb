@@ -17,6 +17,9 @@ describe 'タスク管理機能', type: :system do
   describe 'タスク一覧表示機能' do
     context 'ユーザーAがログインしているとき' do
       before { login( user_a) }
+      before do
+        visit task_path(task_a)
+      end
       it_behaves_like 'ユーザーAが作成したタスクが表示される'
     end
 #　ユーザBがログインした時にユーザAのタスクが表示されていないかをテスト
@@ -54,9 +57,10 @@ describe 'タスク管理機能', type: :system do
       fill_in 'weight', with: task_weight
       fill_in 'rep', with: task_rep
       fill_in 'set_count', with: task_set_count
+      # fill_in 'task_status', with: task_status
       fill_in 'task_memo', with: task_memo
       click_button '登録'
-      tasks_path
+      todo_tasks_path
     end
 
     context '新規作成画面で正しく入力し登録したとき' do
@@ -64,6 +68,7 @@ describe 'タスク管理機能', type: :system do
       let(:task_weight){ '10' }
       let(:task_rep){ '10' }
       let(:task_set_count){ '2' }
+      # let(:task_status){ 0 }
       let(:task_memo){''}
 
       it '正常に登録される' do
@@ -206,7 +211,7 @@ describe 'タスク管理機能', type: :system do
       fill_in 'set_count', with: task_set_count
       fill_in 'task_memo', with: task_memo
       click_button '登録'
-      tasks_path
+      todo_tasks_path
     end
 
     context 'タスク編集編集に成功する時' do

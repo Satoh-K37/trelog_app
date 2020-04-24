@@ -1,28 +1,8 @@
 class UsersController < ApplicationController
-  skip_before_action :login_required 
+  skip_before_action :login_required
+  # skip_before_action :correct_user[:new]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
-
-  # GET /users
-  # GET /users.json
-  def index
-    # @users = User.all
-    # @q  =  .ransack(params [:q])
-    # @users  =  @q .result.(distinct: true).recent
-    @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true)
-  end
-
-  # 検索
-  # def search
-  #   if params[:user_name].present?
-  #     @users = User.where('user_name LIKE ?', "%#{params[:user_name]}%")
-  #   else
-  #     @users = User.none
-  #   end
-  # end
-
-
+  # before_action :correct_user, onry: [:edit, :update, :show]
   # GET /users/1
   # GET /users/1.json
   def show
@@ -73,14 +53,12 @@ class UsersController < ApplicationController
     end
   end
 
-
-  # DELETE /users/1
-  # DELETE /users/1.json
   def destroy
     # 共通化済み　set_user
+    # これメッセージを退会しましたにすりゃ退会処理完成では？？
+    # 退会ボタン作ればOKなのでは？
     @user.destroy
-    redirect_to users_url notice: "ユーザー「#{@user.user_name}」を削除しました。"
-    end
+    redirect_to admin_users_url notice: "ユーザー「#{@user.user_name}」を削除しました。"
   end
 
   private
@@ -97,3 +75,13 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:user_name, :email, :password, :password_confirmation)
   end
+
+    #   # URLを直打ちで別のユーザーを表示されるのを防ぐ
+    # def correct_user
+      
+    #   @user = current_user.User.find_by(params[:id])
+    #   redirect_to tasks_path if current_user != @user
+    # end
+
+
+end
