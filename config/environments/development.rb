@@ -27,6 +27,9 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  # Active Storageの設定
+  # Amazon S3に格納したい時は多分以下のファイルの設定を変更すればいいはず。Production環境はS3で開発環境ではローカルって感じで設定すればいいらしい。
+  # …/Users/skmbp/trelog_app/config/storage.yml
   # Store uploaded files on the local file system (see config/storage.yml for options)
   config.active_storage.service = :local
 

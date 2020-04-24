@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   post '/login' => 'user_sessions#create'
   delete '/logout' => 'user_sessions#destroy'
   get '/signup' => 'users#new'
-  resources :users, only: %i[create edit update show index destroy]
+  resources :users, only: %i[create edit update show index destroy] 
   resources :password_resets, only: %i[new create edit update]
   ####################
 
@@ -19,9 +19,6 @@ Rails.application.routes.draw do
       get :todo, :done
     end
   end
-
-  post '/tasks/:id/done' => 'tasks#done', as: 'done'
-  get '/tasks/search' => 'tasks#search' ,as: 'search'
   
   ####################
 
