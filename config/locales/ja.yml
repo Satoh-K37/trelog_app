@@ -29,6 +29,7 @@
           memo: メモ
           deadline: 期限
           status: ステータス
+          image: 画像
           created_at: 作成日時
           updated_at: 更新日時
   

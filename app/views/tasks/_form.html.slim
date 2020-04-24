@@ -23,6 +23,9 @@ div.input-wrapper
       = f.label :deadline
       = f.text_field :deadline, class: 'form-control', id: 'task_deadline'
     .form-group
+      = f.label :image
+      = f.file_field :image, class: 'form-control', id: 'task_image'
+    .form-group
       = f.label :memo
       = f.text_area :memo, row: 5, class: 'form-control', id: 'task_memo'
     = f.submit '登録', class: 'btn btn-primary'

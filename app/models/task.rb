@@ -1,5 +1,7 @@
 class Task < ApplicationRecord
+    has_one_attached :image
     belongs_to :user
+    
     #タスク名が入力されていないと検証エラーになる。30文字以内じゃないとエラーになる
     validates :title, presence: true,length: { maximum: 30 }
     # length: { in: 1..30 }
@@ -18,8 +20,8 @@ class Task < ApplicationRecord
     private
 
     # オリジナルの検証。タイトルにカンマを含ませないようにする。なんかエラーがでる
-    def validate_name_not_includeing_coma
-      errors.add(:title, 'にカンマを含めることはできません') if name&.include?(',')
-    end
+    # def validate_name_not_includeing_coma
+    #   errors.add(:title, 'にカンマを含めることはできません') if name&.include?(',')
+    # end
 
 end

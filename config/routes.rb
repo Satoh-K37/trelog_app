@@ -15,12 +15,17 @@ Rails.application.routes.draw do
   post '/login' => 'user_sessions#create'
   delete '/logout' => 'user_sessions#destroy'
   get '/signup' => 'users#new'
-  resources :users, only: %i[create edit update show index destroy]
+  resources :users, only: %i[create edit update show index destroy] 
   resources :password_resets, only: %i[new create edit update]
   ####################
 
   # タスク機能関係
-  resources :tasks
+  resources :tasks do
+    collection do
+      get :todo, :done
+    end
+  end
+  
   ####################
   
   # LetterOpenerWebアクセスする
