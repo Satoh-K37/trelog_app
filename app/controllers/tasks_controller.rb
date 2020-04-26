@@ -63,7 +63,7 @@ class TasksController < ApplicationController
   def update
     # 共通化　set_taskメソッドに処理あり
     if @task.update(task_params)
-      redirect_to tasks_url, notice: "タスク「#{@task.title}」を更新しました"
+      redirect_to todo_tasks_url, notice: "タスク「#{@task.title}」を更新しました"
     else
       render :edit
     # タスクの変更に失敗すると編集画面に戻るようにしたい…

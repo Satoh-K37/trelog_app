@@ -25,7 +25,7 @@ div.input-wrapper
             td = @user.updated_at
           tr
             th = User.human_attribute_name(:icon_image)
-            td = image_tag @user.icon_image if @user.icon_image.attached?
+            td = image_tag @user.icon_image.variant(resize:'100x100')  if @user.icon_image.attached?
           tr
             th
     =< link_to '戻る', admin_users_path, class: 'btn btn-outline-primary mr-3'

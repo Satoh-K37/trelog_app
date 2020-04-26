@@ -21,8 +21,14 @@ div.input-wrapper
         = f.label :password_confirmation, 'パスワード確認'
         = f.password_field :password_confirmation, placeholder: 'もう一度パスワードを入力してください', class: 'form-control'
       .form-group
-        = f.label :icon_iamge, 'アイコン画像'
+        = User.human_attribute_name(:icon_image)
+        = image_tag @user.icon_image.variant(resize:'100x100') if @user.icon_image.attached?
+      .form-group
+        = f.label :icon_iamge, '更新後のアイコン'
         = f.file_field :icon_image, class: 'form-control'
+      / - if @user.
+
+
       - if current_user
         => link_to '戻る', user_path(current_user), class: 'btn btn-primary mr-3'
         '

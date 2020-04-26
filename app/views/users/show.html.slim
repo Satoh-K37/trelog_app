@@ -16,20 +16,13 @@ div.input-wrapper
           td = @user.email
         tr
           th = User.human_attribute_name(:icon_image)
-          td = image_tag @user.icon_image if @user.icon_image.attached?
+          td = image_tag @user.icon_image.variant(resize:'100x100') if @user.icon_image.attached?
         tr
           th = User.human_attribute_name(:created_at)
           td = @user.created_at
-        / - if current_user.admin?
-        /   tr
-        /     th = User.human_attribute_name(:admin)
-        /     td = @user.admin? ? 'あり' : 'なし'
         tr
           th = User.human_attribute_name(:updated_at)
           td = @user.updated_at
-        tr
-          th = User.human_attribute_name(:icon_image)
-          td = @user.icon_image
         tr
           th
     p
