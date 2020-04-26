@@ -26,8 +26,8 @@ div.input-wrapper
       = f.label :deadline
       = f.text_field :deadline, type: 'date', class: 'form-control', id: 'task_deadline'
     .form-group
-      = f.label :icon_image
-      = f.file_field :icon_image, class: 'form-control', id: 'task_image'
+      = f.label :image
+      = f.file_field :image, class: 'form-control', id: 'task_image'
     .form-group
       = f.label :memo
       = f.text_area :memo, row: 5, placeholder: 'トレーニングはどうでしたか？',class: 'form-control', id: 'task_memo'

@@ -1,26 +1,16 @@
----
-  ja:
-    activerecord:
-      errors:
-        messages:
-          record_invalid: 'バリデーションに失敗しました: %{errors}'
-          restrict_dependent_destroy:
-            has_one: "%{record}が存在しているので削除できません"
-            has_many: "%{record}が存在しているので削除できません"
-      models:
-        user: ユーザー
-      attributes:
-        user:
-          user_name: 名前
-          email: メールアドレス
-          password: パスワード
-          password_confirmation: パスワード（確認）
-          icon_image: アイコン画像
-          created_at: 作成日時
-          updated_at: 更新日時
-        task: タスク
-      attributes:
-        task:
+ja:
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'バリデーションに失敗しました: %{errors}'
+        restrict_dependent_destroy:
+          has_one: "%{record}が存在しているので削除できません"
+          has_many: "%{record}が存在しているので削除できません"
+    models:
+      task: タスク
+      user: ユーザー
+    attributes:
+      task:
           id: ID
           title: タイトル
           weight: 重量
@@ -32,7 +22,15 @@
           image: 画像
           created_at: 作成日時
           updated_at: 更新日時
-  
+      user:
+          id: ID
+          user_name: アカウント名
+          email: メールアドレス
+          password: パスワード
+          password_confirmation: パスワード（確認）
+          icon_image: アイコン画像
+          created_at: 作成日時
+          updated_at: 更新日時
     date:
       abbr_day_names:
       - 日
