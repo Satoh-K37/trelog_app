@@ -9,24 +9,22 @@ div.input-wrapper
   div.input-container
     = form_with model: @user, local:true do |f|
       .form-group
-        = f.label :user_name, 'アカウント名'
+        = f.label :user_name
         = f.text_field :user_name, placeholder: 'アカウント名を入力してください', class: 'form-control'
       .form-group
-        = f.label :email, 'メールアドレス'
+        = f.label :email
         = f.email_field :email, placeholder: '例）trelog@example.com', class: 'form-control'
       .form-group
-        = f.label :password, 'パスワード'
+        = f.label :password
         = f.password_field :password, placeholder: '半角英数字8文字以上で入力してくだい', class: 'form-control'
       .form-group
-        = f.label :password_confirmation, 'パスワード確認'
+        = f.label :password_confirmation
         = f.password_field :password_confirmation, placeholder: 'もう一度パスワードを入力してください', class: 'form-control'
       .form-group
-        = User.human_attribute_name(:icon_image)
-        = image_tag @user.icon_image.variant(resize:'100x100') if @user.icon_image.attached?
-      .form-group
-        = f.label :icon_iamge, '更新後のアイコン'
-        = f.file_field :icon_image, class: 'form-control'
-      / - if @user.
+        = f.label :icon_image, id: 'img_field', onClick: "$('#file').click()"
+        = image_tag @user.icon_image.thumb.url if @user.icon_image?
+        = f.file_field :icon_image, display: 'none', class: 'icon_image', id: "file"
+        = f.hidden_field :image_cache
 
 
       - if current_user

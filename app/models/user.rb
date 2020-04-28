@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
-  has_one_attached :icon_image
+  mount_uploader :icon_image, ImageUploader
   has_many :tasks
   
   # ユーザ名は30文字以内
