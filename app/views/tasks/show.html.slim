@@ -28,8 +28,8 @@ div.input-wrapper
           th= Task.human_attribute_name(:status)
           td= @task.status 
         tr
-          th= Task.human_attribute_name(:image)
-          td= image_tag @task.image.variant(resize:'100x100')  if @task.image.attached?
+          th= Task.human_attribute_name(:images)
+          td = image_tag @task.image.to_s
         tr
           th= Task.human_attribute_name(:memo)
           td= auto_link(simple_format(h(@task.memo), {}, sanitize: false, wrapper_tag: "div"))

@@ -99,7 +99,7 @@ class TasksController < ApplicationController
 
   
   def task_params
-    params.require(:task).permit(:title, :weight, :rep, :set_count, :deadline, :status, :image, :memo)  
+    params.require(:task).permit(:title, :weight, :rep, :set_count, :deadline, :status, :memo, :image, :image_cache)  
   end
 
 

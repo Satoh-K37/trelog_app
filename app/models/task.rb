@@ -1,5 +1,6 @@
 class Task < ApplicationRecord
-    has_one_attached :image
+    # has_one_attached :image
+    mount_uploader :image, ImageUploader
     belongs_to :user
     
     #タスク名が入力されていないと検証エラーになる。30文字以内じゃないとエラーになる

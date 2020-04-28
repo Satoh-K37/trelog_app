@@ -16,7 +16,7 @@ div.input-wrapper
           td = @user.email
         tr
           th = User.human_attribute_name(:icon_image)
-          td = image_tag @user.icon_image.variant(resize:'100x100') if @user.icon_image.attached?
+          td = image_tag @user.icon_image.to_s
         tr
           th = User.human_attribute_name(:created_at)
           td = @user.created_at

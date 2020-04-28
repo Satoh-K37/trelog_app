@@ -26,8 +26,10 @@ div.input-wrapper
       = f.label :deadline
       = f.text_field :deadline, type: 'date', class: 'form-control', id: 'task_deadline'
     .form-group
-      = f.label :image
-      = f.file_field :image, class: 'form-control', id: 'task_image'
+      = f.label :image, id: 'img_field', onClick: "$('#file').click()"
+      = image_tag @task.image.thumb.url if @task.image?
+      = f.file_field :image, display: 'none', class: 'image', id: "file"
+      = f.hidden_field :image_cache
     .form-group
       = f.label :memo
       = f.text_area :memo, row: 5, placeholder: 'トレーニングはどうでしたか？',class: 'form-control', id: 'task_memo'

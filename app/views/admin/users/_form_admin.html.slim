@@ -27,8 +27,10 @@ div.input-wrapper
         = f.label :password_confirmation
         = f.password_field :password_confirmation, placeholder: 'もう一度パスワードを入力してください',class: 'form-control'
       .form-group
-        = f.label :icon_image
-        = f.file_field :icon_image, class: 'form-control'
+        = f.label :icon_image, id: 'img_field', onClick: "$('#file').click()"
+        = image_tag @user.icon_image.thumb.url if @user.icon_image?
+        = f.file_field :icon_image, display: 'none', class: 'icon_image', id: "file"
+        = f.hidden_field :image_cache
       / - if current_user
       => link_to '戻る',admin_users_path , class: 'btn btn-outline-primary mr-3'
       '
