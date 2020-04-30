@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   helper_method :current_user
+  helper_method :login_required
   before_action :login_required
 
   private
@@ -14,7 +15,5 @@ class ApplicationController < ActionController::Base
     # 
     redirect_to login_url unless current_user
   end
-
-
 
 end
