@@ -22,9 +22,10 @@ div.input-wrapper
         = f.password_field :password_confirmation, placeholder: 'もう一度パスワードを入力してください', class: 'form-control'
       .form-group
         = f.label :icon_image, id: 'img_field', onClick: "$('#file').click()"
-        = image_tag @user.icon_image.thumb.url if @user.icon_image?
+        = image_tag @user.icon_image.thumb.url, class: 'circle_icon' if @user.icon_image?
+        p
         = f.file_field :icon_image, display: 'none', class: 'icon_image', id: "file"
-        = f.hidden_field :image_cache
+        = f.hidden_field :icon_image_cache
 
 
       - if current_user

@@ -17,60 +17,35 @@
 
 // application.jsを読み込むようにした方がDRYかもしれん
 
-// ログインした時などに1秒後にメッセージを消す
+// ログインした時などに10秒後にメッセージを消す
 $(function(){
-  setTimeout("$('.notice, .alert').fadeOut('slow')", 1000);
+  setTimeout("$('.notice, .alert').fadeOut('slow')", 10000);
 });
 
-// ファイルを選択した時に画像をプレビューさせる
-$(document).on('turbolinks:load', function() {
-
-  $('#item_images').on('change',function(e){
-    var files = e.target.files;
-    var d = (new $.Deferred()).resolve();
-    $.each(files,function(i,file){
-      d = d.then(function(){return previewImage(file)});
-    });
-  })
-
-  var previewImage = function(imageFile){
-    var reader = new FileReader();
-    var img = new Image();
-    var def =$.Deferred();
-    reader.onload = function(e){
-      $('.images_field').append(img);
-      img.src = e.target.result;
-      def.resolve(img);
-    };
-    reader.readAsDataURL(imageFile);
-    return def.promise();
-  }
-})
 // // // // // // // // // // // // // 
 
 // 画像のプレビュー機能。とりあえず画像を選択すると表示されるようになった。でかいのでリサイズする
-$(function(){
-  $fileField = $('#file')
+// $(function(){
+//   $fileField = $('#file')
 
-  // 選択された画像を取得し表示
-  $($fileField).on('change', $fileField, function(e) {
-    file = e.target.files[0]
-    reader = new FileReader(),
-      $preview = $("#img_field");
+//     $($fileField).on('change', $fileField, function(e) {
+//     file = e.target.files[0]
+//     reader = new FileReader(),
+//       $preview = $("#img_field");
     
-    reader.onload = (function(file) {
-      return function(e) {
-        $preview.empty();
-        $preview.append($('<img>').attr({
-          src: e.target.result,
-          width: "100%",
-          class: "preview",
-          title: file.name
-        }));
-      };
-    })(file);
-    reader.readAsDataURL(file);
-  });
-});
+//     reader.onload = (function(file) {
+//       return function(e) {
+//         $preview.empty();
+//         $preview.append($('<img>').attr({
+//           src: e.target.result,
+//           width: "100%",
+//           class: "preview",
+//           title: file.name
+//         }));
+//       };
+//     })(file);
+//     reader.readAsDataURL(file);
+//   });
+// });
 
 

@@ -11,6 +11,7 @@
   * It is generally better to create a new file per style scope. |
   *
   *= require_self
+  
   */
 
   // *= require_tree .
@@ -87,3 +88,11 @@ body.style{
 
 
 //  ユーザ認証周りのCSS　ログイン、ユーザー登録 //
+
+// アカウント画像を丸にする
+.circle_icon{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
