@@ -11,6 +11,9 @@ Rails.application.config.sorcery.submodules = [:remember_me, :session_timeout, :
 Rails.application.config.sorcery.configure do |config|
   # 3時間何もしないとタイムアウトする
   config.session_timeout =  3.hour
+
+  # 10秒何もしないとログアウトする
+  # config.session_timeout =  30.seconds
   config.session_timeout_from_last_action = true 
   # -- core --
   # What controller action to call for non-authenticated users. You can also
