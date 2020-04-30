@@ -73,7 +73,7 @@ class UsersController < ApplicationController
   end
   
   def user_params
-    params.require(:user).permit(:user_name, :email, :password, :password_confirmation, :icon_image,:image_cache, )
+    params.require(:user).permit(:user_name, :email, :icon_image, :icon_image_cache, :remove_image, :password, :password_confirmation)
   end
 
     #   # URLを直打ちで別のユーザーを表示されるのを防ぐ

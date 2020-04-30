@@ -16,7 +16,7 @@ div.input-wrapper
           td = @user.email
         tr
           th = User.human_attribute_name(:icon_image)
-          td = image_tag @user.icon_image.to_s
+          td = image_tag @user.icon_image.to_s, class: 'circle_icon'
         tr
           th = User.human_attribute_name(:created_at)
           td = @user.created_at

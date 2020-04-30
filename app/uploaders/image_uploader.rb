@@ -20,13 +20,19 @@ class ImageUploader < CarrierWave::Uploader::Base
     %w(jpg jpeg gif png)
   end
 
+  # ファイルがアップロードされていない場合のフォールバックです。
+  # default_urlアップローダーでメソッドをオーバーライドすることにより、これを簡単に行うことができます。
+  def default_url(*args)
+    "/images/fallback/" + [version_name, "default.png"].compact.join('_')
+  end
+
   # Provide a default URL as a default if there hasn't been a file uploaded:
-  # def default_url(*args)
-  #   # For Rails 3.1+ asset pipeline compatibility:
-  #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
-  #
-  #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
-  # end
+  def default_url(*args)
+    # For Rails 3.1+ asset pipeline compatibility:
+    # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "no_icon_img.png"].compact.join('_'))
+  
+    # "/images/fallback/" + [version_name, "default.png"].compact.join('_')
+  end
 
   # Process files as they are uploaded:
   # process scale: [200, 300]
@@ -38,7 +44,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Create different versions of your uploaded files:
   # サムネイル画像の大きさ？
   version :thumb do
-    process resize_to_fit: [50, 50]
+    process resize_to_fit: [100, 100]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
