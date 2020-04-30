@@ -12,7 +12,11 @@ html
   body.style
     .app-title.navbar-expand-md.navbar-light.be--light
       .navbar-barnd
-        div.logo= link_to 'TRELOG', home_path
+        div.logo
+          - if logged_in?
+            = link_to 'TRELOG', todo_tasks_path
+          - else
+            = link_to 'TRELOG', home_path
 
         ul.navbar-nav.ml-auto
           - if logged_in?
