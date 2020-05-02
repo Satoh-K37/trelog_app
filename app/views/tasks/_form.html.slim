@@ -20,8 +20,13 @@ div.input-wrapper
       = f.label :set_count, class: 'task-control'
       = f.text_field :set_count, placeholder: '例）2', class: 'form-control', id: 'set_count'
     .form-group
-      = f.label :status
-      = f.select :status, ['未完了','完了'], {}, class: 'form-control', id: 'task_status'
+    = f.label :status
+    .form-checl-inline
+    = f.radio_button :status, false,class: 'form-check-input'
+    = f.label :status , '未完了', class: 'form-check form-check-inline', id: 'todo'
+    
+    = f.radio_button :status, true ,class: 'form-check-input'
+    = f.label :status , '完了', class: 'form-check form-check-inline'
     .form-group
       = f.label :deadline
       = f.text_field :deadline, type: 'date', class: 'form-control', id: 'task_deadline'

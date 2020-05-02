@@ -18,7 +18,7 @@ class Task < ApplicationRecord
 
     scope :recent, -> { order(created_at: :desc) }
     # これだとN+1問題が起こるらしい…
-    enum status: {未完了:0, 完了:1}
+    # enum status: {未完了:0, 完了:1}
     #   {unfinished: '未完了', done: '完了'}
     
     private
