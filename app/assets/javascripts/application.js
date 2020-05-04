@@ -11,8 +11,9 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require jquery
+//= require jquery3
 //= require turbolinks
+// 下のやつがあると配下のjs ファイル全てを読み込んでくれるらしい。できたやつだ。
 //= require_tree .
 
 // ログインした時などに10秒後にメッセージを消す
@@ -46,6 +47,24 @@ $(function(){
   });
 });
 
+
+// タスク一覧ページでタスク削除を非同期で行う
+document.addEventListener('turbolinks:load', function() {
+  document.querySelectorAll('.delete').forEach(function(a) {
+    a.addEventListener('ajax:success', function() {
+      var td = a.parentNode;
+      var tr = td.parentNode;
+      tr.style.display = 'none';
+    });
+  });
+});
+
+
+
+
+
+
+// ここから下はいらないはず。あとでチェックしたら消す。
 // // // $(document).ready(function () {
 // // //   var view_box = $('.view_box');
   
