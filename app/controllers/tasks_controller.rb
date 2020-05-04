@@ -84,8 +84,10 @@ class TasksController < ApplicationController
     # 共通化　set_taskメソッドに処理あり
     # 削除する
     @task.destroy
+    # Ajaxでタスクを削除できるようにした。
+    head :no_content, notice: "タスク「#{@task.title}」を削除しました"
     # 一覧ページに戻る
-    redirect_to tasks_url, notice: "タスク「#{@task.title}」を削除しました"
+    # redirect_to tasks_url, notice: "タスク「#{@task.title}」を削除しました"
   end
 
 
