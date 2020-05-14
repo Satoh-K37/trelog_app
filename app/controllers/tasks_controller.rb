@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update,:destroy]
+  before_action :set_task, only: [:show, :edit, :update,:destroy, :task_status]
   
 
   def index
@@ -76,6 +76,33 @@ class TasksController < ApplicationController
   #   # .includes(:user)
   #   # render :index
   # end
+  
+  # タスクのステータスを更新させる処理（Ajaxアクション）
+  def task_status
+    # 対処のタスクの検索はset_taskで共通化済み
+    if @task.status == true
+      @task.update(status: 'done')
+      redirect_to done_tasks_path, notice: "タスク「#{@task.title}」を未完了にします"
+    else
+      @task.update(status: 'status')
+      redirect_to todo_tasks_path, notice: "タスク「#{@task.title}」を完了しました"
+    end
+  end
+
+  
+  # プログレスバーで当日のタスクの進捗率を割り出すためのメソッド。
+  # 忘れないようにメモ。あくまで案なので実際にやってみないとわからん
+  def task_progress
+    # １、当日に作成されたタスクを探して変数today_taskに代入(当日の判定の部分がまだ曖昧。ここ考える)
+    # ２、当日のタスクの中でステータスが完了になっているものを変数done_taskに代入
+    # ３、progress_result = today_task % done_task
+    # ４、progress_resultをreturnで返す。
+    # ５、viewでtask_progressを呼び出すとprogress_resultの値がくるはずなので、
+    #    それをプログレスバーのvalueとして使えばタスク進捗率が出来上がるはず
+    # 
+  end
+
+
 
 
 
@@ -103,7 +130,5 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:title, :weight, :rep, :set_count, :deadline, :status, :memo, :image, :image_cache)  
   end
-
-
 
 end

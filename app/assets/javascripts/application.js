@@ -10,8 +10,8 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
 //= require jquery3
+//= require rails-ujs
 //= require turbolinks
 // 下のやつがあると配下のjs ファイル全てを読み込んでくれるらしい。できたやつだ。
 //= require_tree .
@@ -22,7 +22,7 @@ $(function(){
 });
 
 
-// 画像のプレビュー機能。とりあえず画像を選択すると表示されるようになった。でかいのでリサイズする
+// 画像のプレビュー機能。とりあえず画像を選択すると表示されるようになった。
 $(function(){
   $fileField = $('#file')
 
@@ -59,69 +59,80 @@ document.addEventListener('turbolinks:load', function() {
   });
 });
 
+// // タスク一覧からタスクのステータスを変更できるようにする
+//１、タスクのステータスがクリックされる
+//２、条件毎に違ったAjaxの処理をする
+//if ステータスがfalseの時
+//   タスクのステータスをtrueに更新する
+// else 
+//   タスクんのステータスをtrueからfalseに更新する
+// 
+// document.getElementById("status_check").onclick = function () {
+//   i
+// }
+
+// これでアラートでた！！１
+$(function () {
+  //  チェックボックスが変更されると発火する
+  $(document).on('change', '#status_checkbox', function () {
+    // チェックボックスに入っている値を確認。デフォルトではfalse
+    var status_check = $(this).prop('checked');
+
+    if (status_check)
+      // チェックボックスがfalseの場合はこの処理を実装する
+      window.alert('trueになるぞ');
+    else
+      // チェックボックスがtrueの場合はこの処理を実装する
+      window.alert('falseになるぞ');
+  });
+});
+
+// Ajaxで渡す先とか値を条件分岐の前で設定し、status_checkの値ごとに違う値を渡すようにしてやればいける？
+// チェックボックスにこだわってしまっていたけど、ラジオボタンや普通のボタンでもいいんでは？
+// １、ボタンをお押すとイベントが発火
+// ２、タスクのステータスの真偽値を変更し、保存
+// （ステータスの情報をどうやって持ってくるか…Hiddenでチェックボックスを置いて置いてボタンをクリックするとON/OFFされるようにする？）
+// ３、タスクのステータスが変更され、「タスク「〇〇」が完了しました」というメッセージをTODOページでだし、完了したタスクはDoneページにいく。
+// 行けそうな気がするけど多分どっかの詰めが甘いきがするんだよなぁ…
+
+// $('#status_checkbox').click(function (e) {
+//   var status_check = $(this).prop('checked');
+
+//   if (status_check == false)
+//     // 想定だとfalseがtureの切り替わるはず
+//     alert("チェックボックスがonに変更されました。");
+//   else
+//     // tureがfalseに切り替わるはず
+//     alert("チェックボックスがofに変更されました。");
+// });
 
 
-
-
-
-// ここから下はいらないはず。あとでチェックしたら消す。
-// // // $(document).ready(function () {
-// // //   var view_box = $('.view_box');
+// function changeStatus() {
   
-// // //   $(".file").on('change', function(){
-// // //       var fileprop = $(this).prop('files')[0],
-// // //           find_img = $(this).next('img'),
-// // //           fileRdr = new FileReader();
-    
-// //       if(find_img.length){
-// //         find_img.nextAll().remove();
-// //         find_img.remove();
-// //       }
-    
-// //     var img = '<img width="200" alt="" class="img_view"><br><a href="#" class="img_del">画像を削除する</a>';
-// //     view_box.append(img);
-    
-// //     fileRdr.onload = function() {    
-// //       view_box.find('img').attr('src', fileRdr.result);
-// //       img_del(view_box); 
-// //     }
-// //     fileRdr.readAsDataURL(fileprop);  
-// //   });
-  
-// //   function img_del(target)
-// //   {
-// //       target.find("a.img_del").on('click',function(){
+// }
 
-// //       if(window.confirm('サーバーから画像を削除します。\nよろしいですか？'))
-// //       {
-// //           $(this).parent().find('input[type=file]').val('');
-// //           $(this).parent().find('.img_view, br').remove();
-// //           $(this).remove();
-// //       }
+// $('button[type=submit]').click(function () {
+//   var error = false;
+//   if ($('#value').length > 0) {
+      
+//       $.ajax({
+//           url: '/CheckValue',
+//           type: 'POST',
+//           async: false,
+//           traditional: true,
+//           data: { value: $('#value').val() },
+//           success: function (data) {
+//               if (!data.IsSuccess) {
+//                   error = true;
+//               }
+//           }
+//       });
 
-// //       return false;
-// //     });
-// //   }  
-// // });
+//       if (error ) {
+//           return false;
+//       }
+//   }
+// }
 
-// // // // // // // // // // // // // 
 
-  // 選択された画像を取得し表示
-  // $( document ).on('turbolinks:load', function() {
-  //   function readURL(input) {
-  //     if (input.files && input.files[0]) {
-  //       var reader = new FileReader();
-  
-  //       reader.onload = function (e) {
-  //         $('#icon_img_prev').attr('src', e.target.result);
-  //       }
-  //       reader.readAsDataURL(input.files[0]);
-  //     }
-  //   }
-    
-  //   $("#post_img").change(function(){
-  //     $('#icon_img_prev').removeClass('hidden');
-  //     $('.circle_icon').remove();
-  //     readURL(this);
-  //   });
-  // });
+

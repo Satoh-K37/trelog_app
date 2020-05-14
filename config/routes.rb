@@ -18,8 +18,8 @@ Rails.application.routes.draw do
   resources :tasks do
     collection do
       get :todo, :done
-      # Ajaxでタスクのステータスを切り替えるためのルート
-      post '/:id/task_status' => 'tasks#task_status'
+      # Ajaxでタスクのステータスを切り替える
+      post '/:id/task_status' => 'tasks#task_status', as: 'status'
     end
   end
   

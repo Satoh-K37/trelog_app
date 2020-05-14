@@ -36,25 +36,44 @@ div.input-wrapper
     .mb-3
       table.table.table-hover
         thead.thead-default
-          tr
-            th= Task.human_attribute_name(:status)
-            th= Task.human_attribute_name(:title)
-            th= Task.human_attribute_name(:weight)
-            th= Task.human_attribute_name(:rep)
-            th= Task.human_attribute_name(:set_count)
-            th= Task.human_attribute_name(:memo)
-            th= Task.human_attribute_name(:created_at)
-            th
-            th
+          / tr
+          /   th
+          /   th= Task.human_attribute_name(:status)
+          /   th= Task.human_attribute_name(:title)
+          /   th= Task.human_attribute_name(:weight)
+          /   th= Task.human_attribute_name(:rep)
+          /   th= Task.human_attribute_name(:set_count)
+          /   th= Task.human_attribute_name(:memo)
+          /   th= Task.human_attribute_name(:created_at)
+          /   th
+          /   th
         tbody
             - @tasks.each do |task|
               tr
-                td= check_box_tag 'task[status]', false, task.status
+                td= check_box_tag 'task[status]', false, task.status, id: 'status_checkbox',  data:{ id: "status_checkbox" }
+                - if task.status == false
+                  td= button_to 'Done', status_tasks_path(task), method: :post,remote: true, class: "btn-right-radius"
+                - else
+                  td= button_to 'Todo', status_tasks_path(task), method: :post, class: "btn-right-radius"
+                th= Task.human_attribute_name(:status)
+                td= task.status? ? '完了' : '未完了'
+
+                th= Task.human_attribute_name(:title)
                 td= link_to task.title, task_path(task)
+                
+                th= Task.human_attribute_name(:weight)
                 td= task.weight
+                
+                th= Task.human_attribute_name(:rep)
                 td= task.rep
+                
+                th= Task.human_attribute_name(:set_count)
                 td= task.set_count
+                
+                th= Task.human_attribute_name(:memo)
                 td= task.memo
+                
+                th= Task.human_attribute_name(:created_at)
                 td= task.created_at
                 td
                 td
