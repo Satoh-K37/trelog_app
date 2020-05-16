@@ -18,64 +18,52 @@ ul.nav.nav-tabs.mb-3
 
 div.input-wrapper
   div.input-container
-    / = link_to 'タスク作成', new_task_path, class: 'btn btn-primary'
-    / p
-    / - if @show == '1'
-    /   = link_to '未完了', tasks_path(:show => '1'), class: 'btn btn-primary btn-sm ml-2'
-    /   = link_to '完了', tasks_path(:show => '2'), class: 'btn btn-outline-primary btn-sm ml-1'
-    /   = link_to 'すべて', tasks_path(:show => 'all'), class: 'btn btn-outline-primary btn-sm ml-1'
-    / -elsif @show == '2'
-    /   = link_to '未完了', tasks_path(:show => '1'), class: 'btn btn-outline-primary btn-sm ml-2'
-    /   = link_to '完了', tasks_path(:show => '2'), class: 'btn btn-primary btn-sm ml-2'
-    /   = link_to 'すべて', tasks_path(:show => 'all'), class: 'btn btn-outline-primary btn-sm ml-1'
-    / -else
-    /   = link_to '未完了', tasks_path(:show => '1'), class: 'btn btn-outline-primary btn-sm ml-2'
-    /   = link_to '完了', tasks_path(:show => '2'), class: 'btn btn-outline-primary btn-sm ml-1'
-    /   = link_to 'すべて', tasks_path(:show => 'all'), class: 'btn btn-primary btn-sm ml-2'
-    / p
     .mb-3
       table.table.table-hover
         thead.thead-default
-          / tr
-          /   th
-          /   th= Task.human_attribute_name(:status)
-          /   th= Task.human_attribute_name(:title)
-          /   th= Task.human_attribute_name(:weight)
-          /   th= Task.human_attribute_name(:rep)
-          /   th= Task.human_attribute_name(:set_count)
-          /   th= Task.human_attribute_name(:memo)
-          /   th= Task.human_attribute_name(:created_at)
-          /   th
-          /   th
+          tr
+            th
+            th= Task.human_attribute_name(:status)
+            th= Task.human_attribute_name(:title)
+            th= Task.human_attribute_name(:weight)
+            th= Task.human_attribute_name(:rep)
+            th= Task.human_attribute_name(:set_count)
+            th= Task.human_attribute_name(:memo)
+            th= Task.human_attribute_name(:deadline)
+            th= Task.human_attribute_name(:created_at)
+            th
+            th
         tbody
             - @tasks.each do |task|
               tr
-                td= check_box_tag 'task[status]', false, task.status, id: 'status_checkbox',  data:{ id: "status_checkbox" }
+                / td= deadline_count()
+                / td= check_box_tag 'task[status]', false, task.status, id: 'status_checkbox',  data:{ id: "status_checkbox" }
                 - if task.status == false
                   td= button_to 'Done', status_tasks_path(task), method: :post,remote: true, class: "btn-right-radius"
                 - else
                   td= button_to 'Todo', status_tasks_path(task), method: :post, class: "btn-right-radius"
-                th= Task.human_attribute_name(:status)
+                / th= Task.human_attribute_name(:status)
                 td= task.status? ? '完了' : '未完了'
-
-                th= Task.human_attribute_name(:title)
+                / th= Task.human_attribute_name(:title)
                 td= link_to task.title, task_path(task)
-                
-                th= Task.human_attribute_name(:weight)
-                td= task.weight
-                
-                th= Task.human_attribute_name(:rep)
+                / th= Task.human_attribute_name(:weight)
+                td= task.weight 
+                / th= Task.human_attribute_name(:rep)
                 td= task.rep
-                
-                th= Task.human_attribute_name(:set_count)
+                / th= Task.human_attribute_name(:set_count)
                 td= task.set_count
-                
-                th= Task.human_attribute_name(:memo)
+                / th= Task.human_attribute_name(:memo)
                 td= task.memo
-                
-                th= Task.human_attribute_name(:created_at)
+                td= task.deadline
+                / th= Task.human_attribute_name(:created_at)
                 td= task.created_at
                 td
                 td
                   = link_to '編集', edit_task_path(task), class: 'btn btn-primary mr-3' 
                   = link_to '削除', task, method: :delete, remote: true, data: { confirm: "タスク「#{task.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger delete'
+      / - @tasks.each do |task|
+      /   = link_to task.title, task_path(task)
+      /   = task.weight
+      /   = task.rep
+      /   = task.set_count
+      /   = task.memo
