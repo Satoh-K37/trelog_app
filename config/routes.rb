@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   # ユーザ周り
   get '/login' => 'user_sessions#new'
   post '/login' => 'user_sessions#create'
+  
   delete '/logout' => 'user_sessions#destroy'
   
   get '/signup' => 'users#new'
@@ -14,6 +15,7 @@ Rails.application.routes.draw do
   resources :password_resets, only: %i[new create edit update]
   ####################
 
+  root to: 'tasks#index'
   # タスク機能関係
   resources :tasks do
     collection do

@@ -7,6 +7,7 @@ class TasksController < ApplicationController
     # 検索フォームに入力された値を含むユーザー一覧を表示させる
     @tasks = @q.result(distinct: true)
 
+
     # @show = params[:show] 
     
     # if @show == '1' then
@@ -20,18 +21,20 @@ class TasksController < ApplicationController
   end
 
   def todo
+
     # 未完了
     @q = current_user.tasks.where(status: false).ransack(params[:q])
     # 検索フォームに入力された値を含むユーザー一覧を表示させる
     @tasks = @q.result(distinct: true)
-    end
+  end
     
-    def done
-    # 完了
-    @q = current_user.tasks.where(status: true).ransack(params[:q])
-    # 検索フォームに入力された値を含むユーザー一覧を表示させる
-    @tasks = @q.result(distinct: true)
-    end
+  def done
+  # 完了
+  @q = current_user.tasks.where(status: true).ransack(params[:q])
+  # 検索フォームに入力された値を含むユーザー一覧を表示させる
+  @tasks = @q.result(distinct: true)
+  
+  end
 
 
   def show

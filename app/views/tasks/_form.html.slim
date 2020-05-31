@@ -1,51 +1,69 @@
 / エラーメッセージを表示させるための領域
-- if task.errors.present?
+- if @task.errors.present?
   ul#error_explanation
-    - task.errors.full_messages.each do |message|
+    - @task.errors.full_messages.each do |message|
       li = message
-      
-div.input-wrapper
-  div.input-container
-  = form_with model: task, local:true do |f|
-    .form-group
-      = f.label :title, class: 'task-control'
-      = f.text_field :title, placeholder: '例）ベンチプレス', class: 'form-control', id: 'task_title'
-    .form-group
-      = f.label :weight, class: 'task-control'
-      = f.text_field :weight, placeholder: '例）20',  class: 'form-control', id: 'weight'
-    .form-group
-      = f.label :rep, class: 'task-control'
-      = f.text_field :rep, placeholder: '例）10', class: 'form-control', id: 'rep'
-    .form-group
-      = f.label :set_count, class: 'task-control'
-      = f.text_field :set_count, placeholder: '例）2', class: 'form-control', id: 'set_count'
-    .form-group
-    = f.label :status
-    .form-checl-inline
-    = f.radio_button :status, false,class: 'form-check-input'
-    = f.label :status , '未完了', class: 'form-check form-check-inline', id: 'todo'
-    
-    = f.radio_button :status, true ,class: 'form-check-input'
-    = f.label :status , '完了', class: 'form-check form-check-inline'
-    .form-group
-      = f.label :deadline
-      = f.text_field :deadline, type: 'date', class: 'form-control', id: 'task_deadline'
-    .form-group
-      = f.label :image, id: 'img_field', onClick: "$('#file').click()"
-      = image_tag @task.image.thumb.url if @task.image?
-      p
-      = f.file_field :image, display: 'none', class: 'image', id: "file"
-      = f.hidden_field :image_cache
+.main
+  h1 タスク作成
+  .container
+    .row
+      .col-xs-3
+      .col-xs-6
+        = form_with model: @task, local:true do |f|
+          .form-group
+            = f.label :deadline
+            = f.text_field :deadline, type: 'date', class: 'form-control', id: 'task_deadline'
+          .form-group
+            = f.label :title
+            = f.text_field :title, placeholder: '例）ベンチプレス', class: 'form-control', id: 'task_title'
+          .form-group
+            .form-inline
+              = f.label :weight, class: 'task-control'
+              = f.text_field :weight, placeholder: '例）20',  class: 'form-control', id: 'task-info'
+              = 'kg'
+              p
+              = f.label :rep, class: 'task-control'
+              = f.text_field :rep, placeholder: '例）10', class: 'form-control', id: 'task-info'
+              = 'rep' 
+              p
+              = f.label :set_count, class: 'task-control'
+              = f.text_field :set_count, placeholder: '例）2', class: 'form-control', id: 'task-info'
+              = 'set' 
+          .form-group
+            = f.label :memo
+            = f.text_area :memo, row: 5, placeholder: 'トレーニングはどうでしたか？',class: 'form-control', id: 'task_memo'
+            p id='text_count' align="right" 0/300
+          .form-group
+            = f.label :status
 
-      / = f.label :image, id: 'img_field', onClick: "$('#file').click()"
-      / = f.file_field :image, display: 'none', class: 'image', id: "file" ,class: 'form-control'
-      / = image_tag @task.image.thumb.url, id: :img_prev if @task.image?
-    
-    .form-group
-      = f.label :memo
-      = f.text_area :memo, row: 5, placeholder: 'トレーニングはどうでしたか？',class: 'form-control', id: 'task_memo'
-    => link_to '戻る',todo_tasks_path,  class: 'btn btn-outline-primary mr-3'
-    '
-    =< f.submit '登録', class: 'btn btn-primary'
-
-    
+            = f.radio_button :status, false, class: 'form-check-input'
+            = f.label :status , '未完了', class: 'form-check form-check-inline', id: 'task_status'
+        
+            = f.radio_button :status, true ,class: 'form-check-input'
+            = f.label :status , '完了', class: 'form-check form-check-inline', id: 'task_status'
+          .form-group
+            = f.label :image, id: 'img_field', onClick: "$('#file').click()"
+            = image_tag @task.image.thumb.url if @task.image?
+            p
+            = f.file_field :image, display: 'none', class: 'image', id: "file"
+            = f.hidden_field :image_cache
+          => link_to '戻る',todo_tasks_path,  class: 'btn btn-outline-primary mr-3'
+          '
+          =< f.submit '登録', class: 'btn btn-primary'
+        .col-xs-3
+.menubar
+  p menu
+  li = link_to 'Home', todo_tasks_path
+  li = link_to '完了済みのタスク', done_tasks_path
+  li = link_to 'すべてのタスク', tasks_path
+  li = link_to '種目別グラフ'
+  li = link_to 'TRELOGについて', about_path
+  p
+.sidebar
+  p sidebar
+  p Todo タスク
+  p
+  p 進捗
+  .progress-bar role='progressbar' aria-valuenow='100'  aria-valuemin='0' aria-valuemax='100' style='width: 100%;' 60%
+  p
+  p 検索

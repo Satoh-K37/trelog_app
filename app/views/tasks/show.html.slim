@@ -1,45 +1,58 @@
-h1 タスク詳細
-
-.nav.justify-content-end
-  =link_to 'タスク一覧', todo_tasks_path, class: 'nav-link'
-div.input-wrapper
-  div.input-container
-    table.table.table-hover
-      tbody
-        tr
-          th= Task.human_attribute_name(:id)
-          td= @task.id
-        tr
-          th= Task.human_attribute_name(:title)
-          td= @task.title
-        tr
-          th= Task.human_attribute_name(:weight)
-          td= @task.weight
-        tr
-          th= Task.human_attribute_name(:rep)
-          td= @task.rep
-        tr
-          th= Task.human_attribute_name(:set_count)
-          td= @task.set_count
-        tr
-          th= Task.human_attribute_name(:deadline)
-          td= @task.deadline
-        tr
-          th= Task.human_attribute_name(:status)
-          td= @task.status? ? '完了' : '未完了' 
-        tr
-          th= Task.human_attribute_name(:images)
-          td = image_tag @task.image.to_s
-        tr
-          th= Task.human_attribute_name(:memo)
-          td= auto_link(simple_format(h(@task.memo), {}, sanitize: false, wrapper_tag: "div"))
-        tr
-          th= Task.human_attribute_name(:created_at)
-          td= @task.created_at
-        tr
-          th= Task.human_attribute_name(:updated_at)
-          td= @task.updated_at
-    = link_to '戻る', todo_tasks_path, class: 'btn btn-outline-primary mr-3'
-    = link_to '編集', edit_task_path, class: 'btn btn-primary mr-3'
-    = link_to '削除', @task, method: :delete, data: { confirm: "タスク「#{@task.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
-    / - if current_user.id == @user.id
+    .main
+      h1 タスク詳細
+      div.input-wrapper
+        div.input-container
+          table.table.table-hover
+            tbody
+              tr
+                th= Task.human_attribute_name(:id)
+                td= @task.id
+              tr
+                th= Task.human_attribute_name(:title)
+                td= @task.title
+              tr
+                th= Task.human_attribute_name(:weight)
+                td= @task.weight
+              tr
+                th= Task.human_attribute_name(:rep)
+                td= @task.rep
+              tr
+                th= Task.human_attribute_name(:set_count)
+                td= @task.set_count
+              tr
+                th= Task.human_attribute_name(:deadline)
+                td= @task.deadline
+              tr
+                th= Task.human_attribute_name(:status)
+                td= @task.status? ? '完了' : '未完了' 
+              tr
+                th= Task.human_attribute_name(:images)
+                td = image_tag @task.image.to_s
+              tr
+                th= Task.human_attribute_name(:memo)
+                td= auto_link(simple_format(h(@task.memo), {}, sanitize: false, wrapper_tag: "div"))
+              tr
+                th= Task.human_attribute_name(:created_at)
+                td= @task.created_at
+              tr
+                th= Task.human_attribute_name(:updated_at)
+                td= @task.updated_at
+          = link_to '戻る', todo_tasks_path, class: 'btn btn-outline-primary mr-3'
+          = link_to '編集', edit_task_path, class: 'btn btn-primary mr-3'
+          = link_to '削除', @task, method: :delete, data: { confirm: "タスク「#{@task.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
+          / - if current_user.id == @user.id
+    .menubar
+      p menu
+      li = link_to 'Home', todo_tasks_path
+      li = link_to '完了済みタスク', done_tasks_path
+      li = link_to '種目別グラフ'
+      li = link_to 'TRELOGについて', about_path
+      p
+    .sidebar
+      p sidebar
+      p Todo タスク
+      p
+      p 進捗
+      .progress-bar role='progressbar' aria-valuenow='100'  aria-valuemin='0' aria-valuemax='100' style='width: 100%;' 60%
+      p
+      p 検索

@@ -74,6 +74,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'slim-rails'
 # ERB形式のファイルをSlimに変換するコマンドを提供する
 gem 'html2slim'
+#javascript管理パッケージのwebpackerを使えるようにする
+gem 'webpacker'
 # Bootstrapを使えるようにする
 gem 'bootstrap'
 # Jqueryを使えるようにする

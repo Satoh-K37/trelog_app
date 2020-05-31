@@ -2,41 +2,138 @@ doctype html
 html
   head
     title
-      | TrelogApp
+      | TRELOG
     = csrf_meta_tags
     = csp_meta_tag
     meta name="viewport" content="width=device-width, initial-scale=1.0"
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    = javascript_pack_tag 'application'
   body.style
-    .app-title.navbar-expand-md.navbar-light.be--light
-      .navbar-barnd
-        div.logo
+    .container
+      /Flashメッセージのdivタグを定義
+      .notifications
+        /Flashオブジェクトを呼び出し、Keyにnotice、Valueにメッセージが入る
+        - flash.each do |key, value|
+          /content_tagを使用してflashメッセージを表示させるためのdivタグを作成され、メッセージが表示される
+          = content_tag(:div, value, class: key)
+      / - if flash.notice.present?
+      /     .alert.alert-succes= flash.notice
+    div.grid-container
+      / .header-wrapper
+      .header
+        .header-logo
           - if logged_in?
-            = link_to 'TRELOG', todo_tasks_path
+            li = link_to 'TRELOG', todo_tasks_path, class:'logo'
           - else
-            = link_to 'TRELOG', home_path
+            li = link_to 'TRELOG', home_path, class:'logo'
+        .header-navbar
+                
+            - if logged_in?
+                li = link_to 'タスク作成', new_task_path
+                li = link_to 'マイページ', user_path(current_user)
+                - if current_user.admin?
+                  li = link_to '管理者マイページ', admin_user_path(current_user)
+                  / li.nav-item= link_to 'アカウント一覧', users_path, class: 'nav-link'
+                li = link_to 'ログアウト', logout_path, method: :delete
+            - else
+                li = link_to 'アカウント作成', signup_path
+                li = link_to 'ログイン', login_path
 
-        ul.navbar-nav.ml-auto
-          - if logged_in?
-              li.nav-item= link_to 'タスク作成', new_task_path, class: 'nav-link'
-              li.nav-item= link_to 'タスク一覧', todo_tasks_path, class: 'nav-link'
-              li.nav-item= link_to 'マイページ', user_path(current_user), class: 'nav-link'
-              - if current_user.admin?
-                li.nav-item= link_to '管理者マイページ', admin_user_path(current_user), class: 'nav-link'
-                / li.nav-item= link_to 'アカウント一覧', users_path, class: 'nav-link'
-              li.nav-item= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
-          - else
-              li.nav-item= link_to 'アカウント作成', signup_path, class: 'nav-link'
-              li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'
-        .container
-          /Flashメッセージのdivタグを定義
-          .notifications
-            /　Flashオブジェクトを呼び出し、Keyにnotice、Valueにメッセージが入る
-            - flash.each do |key, value|
-              /　content_tagを使用してflashメッセージを表示させるためのdivタグを作成され、メッセージが表示される
-              = content_tag(:div, value, class: key)
-          / - if flash.notice.present?
-          /     .alert.alert-succes= flash.notice
-          = yield
+      = yield
+      / .main
+      /   p main
+      /   p aaa
+      /   p aaa
+      /   p aaa
+      /   p aaa
+
+      /   p aaa
+      /   p aaa
+      /   p aaa
+      / .menubar
+      /   p menu
+      /   li Home
+      /   li 完了済みタスク
+      /   li 種目別グラフ
+      /   li TRELOGについて
+      /   p
+      /   p
+      /   p aaa
+      /   p aaa
+
+      / .sidebar
+      /   p sidebar
+      /   li TODO タスク
+      /   p
+      /   p 進捗
+      /   .progress-bar role='progressbar' aria-valuenow='100'  aria-valuemin='0' aria-valuemax='100' style='width: 100%;' 60%
+      /   p
+      /   p 検索
+        
+      / .footer
+      /   p footer
+      /   li TRELOG
+    / .grid-container
+    /     header.header
+    /         .header-logo
+    /           - if logged_in?
+    /             li = link_to 'TRELOG', todo_tasks_path, class:'logo'
+    /           - else
+    /             li = link_to 'TRELOG', home_path, class:'logo'
+    /         .header-navbar
+    /             - if logged_in?
+    /                 li = link_to 'マイページ', user_path(current_user)
+    /                 - if current_user.admin?
+    /                   li = link_to '管理者マイページ', admin_user_path(current_user)
+    /                   / li.nav-item= link_to 'アカウント一覧', users_path, class: 'nav-link'
+    /                 li = link_to 'ログアウト', logout_path, method: :delete
+    /             - else
+    /                 li = link_to 'アカウント作成', signup_path
+    /                 li = link_to 'ログイン', login_path
+
+
+            / ul.navbar-nav.ml-auto
+            /   - if logged_in?
+            /       li.nav-item= link_to 'タスク作成', new_task_path, class: 'nav-link'
+            /       li.nav-item= link_to 'タスク一覧', todo_tasks_path, class: 'nav-link'
+            /       li.nav-item= link_to 'マイページ', user_path(current_user), class: 'nav-link'
+            /       - if current_user.admin?
+            /         li.nav-item= link_to '管理者マイページ', admin_user_path(current_user), class: 'nav-link'
+            /         / li.nav-item= link_to 'アカウント一覧', users_path, class: 'nav-link'
+            /       li.nav-item= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
+            /   - else
+            /       li.nav-item= link_to 'アカウント作成', signup_path, class: 'nav-link'
+            /       li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'
+          / .container
+          /   /Flashメッセージのdivタグを定義
+          /   .notifications
+          /     /Flashオブジェクトを呼び出し、Keyにnotice、Valueにメッセージが入る
+          /     - flash.each do |key, value|
+          /       /content_tagを使用してflashメッセージを表示させるためのdivタグを作成され、メッセージが表示される
+          /       = content_tag(:div, value, class: key)
+          /   / - if flash.notice.present?
+          /   /     .alert.alert-succes= flash.notice
+          /   = yield
+
+
+/ .app-title.navbar-expand-md.navbar-light.be--light
+/   .navbar-barnd
+/     .logo
+/       - if logged_in?
+/         = link_to 'TRELOG', todo_tasks_path
+/       - else
+/         = link_to 'TRELOG', home_path
+
+/     ul.navbar-nav.ml-auto
+/       - if logged_in?
+/           li.nav-item= link_to 'タスク作成', new_task_path, class: 'nav-link'
+/           li.nav-item= link_to 'タスク一覧', todo_tasks_path, class: 'nav-link'
+/           li.nav-item= link_to 'マイページ', user_path(current_user), class: 'nav-link'
+/           - if current_user.admin?
+/             li.nav-item= link_to '管理者マイページ', admin_user_path(current_user), class: 'nav-link'
+/             / li.nav-item= link_to 'アカウント一覧', users_path, class: 'nav-link'
+/           li.nav-item= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
+/       - else
+/           li.nav-item= link_to 'アカウント作成', signup_path, class: 'nav-link'
+/           li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'

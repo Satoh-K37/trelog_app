@@ -24,6 +24,7 @@ class UserSessionsController < ApplicationController
     # セッションに保存された情報を削除
     reset_session
     # Welcomeページに遷移
+    # redirect_to root_path, notice: 'ログアウトしました'
     redirect_to home_path, notice: 'ログアウトしました'
   end
 

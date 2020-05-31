@@ -10,7 +10,7 @@ Rails.application.config.sorcery.submodules = [:remember_me, :session_timeout, :
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
   # 3時間何もしないとタイムアウトする
-  config.session_timeout =  3.hour
+  config.session_timeout = 3.hour
 
   # 10秒何もしないとログアウトする
   # config.session_timeout =  30.seconds

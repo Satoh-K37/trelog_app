@@ -10,7 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery3
+//= require jquery
 //= require rails-ujs
 //= require turbolinks
 // 下のやつがあると配下のjs ファイル全てを読み込んでくれるらしい。できたやつだ。
@@ -86,6 +86,33 @@ $(function () {
       window.alert('falseになるぞ');
   });
 });
+
+// メモ欄の入力された文字をカウントする
+$(function(){
+  $("#task_memo").on("keyup", function() {
+    let countNum = String($(this).val().length);
+    $("#text_count").text(countNum + "/300");
+  });
+});
+
+// タブ切り替え
+(function($){
+
+  $(document).ready(function(){
+    var tablist = $("#tab_head li");
+    var tabbody = $("#tab_body li");
+  
+    tablist.click(function(){
+      var idx = tablist.index($(this));
+      tablist.removeClass("on").eq(idx).addClass("on");
+      tabbody.removeClass("on").eq(idx).addClass("on");
+    });
+  
+  });
+  
+  })(jQuery);
+
+// 
 
 // Ajaxで渡す先とか値を条件分岐の前で設定し、status_checkの値ごとに違う値を渡すようにしてやればいける？
 // チェックボックスにこだわってしまっていたけど、ラジオボタンや普通のボタンでもいいんでは？

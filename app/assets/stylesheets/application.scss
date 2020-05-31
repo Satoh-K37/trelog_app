@@ -16,8 +16,14 @@
 
   // *= require_tree .
 @import "bootstrap";
+
+// HTML全体に適用
 * {
-  box-sizing: border-box;
+  // box-sizing: border-box;
+  margin: 0px;
+  //  padding: 0px;
+  width: 100%;
+  // height: 100vh;
 }
 
 
@@ -44,48 +50,107 @@
 //  ここまで
 
 // ナビバー
-ul.ml-auto{
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  list-style: none;
-}
-
-.logo {
-  padding: 20px;
-}
+// ul.ml-auto{
+//   display: flex;
+//   justify-content: flex-end;
+//   align-items: center;
+//   list-style: none;
+//   // background-color: #87CEFA;
+// }
 // 
 
 body.style{
-  background-color: #87CEFA;
+  margin: 0px;
+  background-color: #f6fafd;
+  // background-color: #F8F8EC;
+
+  // background-color: #87CEFA;
   // background-color: #55b9f3;
 }
 
-.input-wrapper{
-  border-radius: 62px;
-  padding: 100px;
-  text-align: center;
-  color:black;
-  width: 100%;  
-  background-color:#FFFF;
-  .input-container{
-    background-color:#FFFF; 
-    width: 100%;
+.grid-container{
+  display: grid; 
+  grid-template-columns: repeat(4, 1fr); 
+  grid-template-rows: repeat(4, 1fr); 
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  // height: 25%;
+  // // CSS　Gridの適用
+  // display: grid;
+  // // 右から順にカラム（列）の幅を決めている
+  // grid-template-columns: 200px 1fr 180px;
+  // // 上から順にロウ（行）の幅を決めている
+  // grid-template-rows: 50px 1fr 50px;
+  // grid-template-columns: 1fr;
+  .container{
+    margin: 0px;
   }
-  .task-control{
-    text-align: left;
+
+  .header {
+    // position:fixed;
+    height: 80px;
+    grid-area: 1 / 1 / 2 / 5; 
+    background-color:#066699;
+    // background-color:#92D9DE;
+    
+
+    // widht:100%;
+    // position: relative;
+  
+    .header-logo{
+      list-style: none; 
+      a{
+        color:white;
+      }
+    
+      li {
+        
+        float: left; 
+        margin-top: 2rem;
+      }
+    }
+    
+    .header-navbar {
+      // float: right;
+      list-style: none; 
+      text-align: right;
+
+      a{
+        color:white;
+      }
+      li {
+        
+        display: inline;
+        margin: 1rem 1rem 3rem 1rem;
+        // padding: 1em;
+      }
+    }
   }
-  #weight{
-    width: 100px;
-  }
-  #rep{
-    width: 100px;
-  }
-  #set_count{
-    width: 100px;
-  }
+
 }
 
+// タスク作成、編集
+// .input-wrapper{
+//   border-radius: 62px;
+//   padding: 100px;
+//   text-align: center;
+//   color:black;
+//   width: 100%;  
+//   background-color:#FFFF;
+//   .input-container{
+//     background-color:#FFFF; 
+//     width: 100%;
+//   }
+  .task-control{
+    margin-left: 15px;
+  }
+
+  #task-info{
+    width: 140px;
+    // box-sizing:border-box;
+    // padding: 5px;
+    margin: 1em;
+  }
 
 //  ユーザ認証周りのCSS　ログイン、ユーザー登録 //
 
@@ -98,8 +163,8 @@ body.style{
 }
 
 //未ステータスのラジオボタンに空白を作ってる
-#todo{
-  margin-right : 30px;
+#task_status{
+  margin-right : 40px;
   }
 
   // ステータスボタンのCSS。サルワカさんのやつ
@@ -119,3 +184,140 @@ body.style{
     background: #636363;
   }
 
+
+
+  // ボタンを凹ませる
+  .btn:active {
+    position: relative;
+    top: 6px;
+    box-shadow: none;
+  }
+
+  .row.pl-1{
+    #task_status {
+      padding-right: 10px ;
+    }
+    p {
+      padding-right: 10px ;
+    }
+  }
+
+  // _form.html.slimのCSS
+
+  // 
+  #new_task_button {
+    text-align: right;
+  }
+
+  //タスク一覧のコンテンツのCSS 
+
+//** ドロップダウンメニュー **//
+.dropmenu {
+  display: grid;
+  float: right;
+}
+
+.menu {
+  width: 300px;
+  text-align: center;
+}
+
+.menu-title {
+  // background: #090032;
+  color: #ffffff;
+}
+// ユーザーアイコンの大きさの調整
+#drop-icon > img{
+  width: 10%;
+  height: 10%;
+}
+
+.sub-menu {
+  display: none;
+  background: #B9B9B9;
+  position: relative;
+}
+
+.sub-menu > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 300px;
+}
+
+.sub-menu > ul > li > a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.menu:hover .sub-menu {
+  display: inline-block;
+}
+
+
+
+//** ドロップダウンメニューここまで **//
+
+
+  // footer CSS
+  .footer-logo{
+    padding:  10px;
+    font-size :32px;
+    float: left;
+  }
+
+  .footer-list{
+    float: right;
+    li{
+      padding-bottom:20px;
+    }
+  }
+  //
+
+
+    // // アコーディオンメニュー
+    // /*ボックス全体*/
+    // .accbox {
+    //   margin: 2em 0;
+    //   padding: 0;
+    //   max-width: 400px;/*最大幅*/
+    // }
+
+    //     /*ラベル*/
+    // .accbox label {
+    //   display: block;
+    //   margin: 1.5px 0;
+    //   padding : 11px 12px;
+    //   color :#2f8fcf;
+    //   font-weight: bold;
+    //   background :#a4cbf3;
+    //   cursor :pointer;
+    //   transition: all 0.5s;
+    // }
+
+    // /*ラベルホバー時*/
+    // .accbox label:hover {
+    //   background :#85baef;
+    // }
+
+    // /*チェックは隠す*/
+    // .accbox input {
+    //   display: none;
+    // }
+
+    // /*中身を非表示にしておく*/
+    // .accbox .accshow {
+    //   height: 0;
+    //   padding: 0;
+    //   overflow: hidden;
+    //   opacity: 0;
+    //   transition: 0.8s;
+    // }
+
+    // /*クリックで中身表示*/
+    // .cssacc:checked + .accshow {
+    //   height: auto;
+    //   padding: 5px;
+    //   background: #eaeaea;
+    //   opacity: 1;
+    // }
