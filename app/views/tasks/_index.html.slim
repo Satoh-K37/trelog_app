@@ -23,13 +23,29 @@
         = link_to '編集', edit_task_path(task), class:"fa fa-pencil", id:'task-icon'
         = link_to '削除', task, method: :delete, remote: true, data: { confirm: "タスク「#{task.title}」を削除します。よろしいですか？" }, class: "fa fa-trash",id:'task-icon'
 .menubar
-  p menu
-  li = link_to 'Home', todo_tasks_path
-  li = link_to '完了済みのタスク', done_tasks_path
-  li = link_to 'すべてのタスク', tasks_path
-  li = link_to '種目別グラフ'
-  li = link_to 'TRELOGについて', about_path
-  p
+  nav.raight-sidemanu
+    li = link_to 'Home', todo_tasks_path
+    li = link_to '完了済みのタスク', done_tasks_path
+    li = link_to 'すべてのタスク', tasks_path
+    li = link_to '種目別グラフ'
+    li = link_to 'TRELOGについて', about_path
+  nav.bottom-menu
+    li = link_to 'Home', todo_tasks_path
+    li = link_to '完了済みのタスク', done_tasks_path
+    li = link_to 'すべてのタスク', tasks_path
+    li = link_to '種目別グラフ'
+    li = link_to 'TRELOGについて', about_path
+      /  クラス名に関してはFontAwesomeサイトを使う時のお約束？みたいなやつっぽい。あとで内容にあったものに変える
+  / .tabs-home
+  / .tabs-complete
+  / .tabs-taskhistory
+  / .tabs-graph
+  / .tabs-create
+  / li = link_to 'Home', todo_tasks_path
+  / li = link_to '完了済みのタスク', done_tasks_path
+  / li = link_to 'すべてのタスク', tasks_path
+  / li = link_to '種目別グラフ'
+  / li = link_to 'TRELOGについて', about_path
 .sidebar
   p sidebar
   p Todo タスク
@@ -40,126 +56,3 @@
   p 検索
 
 
-/     .mb-3
-/       table.table.table-hover
-/         thead.thead-default
-/           - @tasks.each do |task|
-/             / = check_box_tag 'task[status]', false, task.status, id: 'status_checkbox',  data:{ id: "status_checkbox" }
-/             p
-/             .border.index_link.p-1
-/                 .container-md
-/                   .row.md
-/                     font= '期限日:'
-/                     = task.deadline
-/                     p
-      
-/                     / div class="text-muted #{deadline_style(private_task)}" = deadline_count(private_task)
-/                   .row.md
-/                     = check_box_tag 'task[status]', false, task.status, id: 'status_checkbox',  data:{ id: "status_checkbox" }
-/                     p
-/                     p
-/                     p
-
-/                   .row.pl-1
-/                     - if task.status == false
-/                       = button_to 'Done', status_tasks_path(task), method: :post,remote: true, class: "btn-right-radius"
-/                     - else
-/                       = button_to 'Todo', status_tasks_path(task), method: :post, class: "btn-right-radius"
-/                     = link_to task.title, task_path(task), id:'task_title'
-/                     = task.weight
-/                     p kg
-/                     = task.rep
-/                     p  レップ
-/                     = task.set_count
-/                     p セット
-/                   .row.pl-1
-/                     = task.memo
-/                   .row.justify-content-end.text-muted
-/                     = link_to '編集', edit_task_path(task)
-/                     = link_to '削除', task, method: :delete, remote: true, data: { confirm: "タスク「#{task.title}」を削除します。よろしいですか？" }
-/                   .row.justify-content-end.text-muted
-/                     = task.created_at                    
-      
-/           = link_to '+ タスク', new_task_path, id:'new_task_button'
-
-
-
-/           .top-container
-/             .row-top
-/               .col-4-border-bg-success
-/                 .progress-bar role='progressbar' aria-valuenow='100'  aria-valuemin='0' aria-valuemax='100' style='width: 100%;' 60%
-/                 ul.nav.nav-tabs.mb-3
-/                   li.nav-item = link_to 'Todo', todo_tasks_path, class: 'nav-link'
-/                   li.nav-item = link_to 'Done', done_tasks_path, class: 'nav-link'
-/                   li.nav-item = link_to 'All', tasks_path, class: 'nav-link'
-/             =search_form_for @q, class: 'mb-5' do |f|
-/               .forn-group.row
-/                 = f.label :title_cont, 'タイトル', class: 'col-sm-2 col-form-label'
-/                 .col-sm-10
-/                   = f.search_field :title_cont, placeholder: 'タスクのタイトルを入力してください',class: 'form-control'
-/               .forn-group
-/                 = f.submit class: 'btn btn-outline-primary'
-/             .row.justify-content-end
-
-/                 / div.taskcontent-left
-/                 /   - if task.status == false
-/                 /     = button_to 'Done', status_tasks_path(task), method: :post,remote: true, class: "btn-right-radius"
-/                 /   - else
-/                 /     = button_to 'Todo', status_tasks_path(task), method: :post, class: "btn-right-radius"
-/                 /   div.taskcontent-right
-/                 /     = link_to task.title, task_path(task), id:'task_title'
-/                 /     p
-/                 /     = task.memo
-/                 /     p
-/                 /   div.taskcontent-buttons
-/                 /         = link_to '編集', edit_task_path(task), class:"fa fa-pencil"
-/                 /         = link_to '削除', task, method: :delete, remote: true, data: { confirm: "タスク「#{task.title}」を削除します。よろしいですか？" }, class: "fa fa-trash"
-
-/     main層
-
-
-/                 .tab
-/     ul id='tab_head'
-/       li.on =link_to 'Todo', todo_tasks_path 
-/       li = link_to 'Done', done_tasks_path
-/       li = link_to 'All', tasks_path
-/     ul id='tab_body'
-/       li.on
-/         h2 未完了のタブ
-/         p　これからやるタスクの一覧です
-/       li 
-/         h2 完了済みのタブ
-/         p 終わったタスクの一覧よ
-/       li
-/         h2 全タスクのタブ
-/         p 全タスクの一覧
-
-/     TOPコンテンツここまで
-
-/     Mainコンテンツここから
-
-/   - @tasks.each do |task|
-
-/       div.taskcontent-left
-/         - if task.status == false
-/           = button_to 'Done', status_tasks_path(task), method: :post,remote: true, class: "btn-right-radius"
-/         - else
-/           = button_to 'Todo', status_tasks_path(task), method: :post, class: "btn-right-radius"
-/         div.taskcontent-right
-/           = link_to task.title, task_path(task), id:'task_title'
-/           = task.weight
-/           p kg
-/           = task.rep
-/           p  レップ
-/           = task.set_count
-/           p セット
-/           p
-/           = task.memo
-/           p
-/         div.taskcontent-buttons
-/           = link_to '編集', edit_task_path(task), class:"fa fa-pencil"
-/           = link_to '削除', task, method: :delete, remote: true, data: { confirm: "タスク「#{task.title}」を削除します。よろしいですか？" }, class: "fa fa-trash"
-/           p
-
-/   / MAinコンテンツここまで
-/ */                          
