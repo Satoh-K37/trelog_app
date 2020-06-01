@@ -32,12 +32,18 @@
           
     .menubar
       p menu
-      li = link_to 'Home', todo_tasks_path
-      li = link_to '完了済みのタスク', done_tasks_path
-      li = link_to 'すべてのタスク', tasks_path
-      li = link_to '種目別グラフ'
-      li = link_to 'TRELOGについて', about_path
-      p
+      nav.raight-sidemanu
+        li = link_to 'Home', todo_tasks_path
+        li = link_to '完了済みのタスク', done_tasks_path
+        li = link_to 'すべてのタスク', tasks_path
+        li = link_to '種目別グラフ'
+        li = link_to 'TRELOGについて', about_path
+      nav.bottom-menu
+          li = link_to 'Home', todo_tasks_path
+          li = link_to '完了済みのタスク', done_tasks_path
+          li = link_to 'すべてのタスク', tasks_path
+          li = link_to '種目別グラフ'
+          li = link_to 'TRELOGについて', about_path
     .sidebar
       p sidebar
       p Todo タスク

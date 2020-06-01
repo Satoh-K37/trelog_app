@@ -21,10 +21,12 @@
 * {
   // box-sizing: border-box;
   margin: 0px;
-  //  padding: 0px;
+  padding: 0px;
   width: 100%;
   // height: 100vh;
 }
+
+
 
 
 // フラッシュメッセージのレイアウト
@@ -59,42 +61,165 @@
 // }
 // 
 
-body.style{
-  margin: 0px;
+.header{ grid-area: header; }
+.main{ grid-area: main; }
+.menubar{ grid-area: navigation; }
+.sidebar{ grid-area: ads; }
+
+.style{
+  margin:0;
+  // padding:0;
+  // width:100%;
+  
   background-color: #f6fafd;
   // background-color: #F8F8EC;
 
   // background-color: #87CEFA;
   // background-color: #55b9f3;
+
+  display: grid;
+  grid-template-areas:"header header header"
+                      "navigation main ads";
+  grid-template-columns: 150px 1fr 150px;
+  grid-template-rows: 100px 
+                      1fr
+                      30px;
+  // footerを常に下に表示させる
+  // min-height: 100vh;
+  //スマホ以外の時は非表示にする
 }
 
-.grid-container{
-  display: grid; 
-  grid-template-columns: repeat(4, 1fr); 
-  grid-template-rows: repeat(4, 1fr); 
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-  // height: 25%;
-  // // CSS　Gridの適用
-  // display: grid;
-  // // 右から順にカラム（列）の幅を決めている
-  // grid-template-columns: 200px 1fr 180px;
-  // // 上から順にロウ（行）の幅を決めている
-  // grid-template-rows: 50px 1fr 50px;
-  // grid-template-columns: 1fr;
-  .container{
-    margin: 0px;
+.wrap{
+  
+}
+
+// スマホの時は表示させない
+// @media(max-width:800px){
+//   .raight-sidemanu{display:none; }
+// }
+
+/*PC表示の際はボトムメニューは表示しない*/
+@media(min-width: 900px){
+  .bottom-menu{
+    display:none; 
   }
+}
+
+
+// スマホでのレイアウト
+@media screen and (max-width: 900px) {
+  .style {
+      grid-template-areas:"header"
+                          "ads"
+                          "main"
+                          "navigation";
+      grid-template-columns: 100%;
+      grid-template-rows: auto // header
+                          1fr // main
+                          auto // ads class: saidebar
+                          auto; // navi class: menubar
+                          // 50px;// footer
+                          
+      // grid-row-gap: 10px;
+      // grid-column-gap: 10px;
+
+      .menubar {
+        margin-bottom: 48px;
+
+        //PCで表示するクラスなので非表示にしている
+        .raight-sidemanu{
+          display:none; 
+          list-style: none;
+        }
+
+        // 固定ボトムズメニュー
+        .bottom-menu{
+          
+          height: 50px;
+          position: fixed;
+          display: block;
+          background: #ffffff;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          z-index: 100;
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          justify-content: space-evenly;
+            li {
+              flex: 1;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              padding: 10px;
+              height: 50px;
+              color: #00587a;
+              font-size: 10px;
+              text-decoration: none;
+              font-size: 12px;
+              line-height: 1.2;
+          }
+        }
+  
+        // ここまで
+
+        // スマホで表示するクラス
+        // .bottom-menu{
+        //   list-style: none;
+          
+        //   display: flex;
+        //   li {
+
+        //     text-align: center;
+        //     background-color: #333;
+        //     text-decoration: none;
+        //     color: #fff;
+        //     font-weight: bold;
+            
+        //   }
+        // }
+    
+    
+      }
+
+      .sidebar {
+    
+      }
+  }
+}
+
+
+
+
+// .grid-container{
+//   display: grid; 
+//   grid-template-columns: repeat(4, 1fr); 
+//   grid-template-rows: repeat(4, 1fr); 
+//   grid-column-gap: 0px;
+//   grid-row-gap: 0px;
+//   // height: 25%;
+//   // // CSS　Gridの適用
+//   // display: grid;
+//   // // 右から順にカラム（列）の幅を決めている
+//   // grid-template-columns: 200px 1fr 180px;
+//   // // 上から順にロウ（行）の幅を決めている
+//   // grid-template-rows: 50px 1fr 50px;
+//   // grid-template-columns: 1fr;
+//   .container{
+//     margin: 0px;
+//   }
 
   .header {
     // position:fixed;
-    height: 80px;
+    // height: 80px;
     grid-area: 1 / 1 / 2 / 5; 
     background-color:#066699;
     // background-color:#92D9DE;
     
 
-    // widht:100%;
+    widht:100%;
     // position: relative;
   
     .header-logo{
@@ -126,21 +251,78 @@ body.style{
       }
     }
   }
+// }
+.main {
+  // grid-column: 2 / 3;
+  // grid-row-start: 2 / 3;
+  // grid-area: 2 / 2 / 5 / 4; 
+  // background-color: yellow;
+  border-right: solid 1px #BDBDBD;
+  border-left: solid 1px #BDBDBD;
 
+  .btn-right-radius{
+    width: 100px;
+  }
+
+  .task-container{
+    border-top: solid 0.1px #BDBDBD;
+    border-bottom: solid 0.1px #BDBDBD;
+    list-style: none;
+    
+    .task-statustime {
+      margin-top: 1rem; 
+      margin-bottom: 1rem; 
+      display: inline-flex;
+      li{
+        text-align: right;
+      }
+    }
+
+    .task-contentBox{
+      margin: 1rem;
+
+      #task_title{
+        margin: 2rem;
+      }
+
+      li{
+        display: inline;
+        margin-left: 1rem;
+      }
+      
+    }
+
+    .task-icons{
+      text-align: right;
+      
+      #task-icons{
+        // margin: 1rem;
+        padding: 1rem;
+      }
+    }
+    
+  }
 }
 
-// タスク作成、編集
-// .input-wrapper{
-//   border-radius: 62px;
-//   padding: 100px;
-//   text-align: center;
-//   color:black;
-//   width: 100%;  
-//   background-color:#FFFF;
-//   .input-container{
-//     background-color:#FFFF; 
-//     width: 100%;
-//   }
+  .menubar {
+    .raight-sidemanu{
+      list-style: none;
+      li {
+        padding: 1rem;
+      }
+      
+    }
+  }
+  .sidebar {
+
+  }
+
+  // .footer {
+  //     grid-area: 5 / 1 / 6 / 6;
+  //     // background-color: #e74c3c;
+  //     list-style: none;
+  //   } 
+
   .task-control{
     margin-left: 15px;
   }
