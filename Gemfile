@@ -80,6 +80,8 @@ gem 'webpacker'
 gem 'bootstrap'
 # Jqueryを使えるようにする
 gem 'jquery-rails'
+# webフォントアイコンを使えるようにする
+gem 'font-awesome-rails'
 #################################
 
 #####　バッグエンド周りのGem　#####
