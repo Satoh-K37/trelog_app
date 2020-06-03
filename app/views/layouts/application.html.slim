@@ -32,13 +32,13 @@ html
                 
             - if logged_in?
                 li = link_to 'タスク作成', new_task_path
-                li = link_to 'マイページ', user_path(current_user)
+                li = link_to 'マイページ', user_path(current_user),class:'fa fa-user-circle fa-lg'
                 - if current_user.admin?
-                  li = link_to '管理者マイページ', admin_user_path(current_user)
+                  li = link_to '管理者マイページ', admin_user_path(current_user), class: 'fa fa-user-secret fa-lg'
                   / li.nav-item= link_to 'アカウント一覧', users_path, class: 'nav-link'
-                li = link_to 'ログアウト', logout_path, method: :delete
+                li = link_to 'ログアウト', logout_path, method: :delete, class:'fa fa-sign-out fa-lg'
             - else
-                li = link_to 'アカウント作成', signup_path
-                li = link_to 'ログイン', login_path
+                li = link_to 'アカウント作成', signup_path, class:'fa fa-user-plus fa-lg'
+                li = link_to 'ログイン', login_path, class:'fa fa-sign-out fa-lg'
       = yield
       
