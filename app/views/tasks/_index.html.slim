@@ -19,18 +19,19 @@
       .task-created
         = task.created_at.strftime('%Y-%m-%d %H:%M:%S') 
       .task-icons
-        = link_to '詳細', task_path(task), id:'task-icon'
-        = link_to '編集', edit_task_path(task), class:"fa fa-pencil-square-o", id:'task-icon'
-        = link_to '削除', task, method: :delete, remote: true, data: { confirm: "タスク「#{task.title}」を削除します。よろしいですか？" }, class: "fa fa-trash",id:'task-icon'
-  .task-fixed-btn
-    = button_to '+',  new_task_path, method: :get, class:"btn-right-radius"
+        = link_to '詳細', task_path(task), class: 'fa fa-external-link-square fa-lg', id:'task-icon'
+        = link_to '編集', edit_task_path(task), class:"fa fa-pencil-square-o fa-lg", id:'task-icon'
+        = link_to '削除', task, method: :delete, remote: true, data: { confirm: "タスク「#{task.title}」を削除します。よろしいですか？" }, class: "fa fa-trash fa-lg", id:'task-icon'
+    .task-fixed-btn
+      = button_to '+',new_task_path, method: :get, class:'task-create-circlebtn'
+      / , class:'fa fa-plus-circle'
 .menubar
   nav.raight-sidemanu
-    li = link_to 'Home', todo_tasks_path, class:'fa fa-home'
-    li = link_to '完了済みのタスク', done_tasks_path ,class:'fa fa-check-square'
-    li = link_to 'すべてのタスク', tasks_path,class:'fa fa-history'
-    li = link_to '種目別グラフ', about_path, class: 'fa fa-line-chart'
-    li = link_to 'TRELOGについて', about_path,class:'fa fa-info'
+    li = link_to 'Home', todo_tasks_path, class:'fa fa-home fa-lg'
+    li = link_to '完了済みのタスク', done_tasks_path ,class:'fa fa-check-square fa-lg'
+    li = link_to 'すべてのタスク', tasks_path,class:'fa fa-history fa-lg'
+    li = link_to '種目別グラフ', about_path, class: 'fa fa-line-chart fa-lg'
+    li = link_to 'TRELOGについて', about_path,class:'fa fa-info fa-lg'
   nav.bottom-menu
     li = link_to 'Home', todo_tasks_path, class:"fa fa-home"
     li = link_to '完了済みのタスク', done_tasks_path, class:'fa fa-check-square'
