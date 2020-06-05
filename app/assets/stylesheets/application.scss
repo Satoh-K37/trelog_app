@@ -33,7 +33,7 @@
   // box-sizing: border-box;
   margin: 0px;
   padding: 0px;
-  width: 100%;
+  // width: 100%;
   font-family: 'Osaka';
   // color: #C0C0C0 ; // 文字の色
 
@@ -200,8 +200,18 @@
       }
 
       .sidebar {
+        label{
+          padding-right: 10px;
+          font-size: 1rem;
+        }
+        .progress {
+          // padding: 20x;
+          margin: 10px;
+        }
         // border-right: solid 1px #BDBDBD;
-
+        #search-btn{
+          text-align: right;
+        }
       }
   }
 }
@@ -233,7 +243,7 @@
     grid-area: 1 / 1 / 2 / 5; 
     // background-color:#4072B3;
     background-color: #6088C6 ; 
-    widht: 100%;
+    // widht: 100%;
     // position: relative;
   
     .header-logo{
