@@ -23,15 +23,18 @@ html
           / - if flash.notice.present?
           /     .alert.alert-succes= flash.notice
           / div.grid-container
-        .header-logo
-          - if logged_in?
-            li = link_to 'TRELOG', todo_tasks_path, class:'logo'
-          - else
-            li = link_to 'TRELOG', home_path, class:'logo'
+        / .header-logo
+        /   - if logged_in?
+        /     li = link_to 'TRELOG', todo_tasks_path, class:'logo'
+        /   - else
+        /     li = link_to 'TRELOG', home_path, class:'logo'
         .header-navbar
-                
             - if logged_in?
-                li = link_to 'タスク作成', new_task_path
+                li = link_to 'TRELOG', todo_tasks_path, class:'fa fa-home fa-lg logo'
+            - else
+                li = link_to 'TRELOG', home_path, class:'fa fa-home fa-lg logo'
+            - if logged_in?
+                li = link_to 'タスク作成', new_task_path,class:'fa fa-pencil-square-o fa-lg'
                 li = link_to 'マイページ', user_path(current_user),class:'fa fa-user-circle fa-lg'
                 - if current_user.admin?
                   li = link_to '管理者マイページ', admin_user_path(current_user), class: 'fa fa-user-secret fa-lg'
