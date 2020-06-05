@@ -18,12 +18,25 @@
 @import "font-awesome";
 @import "bootstrap";
 
+// 全体で使う色一覧
+// a {
+// color: #4072B3 ; // ボタンを押した時などやマイページに使うサブカラー
+// color: #6088C6 ; //ヘッダーやボタンなどに使うメインカラー
+// color: #AEC4E5 ; //ボタンを押した時などやマイページに使うサブカラー
+// color: #EB8686 ; //キャンセルボタンなどに使う
+// color: #C0C0C0 ; // 文字の色
+// color: #EEF9FF; //
+// }
+
 // HTML全体に適用
 * {
   // box-sizing: border-box;
   margin: 0px;
   padding: 0px;
   width: 100%;
+  font-family: 'Osaka';
+  // color: #C0C0C0 ; // 文字の色
+
   // height: 100vh;
 }
 
@@ -136,7 +149,8 @@
           height: 50px;
           position: fixed;
           display: block;
-          background: #4072B3;
+          // background: #4072B3;
+          background-color: #6088C6 ; 
           color: #ffffff;
           bottom: 0;
           left: 0;
@@ -186,7 +200,8 @@
       }
 
       .sidebar {
-    
+        // border-right: solid 1px #BDBDBD;
+
       }
   }
 }
@@ -212,15 +227,13 @@
 //     margin: 0px;
 //   }
 
-  .header {
+.header {
     // position:fixed;
     // height: 80px;
     grid-area: 1 / 1 / 2 / 5; 
-    background-color:#4072B3;
-    // background-color:#92D9DE;
-    
-
-    widht:100%;
+    // background-color:#4072B3;
+    background-color: #6088C6 ; 
+    widht: 100%;
     // position: relative;
   
     .header-logo{
@@ -230,14 +243,16 @@
       }
     
       li {
-        
         float: left; 
-        margin-top: 2rem;
+        margin: 1rem;
       }
     }
     
     .header-navbar {
+      // position: relative;
       // float: right;
+      display: flex;
+      // font-size: 2em;
       list-style: none; 
       text-align: right;
 
@@ -247,19 +262,21 @@
       li {
         
         display: inline;
-        margin: 1rem 1rem 3rem 1rem;
+        // margin: 1rem 1rem 3rem 1rem;
         // padding: 1em;
       }
     }
-  }
+}
+
 // }
 .main {
   // grid-column: 2 / 3;
   // grid-row-start: 2 / 3;
   // grid-area: 2 / 2 / 5 / 4; 
   // background-color: yellow;
-  border-right: solid 1px #BDBDBD;
-  border-left: solid 1px #BDBDBD;
+  // border-right: solid 1px #BDBDBD;
+  // border-left: solid 1px #BDBDBD;
+  border-top: solid 1px #BDBDBD;
 
   .btn-right-radius{
     width: 100px;
@@ -293,14 +310,20 @@
       
     }
 
-    .task-icons{
-      text-align: right;
-      
-      #task-icons{
-        // margin: 1rem;
-        padding: 1rem;
+    .task-container-footer{
+      // display: inline;
+      display: flex;
+      .task-icons{
+        display: flex;
+        list-style: none;
+        margin: 5px;
+        li {
+
+        }
       }
     }
+
+
   }
 
 
@@ -311,11 +334,12 @@
     // right: -90rem;
     margin-bottom: 48px;
     .task-create-circlebtn {
-      right: 10px;
+    
       align-items: center;
       display: inline-block;
       text-decoration: none;
-      background: #87befd;
+      // background: #87befd;
+      background-color: #6088C6 ;
       color: #FFF;
       width: 60px;
       height: 60px;
@@ -327,24 +351,26 @@
       text-shadow: 0 -1px 1px #FFF, -1px 0 1px #FFF, 1px 0 1px #aaa; 
     }
     .task-create-circlebtn:hover{
-      background: #668ad8;
+      background: #4072B3;
     }
   }
   
 }
 
-  .menubar {
+.menubar {
+  border-right: solid 1px #BDBDBD;
     .raight-sidemanu{
       list-style: none;
       li {
         padding: 1rem;
       }
-      
     }
-  }
-  .sidebar {
+}
 
-  }
+.sidebar {
+    // border-bottom: solid 1px #BDBDBD;
+  border-left: solid 1px #BDBDBD;
+}
 
   // .footer {
   //     grid-area: 5 / 1 / 6 / 6;

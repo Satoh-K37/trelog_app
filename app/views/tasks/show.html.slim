@@ -42,7 +42,7 @@
           = link_to '削除', @task, method: :delete, data: { confirm: "タスク「#{@task.title}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
           / - if current_user.id == @user.id
     .menubar
-      / p menu
+      p
       nav.raight-sidemanu
         li = link_to 'Home', todo_tasks_path
         li = link_to '完了済みのタスク', done_tasks_path
