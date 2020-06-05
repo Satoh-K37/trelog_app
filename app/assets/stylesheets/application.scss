@@ -415,20 +415,38 @@
   }
 
   // ステータスボタンのCSS。サルワカさんのやつ
-.btn-right-radius {
+// .btn-right-radius {
+//     position: relative;
+//     display: inline-block;
+//     font-weight: bold;
+//     padding: 0.25em 0.5em;
+//     text-decoration: none;
+//     color: #00BCD4;
+//     background: #ECECEC;
+//     border-radius: 0 15px 15px 0;
+//     transition: .4s;
+//   }
+  
+//   .btn-right-radius:hover {
+//     background: #636363;
+//   }
+
+  .btn-right-radius{
     position: relative;
     display: inline-block;
     font-weight: bold;
     padding: 0.25em 0.5em;
     text-decoration: none;
-    color: #00BCD4;
-    background: #ECECEC;
-    border-radius: 0 15px 15px 0;
+    border-bottom: solid 2px #668ad8;
+    background-color: #f6fafd;
+    color: #668ad8;
     transition: .4s;
   }
-  
-  .btn-right-radius:hover {
-    background: #636363;
+
+
+  .btn-right-radius:hover{
+    padding-left: 0.7em;
+    padding-right: 0.3em;
   }
 
 

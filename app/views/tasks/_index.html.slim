@@ -4,9 +4,9 @@
     .task-container
       .task-statustime
         - if task.status == false
-          = button_to 'Done', status_tasks_path(task), method: :post,remote: true, class: "btn-right-radius"
+          = button_to 'Done', status_tasks_path(task), method: :post,remote: true, class: 'btn-right-radius'
         - else
-          = button_to 'Todo', status_tasks_path(task), method: :post,remote: true, class: "btn-right-radius"
+          = button_to 'Todo', status_tasks_path(task), method: :post,remote: true, class: 'btn-right-radius'
         li = task.deadline
       .task-contentBox
         = link_to task.title, task_path(task), id:'task_title'
