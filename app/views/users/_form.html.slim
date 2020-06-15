@@ -5,7 +5,11 @@
       ul
         - @user.errors.full_messages.each do |message|
           li = message
-.main          
+.main
+  - if @user.user_name.present?
+    h3 アカウント編集
+  - else
+    h3 アカウント作成
   div.input-wrapper
     div.input-container
       = form_with model: @user, local:true do |f|
