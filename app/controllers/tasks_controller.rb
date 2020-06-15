@@ -5,19 +5,8 @@ class TasksController < ApplicationController
   def index
     @q = current_user.tasks.ransack(params[:q])
     # 検索フォームに入力された値を含むユーザー一覧を表示させる
-    @tasks = @q.result(distinct: true)
-
-
-    # @show = params[:show] 
-    
-    # if @show == '1' then
-    #   @tasks = Task.where(status: 1)
-    # elsif @show == "2"
-    #   @tasks = Task.where(status: 2)
-    # else
-    #   @tasks = Task.all
-    # end
-
+    @tasks = @q.result(distinct: true).page(params[:page])
+    # @tasks = @q.result(distinct: true)
   end
 
   def todo
@@ -25,14 +14,16 @@ class TasksController < ApplicationController
     # 未完了
     @q = current_user.tasks.where(status: false).ransack(params[:q])
     # 検索フォームに入力された値を含むユーザー一覧を表示させる
-    @tasks = @q.result(distinct: true)
+    # @tasks = @q.result(distinct: true)
+    @tasks = @q.result(distinct: true).page(params[:page])
   end
     
   def done
   # 完了
   @q = current_user.tasks.where(status: true).ransack(params[:q])
   # 検索フォームに入力された値を含むユーザー一覧を表示させる
-  @tasks = @q.result(distinct: true)
+  # @tasks = @q.result(distinct: true)
+  @tasks = @q.result(distinct: true).page(params[:page])
   
   end
 

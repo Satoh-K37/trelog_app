@@ -82,6 +82,8 @@ gem 'bootstrap'
 gem 'jquery-rails'
 # webフォントアイコンを使えるようにする
 gem 'font-awesome-rails'
+# ページセーション
+gem 'kaminari'
 #################################
 
 #####　バッグエンド周りのGem　#####
@@ -91,4 +93,6 @@ gem 'sorcery', '>= 0.15.0'
 gem 'rails_autolink'
 # 検索機能
 gem 'ransack'
+# 国際化
+gem 'rails-i18n'
 ###############################
