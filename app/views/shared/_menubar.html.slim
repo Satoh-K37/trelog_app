@@ -1,0 +1,19 @@
+.menubar
+  p 
+  nav.raight-sidemanu
+    li = link_to 'Home', todo_tasks_path, class:'fa fa-home fa-lg'
+    li = link_to 'Doneタスク', done_tasks_path ,class:'fa fa-check-square fa-lg'
+    li = link_to 'タスク履歴', tasks_path,class:'fa fa-history fa-lg'
+    li = link_to 'グラフ', about_path, class: 'fa fa-line-chart fa-lg'
+    li = link_to 'About', about_path,class:'fa fa-info fa-lg'
+  nav.bottom-menu
+    li = link_to todo_tasks_path, class:'fa fa-home fa-2x'
+      p = 'Home'
+    li = link_to done_tasks_path, class:'fa fa-check-square fa-2x'
+      p = 'Doneタスク'
+    li = link_to tasks_path, class:'fa fa-history fa-2x'
+      p  = 'タスク履歴'
+    li = link_to about_path, class:'fa fa-line-chart fa-2x'
+      p = 'グラフ'
+    li = link_to about_path, class:'fa fa-info fa-2x'
+      p = 'About'

@@ -76,12 +76,5 @@ class UsersController < ApplicationController
     params.require(:user).permit(:user_name, :email, :icon_image, :icon_image_cache, :remove_image, :password, :password_confirmation)
   end
 
-    #   # URLを直打ちで別のユーザーを表示されるのを防ぐ
-    # def correct_user
-      
-    #   @user = current_user.User.find_by(params[:id])
-    #   redirect_to tasks_path if current_user != @user
-    # end
-
 
 end

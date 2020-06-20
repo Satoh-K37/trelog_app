@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   
   get '/signup' => 'users#new'
   # get '/users/:id' => 'users#show', as: 'mypage'
-  resources :users, only: %i[create edit update show index destroy] 
+  resources :users, only: %i[create edit update show index destroy]
   resources :password_resets, only: %i[new create edit update]
   ####################
 
