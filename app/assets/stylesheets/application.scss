@@ -31,7 +31,7 @@
 // HTML全体に適用
 * {
   font-family: 'Osaka';
-
+  // outline: 2px solid red;
   // height: 100vh;
 }
 
@@ -95,7 +95,7 @@ body{
   display: grid;
   grid-template-areas:"header header header"
                       "navigation main ads";
-  grid-template-columns: 150px 1fr 150px;
+  grid-template-columns: 300px 1fr 300px;
   grid-template-rows: 100px 
                       1fr
                       30px;
@@ -250,6 +250,8 @@ body{
 //   }
 
 .header {
+    text-align: center;
+    
     width: 100%;
     // text-align: justify;
     // position:fixed;
@@ -276,6 +278,7 @@ body{
       display:none;
       // 等間隔で表示してくれるやつらしいけど効果なし
       text-align: justify;
+      ;
       // float: right;
       display: inline-flex;
       // font-size: 2em;
@@ -368,10 +371,14 @@ body{
       }
     }
 
-    .mb-3{
-      text-align: center;
+    .next{
+      text-align: right;
     }
 
+    .task-list {
+      padding: 0;
+    }
+    
     /*タブ切り替え全体のスタイル*/
     .tabs {
       margin-top: 50px;
@@ -433,11 +440,13 @@ body{
 
 
   .task-fixed-btn{
+    float: right;
     position: fixed;
     bottom: 10px; 
     padding: 6px 40px;
     margin-bottom: 48px;
     .task-create-circlebtn {
+      
       display: inline-block;
       text-decoration: none;
       background-color: #6088C6;
