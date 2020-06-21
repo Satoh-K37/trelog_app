@@ -17,9 +17,9 @@
 
 // application.jsを読み込むようにした方がDRYかもしれん
 
-// ログインした時などに10秒後にメッセージを消す
+// 5秒後にメッセージを消す
 $(function(){
-  setTimeout("$('.notice, .alert').fadeOut('slow')", 10000);
+  setTimeout("$('.notice, .alert').fadeOut('slow')", 5000);
 });
 
 // // // // // // // // // // // // // 

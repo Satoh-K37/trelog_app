@@ -1,51 +1,38 @@
 .main
-  div.input-wrapper
-    div.input-container
+  .input-wrapper
+    .input-container
       table.table.table-hover
         tbody
           tr
-            th = User.human_attribute_name(:id)
-            td = @user.id
-          tr
-            th = User.human_attribute_name(:user_name)
-            td = @user.user_name
-          tr
-            th = User.human_attribute_name(:email)
-            td = @user.email
-          tr
-            th = User.human_attribute_name(:icon_image)
             td = image_tag @user.icon_image.to_s, class: 'circle_icon'
           tr
-            th = User.human_attribute_name(:created_at)
-            td = @user.created_at
-          tr
-            th = User.human_attribute_name(:updated_at)
-            td = @user.updated_at
-    
+            td = @user.user_name
       =< link_to '戻る', todo_tasks_path, class: 'btn btn-outline-primary  mr-3'
       '
       => link_to '編集', edit_user_path(@user), class: 'btn btn-primary mr-3'
-      '
-      = link_to '退会', @user, method: :delete, data: { confirm: '退会しますか？' }, class: 'btn btn-danger'
-    
-  hr
-  .tabs
-    input id="all" type="radio" name="tab_item"
-    label class="tab_item" for="all" 総合
-    input id="programming" type="radio" name="tab_item"
-    label class="tab_item" for="programming" プログラミング
-    input id="design" type="radio" name="tab_item"
-    label class="tab_item" for="design"デザイン
-    .tab_content
-      #all_content
+      / = link_to '退会', @user, method: :delete, data: { confirm: '退会しますか？' }, class: 'btn btn-danger'
 
-    .tab_content
-      #programming_content
-      p = 'プログラミングの内容がここに入ります'
-    .tab_content
-      #design_content
-        p = 'デザインの内容がここに入ります'
-      / nav.justify-content-end
+    .tab-container
+      input id='tab1' type='radio' name='tab-item' checked='checked'
+      label class='tab-item' for='tab1' タスク履歴
+      input id='tab2' type='radio' name='tab-item' checked='checked'
+      label class='tab-item' for='tab2' 種目別グラフ
+      input id='tab3' type='radio' name='tab-item' checked='checked'
+      label class='tab-item' for='tab3' 体重
+
+      .tab-content#tab1-content
+          .tab-content-description
+            p タスク履歴
+
+      .tab-content#tab2-content
+          .tab-content-description
+            p 種目別グラフ
+
+      .tab-content#tab3-content
+          .tab-content-description
+            p 体重
+      
+
 
 = render 'shared/menubar'
 = render 'shared/sidebar'

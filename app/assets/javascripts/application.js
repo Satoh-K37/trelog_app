@@ -16,11 +16,12 @@
 //= require_tree .
 
 
-// ログインした時などに10秒後にメッセージを消す
-$(function(){
-  setTimeout("$('.notice, .alert').fadeOut('slow')", 10000);
-});
 
+
+// 5秒後にメッセージを消す
+$(function(){
+  setTimeout("$('.notice, .alert').fadeOut('slow')", 5000);
+});
 
 // 画像のプレビュー機能。とりあえず画像を選択すると表示されるようになった。
 $(function(){
@@ -71,21 +72,21 @@ document.addEventListener('turbolinks:load', function() {
 //   i
 // }
 
-// これでアラートでた！！１
-$(function () {
-  //  チェックボックスが変更されると発火する
-  $(document).on('change', '#status_checkbox', function () {
-    // チェックボックスに入っている値を確認。デフォルトではfalse
-    var status_check = $(this).prop('checked');
+// // これでアラートでた！！１
+// $(function () {
+//   //  チェックボックスが変更されると発火する
+//   $(document).on('change', '#status_checkbox', function () {
+//     // チェックボックスに入っている値を確認。デフォルトではfalse
+//     var status_check = $(this).prop('checked');
 
-    if (status_check)
-      // チェックボックスがfalseの場合はこの処理を実装する
-      window.alert('trueになるぞ');
-    else
-      // チェックボックスがtrueの場合はこの処理を実装する
-      window.alert('falseになるぞ');
-  });
-});
+//     if (status_check)
+//       // チェックボックスがfalseの場合はこの処理を実装する
+//       window.alert('trueになるぞ');
+//     else
+//       // チェックボックスがtrueの場合はこの処理を実装する
+//       window.alert('falseになるぞ');
+//   });
+// });
 
 // メモ欄の入力された文字をカウントする
 $(function(){

@@ -2,34 +2,36 @@ doctype html
 html
   head
     title
-      | TrelogApp
+      | TRELOG
     = csrf_meta_tags
     = csp_meta_tag
     meta name="viewport" content="width=device-width, initial-scale=1.0"
-    = stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application'
-    / = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    meta name="viewport" content="width=device-width, initial-scale=1.0"
-  body.style
-    .app-title.navbar-expand-md.navbar-light.be--light
-      .navbar-barnd
-        div.logo
-          - if current_user
-            = link_to 'TRELOG', admin_users_path
-          - else
-            = link_to 'TRELOG', home_path
+    
 
-        ul.navbar-nav.ml-auto
-          - if logged_in?
-              li.nav-item= link_to '管理者マイページ', admin_user_path(current_user), class: 'nav-link'
-              li.nav-item= link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
+  body.style
+      .header
         .container
-          /Flashメッセージのdivタグを定義
-          .notifications
-            /　Flashオブジェクトを呼び出し、Keyにnotice、Valueにメッセージが入る
-            - flash.each do |key, value|
-              /　content_tagを使用してflashメッセージを表示させるためのdivタグを作成され、メッセージが表示される
-              = content_tag(:div, value, class: key)
-          / - if flash.notice.present?
-          /     .alert.alert-succes= flash.notice
-          = yield
+        / メッセージが表示されるとヘッダーのアイコンが下に隠れてしまう…機能的に問題はないけど、単純に見た目が悪い…
+        /Flashメッセージのdivタグを定義
+        .notifications
+          /Flashオブジェクトを呼び出し、Keyにnotice、Valueにメッセージが入る
+          - flash.each do |key, value|
+            /content_tagを使用してflashメッセージを表示させるためのdivタグを作成され、メッセージが表示される
+            = content_tag(:div, value, class: key)
+        .header-navbar
+            - if logged_in?
+                li = link_to admin_users_path, class:'fa fa-home fa-lg logo'
+                  p = 'TRELOG'
+            - else
+                li = link_to home_path, class:'fa fa-home fa-lg logo'
+                  p = 'TRELOG'
+            - if current_user.admin?
+                  li = link_to admin_user_path(current_user), class: 'fa fa-user-secret fa-lg' , id:'nav-icon'
+                    p = '管理者マイページ'
+                  / li.nav-item= link_to 'アカウント一覧', users_path, class: 'nav-link'
+            li = link_to logout_path, method: :delete, class:'fa fa-sign-out fa-lg' , id:'nav-icon'
+                  p = 'ログアウト'
+        = yield

@@ -18,15 +18,15 @@
 @import "font-awesome";
 @import "bootstrap";
 
-// 全体で使う色一覧
-// a {
-// color: #4072B3 ; // ボタンを押した時などやマイページに使うサブカラー
-// color: #6088C6 ; //ヘッダーやボタンなどに使うメインカラー
-// color: #AEC4E5 ; //ボタンを押した時などやマイページに使うサブカラー
-// color: #EB8686 ; //キャンセルボタンなどに使う
-// color: #C0C0C0 ; // 文字の色
-// color: #EEF9FF; //
-// }
+全体で使う色一覧
+a {
+color: #4072B3 ; // ボタンを押した時などやマイページに使うサブカラー
+color: #6088C6 ; //ヘッダーやボタンなどに使うメインカラー
+color: #AEC4E5 ; //ボタンを押した時などやマイページに使うサブカラー
+color: #EB8686 ; //キャンセルボタンなどに使う
+color: #C0C0C0 ; // 文字の色
+color: #EEF9FF; //
+}
 
 // HTML全体に適用
 * {
@@ -355,12 +355,6 @@ body{
       text-align: right;
       .task-icons{
         display: flex;
-        
-        
-        
-        // float: right;
-        // position: relative;
-        
         li{
           // position: absolute; bottom: 30; 
           // float: right;
@@ -378,67 +372,50 @@ body{
     .task-list {
       padding: 0;
     }
-    
-    /*タブ切り替え全体のスタイル*/
-    .tabs {
-      margin-top: 50px;
-      padding-bottom: 40px;
-      background-color: #fff;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-      width: 700px;
-      margin: 0 auto;}
-
-    /*タブのスタイル*/
-    .tab_item {
-      width: calc(100%/3);
-      height: 50px;
-      border-bottom: 3px solid #5ab4bd;
-      background-color: #d9d9d9;
-      line-height: 50px;
-      font-size: 16px;
-      text-align: center;
-      color: #565656;
-      display: block;
-      float: left;
-      text-align: center;
-      font-weight: bold;
-      transition: all 0.2s ease;
-    }
-    .tab_item:hover {
-      opacity: 0.75;
-    }
-
-    /*ラジオボタンを全て消す*/
-    input[name="tab_item"] {
-      display: none;
-    }
-
-    /*タブ切り替えの中身のスタイル*/
-    .tab_content {
-      display: none;
-      padding: 40px 40px 0;
-      clear: both;
-      overflow: hidden;
-    }
-
-
-    /*選択されているタブのコンテンツのみを表示*/
-    #all:checked ~ #all_content,
-    #programming:checked ~ #programming_content,
-    #design:checked ~ #design_content {
-      display: block;
-    }
-
-    /*選択されているタブのスタイルを変える*/
-    .tabs input:checked + .tab_item {
-      background-color: #5ab4bd;
-      color: #fff;
-    }
-
-
   }
 
-
+  // タブの切り替え
+  .tab-container {
+    padding-bottom: 1em;
+    background-color: #EEF9FF;
+    border:1px solid #AEC4E5;
+    margin: 0 auto;}
+  .tab-item {
+    width: calc(100%/3);
+    padding:15px 0;
+    border-bottom: 3px solid #AEC4E5 ;
+    background-color: #EEF9FF;
+    text-align: center;
+    color: #6088C6;
+    display: block;
+    float: left;
+    text-align: center;
+    font-weight: bold;
+    transition: all 0.2s ease;
+  }
+  .tab-item:hover {
+    opacity: 0.75;
+  }
+  input[name="tab-item"] {
+    display: none;
+  }
+  .tab-content {
+    display: none;
+    padding: 1em 1em 0;
+    clear: both;
+    overflow: hidden;
+  }
+  #tab1:checked ~ #tab1-content,
+  #tab2:checked ~ #tab2-content,
+  #tab3:checked ~ #tab3-content,
+  #tab4:checked ~ #tab4-content {
+    display: block;
+  }
+  .tab-container input:checked + .tab-item {
+    background-color: #6088C6;
+    color: #fff;
+  }
+  
   .task-fixed-btn{
     float: right;
     position: fixed;
@@ -465,6 +442,10 @@ body{
     }
   }
   
+  .input-container{
+    text-align: center;
+    padding-bottom: 2em;
+  }
 }
 
 .menubar {
