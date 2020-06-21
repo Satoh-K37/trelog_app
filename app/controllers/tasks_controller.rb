@@ -42,7 +42,7 @@ class TasksController < ApplicationController
     @task = current_user.tasks.new(task_params)
 
     if @task.save
-      redirect_to todo_tasks_path, notice: "タスク「#{@task.title}」を登録しました"
+      redirect_to todo_tasks_path, success: "タスク「#{@task.title}」を登録しました"
       # redirect_to @task, notice: "タスク「#{@task.title}」を登録しました"
     else
       render :new
@@ -57,7 +57,7 @@ class TasksController < ApplicationController
   def update
     # 共通化　set_taskメソッドに処理あり
     if @task.update(task_params)
-      redirect_to todo_tasks_url, notice: "タスク「#{@task.title}」を更新しました"
+      redirect_to todo_tasks_url,  success: "タスク「#{@task.title}」を更新しました"
     else
       render :edit
     # タスクの変更に失敗すると編集画面に戻るようにしたい…
