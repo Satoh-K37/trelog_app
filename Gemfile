@@ -28,6 +28,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
+gem "activesupport", ">= 5.2.4.3"
 
 # 画像アップロード
 gem 'carrierwave', '~> 2.0'
@@ -69,7 +70,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-#####　フロントエンド周りのGem　#####
+##### フロントエンド周りのGem #####
 # Slimジェネレータを提供する
 gem 'slim-rails'
 # ERB形式のファイルをSlimに変換するコマンドを提供する
@@ -82,7 +83,7 @@ gem 'bootstrap'
 gem 'jquery-rails'
 # webフォントアイコンを使えるようにする
 gem 'font-awesome-rails'
-# ページセーション
+# ページネーション
 gem 'kaminari'
 #################################
 

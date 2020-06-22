@@ -14,6 +14,7 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+//= require jquery.jscroll.min.js 
 
 
 
@@ -113,16 +114,18 @@ $(function(){
   
   })(jQuery);
 
-  $(document).on('turbolinks:load', function() {
-    $('.jscroll').jscroll({
-      // 無限に追加する要素は、どこに入れる？
-      contentSelector: '.jscroll', 
-      // 次のページにいくためのリンクの場所は？ ＞aタグの指定
-      nextSelector: 'a.next',
-      // 読み込み中の表示はどうする？
-      loadingHtml: '読み込み中'
-    });
+  // 無限スクロール
+
+$(document).on('turbolinks:load', function() {
+  $('.jscroll').jscroll({
+    // 無限に追加する要素は、どこに入れる？
+    contentSelector: '.jscroll', 
+    // 次のページにいくためのリンクの場所は？ ＞aタグの指定
+    nextSelector: 'a.next',
+    // 読み込み中の表示はどうする？
+    loadingHtml: '読み込み中'
   });
+});
 
 // Ajaxで渡す先とか値を条件分岐の前で設定し、status_checkの値ごとに違う値を渡すようにしてやればいける？
 // チェックボックスにこだわってしまっていたけど、ラジオボタンや普通のボタンでもいいんでは？
