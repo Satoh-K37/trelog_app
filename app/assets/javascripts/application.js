@@ -14,8 +14,8 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
-//= require jquery.jscroll.min.js 
-
+//= require jquery.jscroll.min.js
+//= require infinite-scroll.pkgd.min
 
 
 
@@ -51,6 +51,7 @@ $(function(){
 
 
 // タスク一覧ページでタスク削除を非同期で行う
+// これなんかできてねぇな…
 document.addEventListener('turbolinks:load', function() {
   document.querySelectorAll('.delete').forEach(function(a) {
     a.addEventListener('ajax:success', function() {
@@ -114,18 +115,6 @@ $(function(){
   
   })(jQuery);
 
-  // 無限スクロール
-
-$(document).on('turbolinks:load', function() {
-  $('.jscroll').jscroll({
-    // 無限に追加する要素は、どこに入れる？
-    contentSelector: '.jscroll', 
-    // 次のページにいくためのリンクの場所は？ ＞aタグの指定
-    nextSelector: 'a.next',
-    // 読み込み中の表示はどうする？
-    loadingHtml: '読み込み中'
-  });
-});
 
 // Ajaxで渡す先とか値を条件分岐の前で設定し、status_checkの値ごとに違う値を渡すようにしてやればいける？
 // チェックボックスにこだわってしまっていたけど、ラジオボタンや普通のボタンでもいいんでは？
@@ -174,6 +163,28 @@ $(document).on('turbolinks:load', function() {
 //   }
 // }
 
-
-
-
+// $(document).ready()が動かないので、読み込んでいる
+$(document).on("turbolinks:load", function () {
+  // DOM要素の存在確認
+  if ($("nav.pagination a[rel=next]").length) {
+    // Infinite Scroll
+    $(".task-list").infiniteScroll({
+      // 次ページへのページネーションリンクを指定
+      path: "nav.pagination a[rel=next]",
+      // コンテナに追加する要素の指定 
+      // ※コンテテナの指定とappendする要素の指定が上手くいかないとレイアウトが崩れるなどの問題が起こる
+      append: ".task-list",
+      // 無限スクロールを適用する範囲の指定。
+      // trueだとコンテナを無限スクロール範囲とする。デフォルトでは`window`全体が適用範囲となる。
+      elementScroll: true,
+      // 読み込むたびにURLを書き換えるかどうかの指定
+      history: true,
+      // 一番下までスクロールする前に読み込むかどうかの指定
+      prefill: false,
+      // 読み込み中や読み込み終了時に表示するものを指定
+      status: ".page-load-status",
+      // ページネーションリンクを表示するかどうかを指定(display: noneと同じ)
+      hideNav: ".pagination"
+    })
+  }
+})

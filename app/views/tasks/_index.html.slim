@@ -1,14 +1,8 @@
 .main
-  / .mb-3
-  /   = paginate @tasks
-  /   = page_entries_info @tasks
-  / .jscroll
-    / = link_to_prev_page @tasks, '前のページ', class: "prev"
-    / = link_to_next_page @tasks, '次のページ', class: "next"
+
   .task-list.jscroll
-  = paginate @tasks
   - @tasks.each do |task|
-    .task-container.jscroll
+    .task-container
       .task-statustime
         - if task.status == false
           = button_to 'Done', status_tasks_path(task), method: :post,remote: true, class: 'btn-right-radius'
@@ -32,15 +26,23 @@
           li = link_to '詳細', task_path(task), class: 'fa fa-external-link-square task-icon'
           li = link_to '編集', edit_task_path(task), class:"fa fa-pencil-square-o task-icon"
           li = link_to '削除', task, class: "fa fa-trash task-icon" ,method: :delete, remote: true, data: { confirm: "タスク「#{task.title}」を削除します。よろしいですか？" }
-    = paginate @tasks
+
+  = paginate @tasks
+    .page-load-status
+      .infinite-scroll-request
+        | Loading...
+  / .page-load-status
+  /   .infinite-scroll-request
+  /     p 読み込み中...
+  / = link_to_prev_page @tasks, '前のページ', class: "prev"
+  / = link_to_next_page @tasks, '次のページ', class: "next"
   .task-fixed-btn
     = button_to '+',new_task_path, method: :get, class:'task-create-circlebtn'
 
 = render 'shared/menubar'
 
 .sidebar
-    p sidebar
-    p
+
     label for='task-progress' タスク進捗
     .progress
       .progress-bar role='progressbar' aria-valuenow='100' aria-valuemin='0' aria-valuemax='100' style='width: 90%;' 90%
