@@ -18,15 +18,15 @@
 @import "font-awesome";
 @import "bootstrap";
 
-全体で使う色一覧
-a {
-color: #4072B3 ; // ボタンを押した時などやマイページに使うサブカラー
-color: #6088C6 ; //ヘッダーやボタンなどに使うメインカラー
-color: #AEC4E5 ; //ボタンを押した時などやマイページに使うサブカラー
-color: #EB8686 ; //キャンセルボタンなどに使う
-color: #C0C0C0 ; // 文字の色
-color: #EEF9FF; //
-}
+// 全体で使う色一覧
+// a {
+// color: #4072B3 ; // ボタンを押した時などやマイページに使うサブカラー
+// color: #6088C6 ; //ヘッダーやボタンなどに使うメインカラー
+// color: #AEC4E5 ; //ボタンを押した時などやマイページに使うサブカラー
+// color: #EB8686 ; //キャンセルボタンなどに使う
+// color: #C0C0C0 ; // 文字の色
+// color: #EEF9FF; //
+// }
 
 // HTML全体に適用
 * {
@@ -377,7 +377,7 @@ body{
   // タブの切り替え
   .tab-container {
     padding-bottom: 1em;
-    background-color: #EEF9FF;
+    background-color: #FFF;
     border:1px solid #AEC4E5;
     margin: 0 auto;}
   .tab-item {
@@ -417,13 +417,15 @@ body{
   }
   
   .task-fixed-btn{
-    float: right;
+    // float: right;
     position: fixed;
+    text-align: right;
+    right: 5px;
     bottom: 10px; 
     padding: 6px 40px;
     margin-bottom: 48px;
     .task-create-circlebtn {
-      
+    
       display: inline-block;
       text-decoration: none;
       background-color: #6088C6;
@@ -445,6 +447,14 @@ body{
   .input-container{
     text-align: center;
     padding-bottom: 2em;
+  }
+
+  .task-list.jscroll{
+    padding: 0;
+  }
+
+  .pagination{
+    text-align: right;
   }
 }
 

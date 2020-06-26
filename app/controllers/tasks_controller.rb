@@ -6,6 +6,7 @@ class TasksController < ApplicationController
     @q = current_user.tasks.ransack(params[:q])
     # 検索フォームに入力された値を含むユーザー一覧を表示させる
     @tasks = @q.result(distinct: true).page(params[:page]).per(10)
+    # @tasks = @q.result(distinct: true).page(params[:page]).without_count.per(10)
     # @tasks = @q.result(distinct: true)
   end
 
@@ -16,6 +17,7 @@ class TasksController < ApplicationController
     # 検索フォームに入力された値を含むユーザー一覧を表示させる
     # @tasks = @q.result(distinct: true)
     @tasks = @q.result(distinct: true).page(params[:page]).per(10)
+    # @tasks = @q.result(distinct: true).page(params[:page]).without_count.per(10)
   end
     
   def done
@@ -24,6 +26,7 @@ class TasksController < ApplicationController
   # 検索フォームに入力された値を含むユーザー一覧を表示させる
   # @tasks = @q.result(distinct: true)
   @tasks = @q.result(distinct: true).page(params[:page]).per(10)
+  # @tasks = @q.result(distinct: true).page(params[:page]).without_count.per(10)
   
   end
 

@@ -6,7 +6,7 @@ class Admin::UsersController < ApplicationController
   def index
     @q = User.ransack(params[:q])
     # 検索フォームに入力された値を含むユーザー一覧を表示させる
-    @users = @q.result(distinct: true)
+    @users = @q.result(distinct: true).page(params[:page]).per(10)
   end
 
   def show
