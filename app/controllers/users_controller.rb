@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :login_required
   # skip_before_action :correct_user[:new]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  # before_action :correct_user, onry: [:edit, :update, :show]
+  before_action :correct_user, onry: [:edit, :update]
   # GET /users/1
   # GET /users/1.json
   def show
@@ -76,5 +76,11 @@ class UsersController < ApplicationController
     params.require(:user).permit(:user_name, :email, :icon_image, :icon_image_cache, :remove_image, :password, :password_confirmation)
   end
 
+  # URLを直打ちで別のユーザーを表示されるのを防ぐ
+  def correct_user
+    # @user = current_user.User.find_by(params[:id])
+    @user = User.find_by(params[:id])
+    redirect_to user_path(current_user) if current_user != @user
+  end
 
 end
