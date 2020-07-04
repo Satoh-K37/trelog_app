@@ -4,13 +4,15 @@
   - @tasks.each do |task|
     .task-container
       .task-statustime
+        / 未完了の場合にDoneを表示させるのでこれでいい
         - if task.status == false
           = button_to 'Done', status_tasks_path(task), method: :post,remote: true, class: 'btn-right-radius'
         - else
           = button_to 'Todo', status_tasks_path(task), method: :post,remote: true, class: 'btn-right-radius'
       .task-deadline-label
-        label  期限日:
-        li =  task.deadline
+
+        = deadline_count(task)
+      / この部分をセット数に応じて複数回表示させたい
       .task-contentBox
         = link_to task.title, task_path(task), id:'task_title'
         li = task.weight
@@ -19,6 +21,30 @@
         = 'rep' 
         li = task.set_count
         = 'set'
+        .task-contentBox
+          = link_to task.title, task_path(task), id:'task_title'
+          li = task.weight
+          =  'kg'
+          li = task.rep
+          = 'rep' 
+          li = task.set_count
+          = 'set'
+        .task-contentBox
+          = link_to task.title, task_path(task), id:'task_title'
+          li = task.weight
+          =  'kg'
+          li = task.rep
+          = 'rep' 
+          li = task.set_count
+          = 'set'
+        .task-contentBox
+          = link_to task.title, task_path(task), id:'task_title'
+          li = task.weight
+          =  'kg'
+          li = task.rep
+          = 'rep' 
+          li = task.set_count
+          = 'set'
       .task-container-footer
         .task-created
           = task.created_at.strftime('%Y-%m-%d %H:%M:%S') 
