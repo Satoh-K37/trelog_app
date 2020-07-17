@@ -76,12 +76,12 @@ class TasksController < ApplicationController
     
     @task.status = !@task.status
     @task.save
-    
-    # if status == false
-    #   render :todo
-    # else
-    #   render :done
-    # end
+
+    if @task.status == false
+      redirect_to done_tasks_url
+    else
+      redirect_to todo_tasks_url
+    end
   end
 
 
