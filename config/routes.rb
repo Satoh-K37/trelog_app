@@ -19,10 +19,13 @@ Rails.application.routes.draw do
   root to: 'tasks#index'
   # タスク機能関係
   resources :tasks do
+    member do
+      post :task_status
+    end
     collection do
       get :todo, :done
       # Ajaxでタスクのステータスを切り替える
-      post '/:id/task_status' => 'tasks#task_status', as: 'status'
+      # post '/:id/task_status' => 'tasks#task_status', as: 'status'
     end
   end
   
