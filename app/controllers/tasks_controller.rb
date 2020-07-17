@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update,:destroy, :task_status]
+  before_action :set_task, only: [:show, :edit,:update,:destroy,:task_status]
   # helper_method :deadline_count
 
   def index
@@ -71,18 +71,21 @@ class TasksController < ApplicationController
   #   render :index
   # end
 
+  def task_status
+    # set_task
+    
+    @task.status = !@task.status
+    @task.save
+    
+    # if status == false
+    #   render :todo
+    # else
+    #   render :done
+    # end
+  end
 
-    # タスクのステータスを更新させる処理（Ajaxアクション）
-    def task_status
-      # タスクの検索はset_taskで共通化済み
-      if @task.status == false
-        @task.update(status: 'status')
-        redirect_to todo_tasks_path, notice: "タスク「#{@task.title}」を完了しました"
-      else
-        @task.update(status: 'done')
-        redirect_to done_tasks_path, notice: "タスク「#{@task.title}」を未完了にします"
-      end
-    end
+
+
 
   def destroy
     # 目的のタスクをIDで検索する

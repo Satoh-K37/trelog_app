@@ -20,6 +20,7 @@ html
             /content_tagを使用してflashメッセージを表示させるためのdivタグを作成され、メッセージが表示される
             = content_tag(:div, value, class: key)
         .header-navbar
+            ul
             - if logged_in?
                 li = link_to todo_tasks_path, class:'fa fa-home fa-lg logo'
                   p = 'TRELOG'
