@@ -33,6 +33,19 @@ module TasksHelper
     end
   end
 
+  def task_status
+    # set_task
+    
+    @task.status = !@task.status
+    @task.save
+
+    if @task.status == false
+      redirect_to done_tasks_url, notice:  "タスク「#{@task.title}」を未完了にしました"
+    else
+      redirect_to todo_tasks_url, notice:  "タスク「#{@task.title}」を完了しました"
+    end
+  end
+
     # # タスクのステータスを更新させる処理（Ajaxアクション）
     # def task_status
     #   # タスクの検索はset_taskで共通化済み
@@ -44,19 +57,6 @@ module TasksHelper
     #     redirect_to done_tasks_path, notice: "タスク「#{@task.title}」を未完了にします"
     #   end
     # end
-
-
-    def task_status
-        # タスク一覧ページにあるチェックボックスの値が０の時はifの処理に入る。それ以外はelse
-        # falseで飛んでくるとめんどくさいらしい
-      if check_box == 0
-        # タスクのステータスをfalseからtureに変更する
-      else
-        # タスクのステータスをtureからfalseに変更する
-      end
-    end
-
-
 
   
 
@@ -72,5 +72,19 @@ module TasksHelper
       #    それをプログレスバーのvalueとして使えばタスク進捗率が出来上がるはず
       # 
     end
+      
+
+  private
+  
+  def set_task
+    @task = current_user.tasks.find(params[:id])
+  end
+
+
+  
+  def task_params
+    params.require(:task).permit(:title, :weight, :rep, :set_count, :deadline, :status, :memo, :image, :image_cache)  
+  end
+
     
 end

@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
+  include TasksHelper
   before_action :set_task, only: [:show, :edit,:update,:destroy,:task_status]
-  # helper_method :deadline_count
 
   def index
     @q = current_user.tasks.ransack(params[:q])
@@ -64,27 +64,6 @@ class TasksController < ApplicationController
     # タスクの変更に失敗すると編集画面に戻るようにしたい…
     end
   end
-
-  # def done
-  #   @task.update(status: 1)
-  #   @tasks = Task.all.includes(:user)
-  #   render :index
-  # end
-
-  def task_status
-    # set_task
-    
-    @task.status = !@task.status
-    @task.save
-
-    if @task.status == false
-      redirect_to done_tasks_url, notice:  "タスク「#{@task.title}」を未完了にしました"
-    else
-      redirect_to todo_tasks_url, notice:  "タスク「#{@task.title}」を完了しました"
-    end
-  end
-
-
 
 
   def destroy
