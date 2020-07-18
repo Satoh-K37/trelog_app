@@ -6,15 +6,12 @@ module TasksHelper
     today = Date.today
     # 期限日を変数に代入する
     deadline = task.deadline
-    # 期限日 - 現在の日付を計算してタスク終了期限日までの日数を割り出す。
-    # 期限日 + 現在の日時を計算してタスク終了後に警告をだす
 
     # 期限日の値が入っているかを確認し、入っていなかったら直下の処理に入る
     if deadline.nil?
       "期限日: "
     # 期限日の値が入っている場合は下記の処理を実行する
     else
-
       # タスク期限にした日付から現在の日数を引いた物を変数に代入
       # 期限日が近くとアラートをだす
       deadline_alert = (deadline - today).numerator
