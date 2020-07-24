@@ -17,5 +17,7 @@ class User < ApplicationRecord
   # これがあると新規ユーザーの作成に失敗するので一旦コメントアウト。
   # sパスワードリセットを途中で放棄してるからその時にトークンを発行してしまっているせいかも試しれん。なる早で解決したい。
   # validates :reset_password_token, uniqueness: true
+  validates :reset_password_token, presence: true, uniqueness: true, allow_nil: true
+
   
 end

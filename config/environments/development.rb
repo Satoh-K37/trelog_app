@@ -35,13 +35,24 @@ Rails.application.configure do
 
   # Don't care if the mailer can't send.
   
-  config.action_mailer.perform_caching = false 
+  # falseをtrueに修正
+  config.action_mailer.perform_caching = true
   # 開発環境でメールが送られるとブラウザで新しいタブが開く
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.action_mailer.delivery_method = :letter_opener_web
   # ログにエラーを表示するために`true`を設定
   config.action_mailer.raise_delivery_errors = true
-  
+  # サーバーを設定　Gmailを使う
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   port:                 587,
+  #   address:              'smtp.gmail.com',
+  #   domain:               'gmail.com',
+  #   user_name:            '<YOUR EMAIL ADDRESS>',
+  #   password:             '<YOUR EMAIL PASSWORD>',
+  #   authentication:       'login',
+  #   enable_starttls_auto: true
+  # }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
