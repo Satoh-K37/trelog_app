@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
   # get '/users/:id' => 'users#show', as: 'mypage'
   resources :users, only: %i[create edit update show index destroy]
-  resources :password_resets, only: %i[new create edit update]
+  resources :password_resets
+  # , only: %i[new create edit update]
+  
   ####################
 
   root to: 'tasks#index'
@@ -38,5 +40,8 @@ Rails.application.routes.draw do
   ############################
   
   # LetterOpenerWebアクセスする
+  # if Rails.env.development?
+  #   mount LetterOpenerWeb::Engine, at: '/letter_opener'
+  # end
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end

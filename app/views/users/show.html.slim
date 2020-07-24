@@ -7,6 +7,7 @@
             td = image_tag @user.icon_image.to_s, class: 'circle_icon'
           tr
             td = @user.user_name
+
       =< link_to '戻る', todo_tasks_path, class: 'btn btn-outline-primary  mr-3'
       '
       => link_to '編集', edit_user_path(@user), class: 'btn btn-primary mr-3'

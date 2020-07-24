@@ -361,6 +361,7 @@ Rails.application.config.sorcery.configure do |config|
     #
     # user.reset_password_token_attribute_name =
     
+    # パスワードリセット用のMailerにUserMailerが指定されている
     user.reset_password_mailer = UserMailer
 
     # Password token expiry attribute name.
