@@ -41,6 +41,7 @@ class PasswordResetsController < ApplicationController
     @user.password_confirmation = params[:user][:password_confirmation]
     # トークンを削除し、パスワードを更新する
     if @user.change_password!(params[:user][:password])
+      # Welcomページに遷移する
       redirect_to(home_path, :notice => 'パスワードを変更しました。')
     else
       render :action => "edit"
