@@ -65,9 +65,7 @@ class UsersController < ApplicationController
 
   private
   
-  def log_in(user)
-    session[:user_id] = user.id
-  end
+
 
   #ユーザ検索の共通化の処理に使ってる
   def set_user
