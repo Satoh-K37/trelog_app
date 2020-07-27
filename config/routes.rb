@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   # ユーザ周り
   get '/login' => 'user_sessions#new'
   post '/login' => 'user_sessions#create'
-  
   delete '/logout' => 'user_sessions#destroy'
   
   get '/signup' => 'users#new'
@@ -15,6 +14,11 @@ Rails.application.routes.draw do
   resources :users, only: %i[create edit update show index destroy]
   resources :password_resets
   # , only: %i[new create edit update]
+  # 簡単ログイン
+  # resources :guestuser_sessions , only: :create
+  post '/guest_login' => 'guestuser_sessions#guest_login'
+  
+  
   
   ####################
 
