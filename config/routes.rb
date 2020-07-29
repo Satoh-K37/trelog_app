@@ -15,8 +15,8 @@ Rails.application.routes.draw do
   resources :password_resets
   # , only: %i[new create edit update]
   # 簡単ログイン
-  # resources :guestuser_sessions , only: :create
-  post '/guest_login' => 'guestuser_sessions#guest_login'
+  resources :guestuser_sessions , only: :create
+  # post '/guest_login' => 'guestuser_sessions#guest_login'
   
   
   

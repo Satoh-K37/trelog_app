@@ -7,11 +7,18 @@
             td = image_tag @user.icon_image.to_s, class: 'circle_icon'
           tr
             td = @user.user_name
-
+      
       =< link_to '戻る', todo_tasks_path, class: 'btn btn-outline-primary  mr-3'
       '
-      => link_to '編集', edit_user_path(@user), class: 'btn btn-primary mr-3'
-      / = link_to '退会', @user, method: :delete, data: { confirm: '退会しますか？' }, class: 'btn btn-danger'
+      / ゲストユーザーでログインしているときは編集と退会が出てこないように表示分けする
+      - if guest_user
+        / => link_to '#',class: 'btn btn-primary mr-3'
+      - else
+        => link_to '編集', edit_user_path(@user), class: 'btn btn-primary mr-3'
+        '
+        => link_to '退会', @user, method: :delete, data: { confirm: '退会しますか？' }, class: 'btn btn-danger'
+        / - if guest_user
+      
 
     .tab-container
       input id='tab1' type='radio' name='tab-item' checked='checked'

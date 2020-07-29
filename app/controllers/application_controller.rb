@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_user
+  helper_method :current_user, :guest_user
   helper_method :login_required
   before_action :login_required
   
@@ -12,6 +12,12 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
   end
 
+  # ゲストユーザーの情報を編集されないようにするための分岐条件
+  def guest_user
+    current_user == User.find_by(email: 'guest@example.com')
+    # @user = User.find_by(id: session[:user_id])
+  end
+
   def log_in(user)
     session[:user_id] = user.id
   end
@@ -21,5 +27,8 @@ class ApplicationController < ActionController::Base
     # 
     redirect_to login_url unless current_user
   end
+
+
+
 
 end
