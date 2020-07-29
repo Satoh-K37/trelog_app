@@ -86,6 +86,9 @@ gem 'jquery-rails'
 gem 'font-awesome-rails'
 # ページネーション
 gem 'kaminari'
+# グラフ描画
+gem 'chartkick'
+gem 'groupdate'
 #################################
 
 #####　バッグエンド周りのGem　#####

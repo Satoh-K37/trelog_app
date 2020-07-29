@@ -18,6 +18,8 @@
 //= require jquery
 //= require rails-ujs
 //= require turbolinks
+//= require chartkick
+//= require Chart.bundle
 // 下のやつがあると配下のjs ファイル全てを読み込んでくれるらしい。できたやつだ。
 //= require_tree .
 

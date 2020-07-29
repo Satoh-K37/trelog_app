@@ -35,6 +35,7 @@
       .tab-content#tab2-content
           .tab-content-description
             p 種目別グラフ
+            =line_chart Task.group_by_day(:created_at).count
 
       .tab-content#tab3-content
           .tab-content-description
