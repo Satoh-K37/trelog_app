@@ -12,7 +12,8 @@
         ul
           li= link_to 'TRELOGについて',  about_path
           / 簡単ログインを実装後にルーティングを設定する
-          li= link_to '簡単ログインでTRELOGを使ってみる', guest_login_path, method: :post,class: 'btn btn-success'
+          = link_to 'かんたんログイン', guestuser_sessions_path, method: :post,class: 'btn btn-success'
+          / li= link_to '簡単ログインでTRELOGを使ってみる', guest_login_path, method: :post,class: 'btn btn-success'
           / リストの文字を左寄席にする。先頭にアイコンを表示させる（list-style）
 
   div.main-wrapper
