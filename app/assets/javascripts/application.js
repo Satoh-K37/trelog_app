@@ -10,12 +10,16 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require chartkick
+//= require Chart.bundle
 //= require jquery
 //= require rails-ujs
 //= require turbolinks
+
 //= require_tree .
 //= require jquery.jscroll.min.js
 //= require infinite-scroll.pkgd.min
+
 
 
 
