@@ -1,6 +1,15 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+// 全体で使う色一覧
+// a {
+// color: #4072B3 ; // ボタンを押した時などやマイページに使うサブカラー
+// color: #6088C6 ; //ヘッダーやボタンなどに使うメインカラー
+// color: #AEC4E5 ; //ボタンを押した時などやマイページに使うサブカラー
+// color: #EB8686 ; //キャンセルボタンなどに使う
+// color: #C0C0C0 ; // 文字の色
+// color: #EEF9FF; //
+// }
 
 body{
   margin: 0px;
@@ -8,10 +17,15 @@ body{
 }
 
 .home-container{
-  display: flex;
-
+  // display: flex;
+  display: grid;
+  grid-template-areas:"header header"
+                      "right left";
+  grid-template-columns: 1fr 1fr ;
+  grid-template-rows: 1fr
+                      1fr;
   .right-container{
-    flex: 1;
+    // flex: 1;
     background-color: #AEC4E5;
     color:  #ffffff;
     
@@ -24,9 +38,9 @@ body{
       display: inline-block;
       padding: 1em 1em;
       text-decoration: none;
-      background: #668ad8;/*ボタン色*/
+      background: #6088C6;;/*ボタン色*/
       color: #FFF;
-      border-bottom: solid 4px #627295;
+      border-bottom: solid 4px  #4072B3;
       border-radius: 3px;
     }
     .btn-square:active {
@@ -40,8 +54,8 @@ body{
   
 
   .left-container{
-    flex: 1;
-    // background-color: #6088C6 ; 
+    // flex: 1;
+    background-color: #EEF9FF ; 
     color:  #6088C6;
     li{
       padding-top: 2rem;
@@ -53,4 +67,21 @@ body{
   }
 
 
+}
+
+
+// スマホでのレイアウト
+@media screen and (max-width:900px) {
+  .home-container{
+      grid-template-areas:"header"
+                          "right"
+                          "left";
+      grid-template-columns: 100%;
+      grid-template-rows: auto // header
+                          auto // right
+                          auto;// ads class: saidebar
+                          // 50px;// foo
+  
+    
+  }
 }
