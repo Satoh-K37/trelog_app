@@ -18,7 +18,8 @@
             = f.text_field :deadline, type: 'date', class: 'form-control', id: 'task_deadline'
           .form-group
             = f.label :title
-            = f.text_field :title, placeholder: '例）ベンチプレス', class: 'form-control', id: 'task_title'
+            = f.select :title,  [["１", "１"], ["２", "２"]]
+            / = f.text_field :title, placeholder: '例）ベンチプレス', class: 'form-control', id: 'task_title'
           .form-group
             .form-inline
               = f.label :weight, class: 'task-control'
@@ -41,7 +42,6 @@
 
             = f.radio_button :status, false, class: 'form-check-input'
             = f.label :status , '未完了', class: 'form-check form-check-inline', id: 'task_status'
-        
             = f.radio_button :status, true ,class: 'form-check-input'
             = f.label :status , '完了', class: 'form-check form-check-inline', id: 'task_status'
           .form-group

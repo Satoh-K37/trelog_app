@@ -18,15 +18,15 @@
 @import "font-awesome";
 @import "bootstrap";
 
-// 全体で使う色一覧
-// a {
-// color: #4072B3 ; // ボタンを押した時などやマイページに使うサブカラー
-// color: #6088C6 ; //ヘッダーやボタンなどに使うメインカラー
-// color: #AEC4E5 ; //ボタンを押した時などやマイページに使うサブカラー
-// color: #EB8686 ; //キャンセルボタンなどに使う
-// color: #C0C0C0 ; // 文字の色
-// color: #EEF9FF; //
-// }
+全体で使う色一覧
+a {
+color: #4072B3 ; // ボタンを押した時などやマイページに使うサブカラー
+color: #6088C6 ; //ヘッダーやボタンなどに使うメインカラー
+color: #AEC4E5 ; //ボタンを押した時などやマイページに使うサブカラー
+color: #EB8686 ; //キャンセルボタンなどに使う
+color: #C0C0C0 ; // 文字の色
+color: #EEF9FF; //
+}
 
 // HTML全体に適用
 * {
@@ -50,10 +50,10 @@ body{
   text-align: center;  
 
   .notice {
-    color: #31708F;
+    color:  #D9EDF7;
     margin: 0px, 0px , 20px;
     padding: 15px;
-    background-color: #D9EDF7;
+    background-color:#31708F;
   }
   // #DFF0D8  Bootstrap　サクセスメッセージ #3C763D
 
@@ -313,9 +313,18 @@ body{
   }
 
   .task-container{
-    border-top: solid 0.1px #BDBDBD;
-    border-bottom: solid 0.1px #BDBDBD;
+    
+    // border-top: solid 0.1px #BDBDBD;
+    // border-bottom: solid 0.1px #BDBDBD;
     list-style: none;
+
+    .task-containerIn{
+      border-radius: 10px;
+      background-color:#79A1D4;
+      //  #9FBCDF;
+      
+    }
+    
     
     .task-statustime {
       margin: 1rem; 

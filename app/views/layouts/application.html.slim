@@ -10,15 +10,8 @@ html
     = csp_meta_tag
     meta name="viewport" content="width=device-width, initial-scale=1.0"
   body.style
+
       .header
-        .container
-        / メッセージが表示されるとヘッダーのアイコンが下に隠れてしまう…機能的に問題はないけど、単純に見た目が悪い…
-        /Flashメッセージのdivタグを定義
-        .notifications
-          /Flashオブジェクトを呼び出し、Keyにnotice、Valueにメッセージが入る
-          - flash.each do |key, value|
-            /content_tagを使用してflashメッセージを表示させるためのdivタグを作成され、メッセージが表示される
-            = content_tag(:div, value, class: key)
         .header-navbar
             ul
             - if logged_in?
@@ -43,5 +36,13 @@ html
                   p = 'アカウント作成'
                 li = link_to login_path, class:'fa fa-sign-out fa-lg' , id:'nav-icon'
                   p = 'ログイン'
+        .container
+        / ヘッダーの下には出るようにはなったけど、色がなくて寂しいので、色つける
+        /Flashメッセージのdivタグを定義
+        .notifications
+          /Flashオブジェクトを呼び出し、Keyにnotice、Valueにメッセージが入る
+          - flash.each do |key, value|
+            /content_tagを使用してflashメッセージを表示させるためのdivタグを作成され、メッセージが表示される
+            = content_tag(:div, value, class: key)
       = yield 
       

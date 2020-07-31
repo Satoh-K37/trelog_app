@@ -3,38 +3,38 @@
   .task-list.jscroll
   - @tasks.each do |task|
     .task-container
-      
-      .task-deadline-label
-        = deadline_count(task)
-      / この部分をセット数に応じて複数回表示させたい
-      .task-contentBox
-        .task-statustime
-          / - if task.status == false
-          /   = check_box_tag :done 
-          /   = label_tag :done ,"done"
-          / - else
-          /   = check_box_tag :todo
-          /   = label_tag :todo, "todo"
-          / 未完了の場合にDoneを表示させるのでこれでいい
-          - if task.status == false
-            = button_to 'Done', task_status_task_path(task), method: :post,remote: true, class: 'btn-right-radius'
-          - else
-            = button_to 'Todo', task_status_task_path(task), method: :post,remote: true, class: 'btn-right-radius'
-        .task-content
-          = link_to task.title, task_path(task), id:'task_title'
-          li = task.weight
-          =  'kg'
-          li = task.rep
-          = 'rep' 
-          li = task.set_count
-          = 'set'
-      .task-container-footer
-        .task-created
-          = task.created_at.strftime('%Y-%m-%d %H:%M:%S') 
-        .task-icons
-          li = link_to '詳細', task_path(task), class: 'fa fa-external-link-square task-icon'
-          li = link_to '編集', edit_task_path(task), class:"fa fa-pencil-square-o task-icon"
-          li = link_to '削除', task, class: "fa fa-trash task-icon" ,method: :delete, remote: true, data: { confirm: "タスク「#{task.title}」を削除します。よろしいですか？" }
+      .task-containerIn
+        .task-deadline-label
+          = deadline_count(task)
+        / この部分をセット数に応じて複数回表示させたい
+        .task-contentBox
+          .task-statustime
+            / - if task.status == false
+            /   = check_box_tag :done 
+            /   = label_tag :done ,"done"
+            / - else
+            /   = check_box_tag :todo
+            /   = label_tag :todo, "todo"
+            / 未完了の場合にDoneを表示させるのでこれでいい
+            - if task.status == false
+              = button_to 'Done', task_status_task_path(task), method: :post,remote: true, class: 'btn-right-radius'
+            - else
+              = button_to 'Todo', task_status_task_path(task), method: :post,remote: true, class: 'btn-right-radius'
+          .task-content
+            = link_to task.title, task_path(task), id:'task_title'
+            li = task.weight
+            =  'kg'
+            li = task.rep
+            = 'rep' 
+            li = task.set_count
+            = 'set'
+        .task-container-footer
+          / .task-created
+          /   = task.created_at.strftime('%Y-%m-%d %H:%M:%S') 
+          .task-icons
+            li = link_to '詳細', task_path(task), class: 'fa fa-external-link-square task-icon'
+            li = link_to '編集', edit_task_path(task), class:"fa fa-pencil-square-o task-icon"
+            li = link_to '削除', task, class: "fa fa-trash task-icon" ,method: :delete, remote: true, data: { confirm: "タスク「#{task.title}」を削除します。よろしいですか？" }
 
   = paginate @tasks
     .page-load-status
