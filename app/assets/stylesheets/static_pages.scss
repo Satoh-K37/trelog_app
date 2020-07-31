@@ -2,76 +2,55 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
-* {
-  box-sizing: border-box;
+body{
+  margin: 0px;
+  padding: 0px;
 }
 
-body.home {
-  background-color: #87CEFA;
-  // background-color: #55b9f3;
-}
+.home-container{
+  display: flex;
 
-  .top-wrapper {
-    padding: 0px 0 50px 0;;
-    color:white;
-    width: 100%;  
-    background-color:#87CEFA;
-      .top-container {
-        text-align: center;
-        width:1170px;
-        padding :0px 15px;
-        margin:0px auto; 
-      }
-        h1{
-          opacity :0.7;
-          font-size:45px;
-          letter-spacing:5px;
-        }
-        p{
-          opacity:0.7;
-        }
-        ul {
-          list-style-type: none
-        }
-        li{
-          margin-left: 1.4em;
-          text-indent: -1.4em;
-        }
-      .btn{
-        width:200px;
-        height: 50px;
-        margin: 50px;
-        color: white;
-        display:inline-block;
-        border-radius: 62px;
-        // box-shadow:  
-        // -5px -5px 10px #7baaad, 
-        // 5px 5px 10px #e4ffff;
-        // -14px -14px 35px #0082aa, 
-        // 14px 14px 35px #00f2ff;
-        }
-        #signup-btn {
-          padding: 10px;
-          background-color:#aff3f7;
-        }
-        #login-btn {
-          padding: 10px;
-          background-color: #3399FF;
-        }
-      }
+  .right-container{
+    flex: 1;
+    background-color: #AEC4E5;
+    color:  #ffffff;
+    
+    h1{
+      padding-top: 7rem;
+    }
+    // height: 800px;
+    .btn-square{
+      margin: 1rem;
+      display: inline-block;
+      padding: 1em 1em;
+      text-decoration: none;
+      background: #668ad8;/*ボタン色*/
+      color: #FFF;
+      border-bottom: solid 4px #627295;
+      border-radius: 3px;
+    }
+    .btn-square:active {
+      /*ボタンを押したとき*/
+      -webkit-transform: translateY(4px);
+      transform: translateY(4px);/*下に動く*/
+      border-bottom: none;/*線を消す*/
+    }
+  }
 
   
-  .main-wrapper {
-        border-radius: 62px;
-        padding: 200px;
-        text-align: center;
-        color:white;
-        width: 100%;  
-        background-color:#FFFF;
-        
-        .message-container{
-          background-color:#FFFF; 
-          width: 100%;
-        }
+
+  .left-container{
+    flex: 1;
+    // background-color: #6088C6 ; 
+    color:  #6088C6;
+    li{
+      padding-top: 2rem;
+    }
+
+    p{
+      padding-bottom: 1rem;
+    }
   }
+
+
+}
