@@ -33,6 +33,8 @@ class TasksController < ApplicationController
   def show
     # IDで目的のタスクを検索
     # 共通化　set_taskメソッドに処理あり
+    @data = [['2019-06-01', 100], ['2019-06-02', 200], ['2019-06-03', 150]]
+    # @task_history = 
   end
 
   def new
@@ -78,14 +80,11 @@ class TasksController < ApplicationController
   end
 
 
-
   private
   
   def set_task
-    @task = current_user.tasks.find(params[:id])
+    @task =  current_user.tasks.find(params[:id])
   end
-
-
   
   def task_params
     params.require(:task).permit(:title, :weight, :rep, :set_count, :deadline, :status, :memo, :image, :image_cache)  
