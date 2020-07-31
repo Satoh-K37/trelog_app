@@ -2,19 +2,28 @@ doctype html
 html
   head
     title
-      | TrelogApp
+      | TRELOG
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application'
     = csrf_meta_tags
     = csp_meta_tag
     meta name="viewport" content="width=device-width, initial-scale=1.0"
-    = stylesheet_link_tag    'static_pages', media: 'all'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  body.home
-    header.home
-      .container
-        /Flashメッセージのdivタグを定義
-        .notifications
-          /　Flashオブジェクトを呼び出し、Keyにnotice、Valueにメッセージが入る
-          - flash.each do |key, value|
-            /　content_tagを使用してflashメッセージを表示させるためのdivタグを作成され、メッセージが表示される
-            = content_tag(:div, value, class: key)
-        = yield
+  body.style
+    .header
+      .header-navbar
+        ul
+          li = link_to home_path, class:'fa fa-home fa-lg logo'
+            p = 'TRELOG'
+          li = link_to signup_path, class:'fa fa-user-plus fa-lg' , id:'nav-icon'
+            p = 'アカウント作成'
+          li = link_to login_path, class:'fa fa-sign-out fa-lg' , id:'nav-icon'
+            p = 'ログイン'
+      = yield
+      / .container
+      /   /Flashメッセージのdivタグを定義
+      /   .notifications
+      /     /　Flashオブジェクトを呼び出し、Keyにnotice、Valueにメッセージが入る
+      /     - flash.each do |key, value|
+      /       /　content_tagを使用してflashメッセージを表示させるためのdivタグを作成され、メッセージが表示される
+      /       = content_tag(:div, value, class: key)

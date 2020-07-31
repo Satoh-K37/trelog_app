@@ -17,16 +17,18 @@
   // *= require_tree .
 @import "font-awesome";
 @import "bootstrap";
+@import url("static_pages.scss");
 
-全体で使う色一覧
-a {
-color: #4072B3 ; // ボタンを押した時などやマイページに使うサブカラー
-color: #6088C6 ; //ヘッダーやボタンなどに使うメインカラー
-color: #AEC4E5 ; //ボタンを押した時などやマイページに使うサブカラー
-color: #EB8686 ; //キャンセルボタンなどに使う
-color: #C0C0C0 ; // 文字の色
-color: #EEF9FF; //
-}
+
+// 全体で使う色一覧
+// a {
+// color: #4072B3 ; // ボタンを押した時などやマイページに使うサブカラー
+// color: #6088C6 ; //ヘッダーやボタンなどに使うメインカラー
+// color: #AEC4E5 ; //ボタンを押した時などやマイページに使うサブカラー
+// color: #EB8686 ; //キャンセルボタンなどに使う
+// color: #C0C0C0 ; // 文字の色
+// color: #EEF9FF; //
+// }
 
 // HTML全体に適用
 * {
@@ -53,7 +55,7 @@ body{
     color:  #D9EDF7;
     margin: 0px, 0px , 20px;
     padding: 15px;
-    background-color:#31708F;
+    background-color: #AEC4E5 ;
   }
   // #DFF0D8  Bootstrap　サクセスメッセージ #3C763D
 
@@ -730,3 +732,6 @@ input[name="tab_item"] {
   background-color: #5ab4bd;
   color: #fff;
 }
+
+
+// 静的ページレイアウト
