@@ -21,16 +21,19 @@ body{
   display: grid;
   grid-template-areas:"header header"
                       "right left";
-  grid-template-columns: 1fr 1fr ;
+                      // 'footer';
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr
-                      1fr;
+                      auto;
+
+  
   .right-container{
     // flex: 1;
     background-color: #AEC4E5;
     color:  #ffffff;
-    
+    height: 160%;
     h1{
-      padding-top: 7rem;
+      padding-top: 15rem;
     }
     // height: 800px;
     .btn-square{
@@ -57,6 +60,10 @@ body{
     // flex: 1;
     background-color: #EEF9FF ; 
     color:  #6088C6;
+    height: 160%;
+    ul{
+      padding-top: 20%;
+    }
     li{
       padding-top: 2rem;
     }
@@ -66,6 +73,16 @@ body{
     }
   }
 
+  // .footer{
+  //   .footer-right--container{
+  //     background-color: #AEC4E5;
+  //   }
+  //   .footer-left-container{
+  //     background-color: #EEF9FF ; 
+  //   }
+    
+  // }
+
 
 }
 
@@ -73,15 +90,57 @@ body{
 // スマホでのレイアウト
 @media screen and (max-width:900px) {
   .home-container{
-      grid-template-areas:"header"
-                          "right"
+      grid-template-areas:"right"
                           "left";
       grid-template-columns: 100%;
-      grid-template-rows: auto // header
-                          auto // right
-                          auto;// ads class: saidebar
-                          // 50px;// foo
+      grid-template-rows: 1fr // header
+                          1fr; // right
+                          // 1fr;// left
+                        
+    .right-container{
+      // flex: 1;
+      background-color: #AEC4E5;
+      color:  #ffffff;
+      height: 100%;
+      h1{
+        padding-top: 5rem;
+      }
+      // height: 800px;
+      .btn-square{
+        margin: 1rem;
+        display: inline-block;
+        padding: 1em 1em;
+        text-decoration: none;
+        background: #6088C6;;/*ボタン色*/
+        color: #FFF;
+        border-bottom: solid 4px  #4072B3;
+        border-radius: 3px;
+      }
+      .btn-square:active {
+        /*ボタンを押したとき*/
+        -webkit-transform: translateY(4px);
+        transform: translateY(4px);/*下に動く*/
+        border-bottom: none;/*線を消す*/
+      }
+    }
   
-    
+    .left-container{
+      // flex: 1;
+      background-color: #EEF9FF ; 
+      color:  #6088C6;
+      height: 110%;
+      // padding-top: 5rem;
+      // ul{
+      //   // padding-top: 3rem;
+      // }
+      li{
+        padding-top: 1rem;
+      }
+  
+      // p{
+      //   padding-bottom: 1rem;
+      // }
+    }
+                        
   }
 }
