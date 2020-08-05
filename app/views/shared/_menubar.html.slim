@@ -15,5 +15,12 @@
       p  = '履歴'
     li = link_to user_path(current_user), class:'fa fa-line-chart fa-2x'
       p = 'グラフ'
-    / li = link_to about_path, class:'fa fa-info fa-2x'
-    /   p = 'About'
+
+      / 一覧ページでは使用できるが、ユーザー詳細ページなどに行くことができない。多分、ルーティングが設定されてないから。
+    / li =search_form_for @q, class: 'mb-5' do |f|
+    /   .forn-group.row
+    /   label タイトル
+    /   .col-sm-10
+    /       = f.search_field :title_cont, placeholder: 'タスクのタイトルを入力してください',class: 'form-control'
+    /   .forn-group
+    /     = f.submit class: 'btn btn-outline-primary' , id: 'search-btn'
