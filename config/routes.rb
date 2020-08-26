@@ -10,8 +10,10 @@ Rails.application.routes.draw do
   delete '/logout' => 'user_sessions#destroy'
   
   get '/signup' => 'users#new'
-  # get '/users/:id' => 'users#show', as: 'mypage'
-  resources :users, only: %i[create edit update show index destroy]
+  get '/users/:id' => 'users#show', as: 'mypage'
+  resources :users, only: %i[create edit update index destroy]
+  
+  
   resources :password_resets
   # , only: %i[new create edit update]
   # 簡単ログイン

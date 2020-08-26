@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   # skip_before_action :correct_user
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   # 他のユーザーページに行かせないための処理だが、これがあると新規登録機能が使えなくなる
-  # before_action :correct_user, onry: [:edit, :update, :new]
+  # before_action :correct_user, onry: [:edit, :update, :new, :show]
 
   # GET /users/1
   # GET /users/1.json
