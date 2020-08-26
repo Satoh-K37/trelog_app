@@ -23,7 +23,7 @@ html
             - if logged_in?
                 li = link_to new_task_path,class:'fa fa-pencil-square-o fa-lg', id:'nav-icon'
                   p = 'タスク作成'
-                li = link_to user_path(current_user),class:'fa fa-user-circle fa-lg' , id:'nav-icon' 
+                li = link_to mypage_path(current_user),class:'fa fa-user-circle fa-lg' , id:'nav-icon' 
                   p = 'マイページ'
                 - if current_user.admin?
                   li = link_to admin_user_path(current_user), class: 'fa fa-user-secret fa-lg' , id:'nav-icon'
