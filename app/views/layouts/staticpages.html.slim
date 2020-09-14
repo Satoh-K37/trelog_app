@@ -2,7 +2,7 @@ doctype html
 html
   head
     title
-      | TRELOG
+      | トレログ
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application'
@@ -14,7 +14,7 @@ html
       .header-navbar
         ul
           li = link_to home_path, class:'fa fa-home fa-lg logo'
-            p = 'TRELOG'
+            p = 'トレログ'
           li = link_to signup_path, class:'fa fa-user-plus fa-lg' , id:'nav-icon'
             p = 'アカウント作成'
           li = link_to login_path, class:'fa fa-sign-out fa-lg' , id:'nav-icon'

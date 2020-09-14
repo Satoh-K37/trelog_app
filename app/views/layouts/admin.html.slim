@@ -2,7 +2,7 @@ doctype html
 html
   head
     title
-      | TRELOG
+      | トレログ
     = csrf_meta_tags
     = csp_meta_tag
     meta name="viewport" content="width=device-width, initial-scale=1.0"
@@ -24,10 +24,10 @@ html
         .header-navbar
             - if logged_in?
                 li = link_to admin_users_path, class:'fa fa-home fa-lg logo'
-                  p = 'TRELOG'
+                  p = 'トレログ'
             - else
                 li = link_to home_path, class:'fa fa-home fa-lg logo'
-                  p = 'TRELOG'
+                  p = 'トレログ'
             - if current_user.admin?
                   li = link_to admin_user_path(current_user), class: 'fa fa-user-secret fa-lg' , id:'nav-icon'
                     p = '管理者マイページ'
