@@ -41,15 +41,19 @@ gem 'image_processing', '~> 1.2'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
-# # 環境変数の管理をするもの
-# gem 'dotenv-rails'
 
-# gem 'unicorn', '5.4.1'
-
-
+# # 本番環境 # #
 group :production do
-  gem 'unicorn', '5.4.1'
+  gem 'mysql2', '>= 0.4.4'
 end
+
+group :production, :staging do
+  gem 'unicorn'
+end
+# # 環境変数の管理をするもの
+gem 'dotenv-rails'
+
+# # 本番環境 # #
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

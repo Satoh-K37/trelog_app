@@ -16,6 +16,15 @@ default: &default
   username: root
   password:
   socket: /tmp/mysql.sock
+  # socket: <%= Rails.application.credentials.db[:socket] %>
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: trelog_app_production
+  username: root
+  password: <%= ENV['DATABASE_PRO_PASSWORD'] %>
 
 development:
   <<: *default
@@ -60,9 +69,11 @@ test:
 #   username: root
 #   password:
 
-production:
-  <<: *default
-  database: <%= Rails.application.credentials.db[:database] %>
-  username: <%= Rails.application.credentials.db[:username] %>
-  password: <%= Rails.application.credentials.db[:password] %>
-  socket: <%= Rails.application.credentials.db[:socket] %>
+# production:
+#   <<: *default
+#   database: <%= Rails.application.credentials.db[:database] %>
+#   username: <%= Rails.application.credentials.db[:username] %>
+#   password: <%= Rails.application.credentials.db[:password] %>
+#   socket: <%= Rails.application.credentials.db[:socket] %>
+
+
