@@ -20,8 +20,6 @@ Rails.application.routes.draw do
   resources :guestuser_sessions , only: :create
   # post '/guest_login' => 'guestuser_sessions#guest_login'
   
-  
-  
   ####################
 
   root to: 'tasks#index'
