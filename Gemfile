@@ -47,8 +47,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 #   gem 'mysql2', '>= 0.4.4'
 # end
 
-group :production, :staging do
-  gem 'unicorn'
+group :production do
+#, :staging do
+  gem 'unicorn', '5.4.1'
 end
 # # 環境変数の管理をするもの
 gem 'dotenv-rails'
