@@ -2,6 +2,11 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
   mount_uploader :icon_image, ImageUploader
   has_many :tasks
+  # タスク作成の際にセレクトボックスでタイトルを設定するために中間テーブルを介して、タスクタイトルを保存しているテーブルにアクセスしてデータを取得する想定
+  
+  # has_many :title,  through: :user_title, source: :title
+  has_many :user_title
+  has_many :title, through: :user_title
   
   # ユーザ名は30文字以内
   validates :user_name, presence: true, length:  { maximum: 30 }
