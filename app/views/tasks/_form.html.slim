@@ -18,7 +18,7 @@
             = f.text_field :deadline, type: 'date', class: 'form-control', id: 'task_deadline'
           .form-group
             = f.label :title
-            = f.collection_select :title, Title.all, :title_name, :title_name, :prompt => true
+            = f.collection_select :title, Title.all, :title_name, :title_name, :prompt => true, class:'cp_ipselect cp_sl01'
             / = f.text_field :title, placeholder: '例）ベンチプレス', class: 'form-control', id: 'task_title'
           .form-group
             .form-inline
