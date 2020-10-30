@@ -18,7 +18,9 @@
             = f.text_field :deadline, type: 'date', class: 'form-control', id: 'task_deadline'
           .form-group
             = f.label :title
-            = f.select :title,  [["１", "１"], ["２", "２"]]
+            = f.collection_select :title, Title.all, :title_name, :title_name
+            / = f.select :title,  [["１", "１"], ["２", "２"]]
+
             / = f.text_field :title, placeholder: '例）ベンチプレス', class: 'form-control', id: 'task_title'
           .form-group
             .form-inline
