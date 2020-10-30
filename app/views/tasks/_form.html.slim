@@ -19,8 +19,6 @@
           .form-group
             = f.label :title
             = f.collection_select :title, Title.all, :title_name, :title_name, :prompt => true
-            / = f.select :title,  [["１", "１"], ["２", "２"]]
-
             / = f.text_field :title, placeholder: '例）ベンチプレス', class: 'form-control', id: 'task_title'
           .form-group
             .form-inline
