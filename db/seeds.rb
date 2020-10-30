@@ -10,4 +10,9 @@ if Rails.env == "development"
     user = User.find(1)
     user.tasks.create!(title: "test#{i + 1}", weight: "10", rep: "10", set_count: "2")
   end
+
+  5.times do |i|
+    Title.create!(title_name: "筋トレ#{i + 1}")
+  end
+
 end

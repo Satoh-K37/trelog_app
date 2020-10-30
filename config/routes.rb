@@ -24,11 +24,10 @@ Rails.application.routes.draw do
 
   root to: 'tasks#index'
   # タスク機能関係
-  # get '/new_task' => 'tasks#new'
+  # get '/select_new' => 'tasks#new'
   resources :tasks do
     member do
       post :task_status
-      get :select_task
     end
     collection do
       get :todo, :done
