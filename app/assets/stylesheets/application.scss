@@ -22,14 +22,14 @@
 
 
 // 全体で使う色一覧
-// a {
-// color: #4072B3 ; // ボタンを押した時などやマイページに使うサブカラー
-// color: #6088C6 ; //ヘッダーやボタンなどに使うメインカラー
-// color: #AEC4E5 ; //ボタンを押した時などやマイページに使うサブカラー
-// color: #EB8686 ; //キャンセルボタンなどに使う
-// color: #C0C0C0 ; // 文字の色
-// color: #EEF9FF; //
-// }
+a {
+color: #4072B3 ; // ボタンを押した時などやマイページに使うサブカラー
+color: #6088C6 ; //ヘッダーやボタンなどに使うメインカラー
+color: #AEC4E5 ; //ボタンを押した時などやマイページに使うサブカラー
+color: #EB8686 ; //キャンセルボタンなどに使う
+color: #C0C0C0 ; // 文字の色
+color: #EEF9FF; //
+}
 
 // HTML全体に適用
 * {
@@ -323,8 +323,11 @@ body{
 
     .task-containerIn{
       border-radius: 10px;
-      background-color:#79A1D4;
-      //  #9FBCDF;
+      background-color: #F8F8FF;
+      // :#f8f8ff;
+      // #f0f8ff;
+      // #9FBCDF;
+      // #79A1D4;
       
     }
     
