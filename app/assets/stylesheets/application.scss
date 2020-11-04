@@ -316,18 +316,18 @@ body{
   }
 
   .task-container{
-    
-    // border-top: solid 0.1px #BDBDBD;
-    // border-bottom: solid 0.1px #BDBDBD;
+    border-radius: 10px;
+    border-top: solid 0.1px #BDBDBD;
+    border-bottom: solid 0.1px #BDBDBD;
+    background-color: #F8F8FF;
     list-style: none;
 
     .task-containerIn{
       border-radius: 10px;
-      background-color: #F8F8FF;
-      // :#f8f8ff;
-      // #f0f8ff;
-      // #9FBCDF;
-      // #79A1D4;
+      // background-color:#f8f8ff;
+      // background-color:#f0f8ff;
+      // background-color:#9FBCDF;
+      // background-color:#79A1D4;
       
     }
     
