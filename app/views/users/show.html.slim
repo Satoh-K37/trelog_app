@@ -31,18 +31,42 @@
       .tab-content#tab1-content
           .tab-content-description
             p タスク履歴
-            / = link_to task.title, task_path(@task), id:'task_title'
 
       .tab-content#tab2-content
           .tab-content-description
-            p 種目別グラフ
-            =line_chart Task.group_by_day(:created_at).count
-            / = line_chart @data
-            / , width: "800px", height: "500px"
+            canvas#myChart
+              javascript:
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['2020年8月', '2020年10月', '2020年11月', '2020年12月'],
+                        datasets: [{
+                            label: '種目別',
+                            data: [120, 190, 34, 58,90, 69,39]
+                          }
+                        ]
+                    }
+                });
+            / =line_chart Task.group_by_day(:created_at).count
 
       .tab-content#tab3-content
           .tab-content-description
             p 体重
+          canvas#myChart2
+            javascript:
+              var ctx = document.getElementById('myChart2').getContext('2d');
+              var myChart = new Chart(ctx, {
+                  type: 'line',
+                  data: {
+                      labels: ['2019年1月', '2019年2月', '2019年3月', '2019年4月'],
+                      datasets: [{
+                          label: '体重',
+                          data: [120, 190, 34, 58]
+                        }
+                      ]
+                  }
+              });
       
 
 
