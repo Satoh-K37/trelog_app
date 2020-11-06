@@ -12,14 +12,14 @@
 //
 //= require chartkick
 //= require Chart.bundle
-//= require jquery
+// // = require jquery
 //= require rails-ujs
 //= require turbolinks
 
-//= require_tree .
+
+// = require_tree .
 //= require jquery.jscroll.min.js
 //= require infinite-scroll.pkgd.min
-
 
 
 
@@ -53,6 +53,12 @@ $(function(){
   });
 });
 
+var app = new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue!'
+  }
+});
 
 // タスク一覧ページでタスク削除を非同期で行う
 // これなんかできてねぇな…
@@ -191,11 +197,7 @@ $(document).on("turbolinks:load", function () {
       hideNav: ".pagination"
     })
   }
-})
+});
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    message: 'Hello Vue!'
-  }
-})
+
+
